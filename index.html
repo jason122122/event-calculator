@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>活動點數與獎章預測計算器</title>
+  <title>Ournotes 活動點數預測計算器</title>
   <style>
     :root {
       --bg: #f3f4f6;
@@ -46,7 +46,7 @@
     }
 
     h1 {
-      font-size: 1.45rem;
+      font-size: 1.4rem;
       font-weight: 800;
       text-align: center;
       color: var(--primary);
@@ -169,17 +169,47 @@
       text-align: center;
       line-height: 1.4;
     }
+
+    .author-footer {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.82rem;
+      color: #4b5563;
+      line-height: 1.6;
+    }
+
+    .author-footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .author-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .highlight-id {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: #e5e7eb;
+      padding: 1px 6px;
+      border-radius: 4px;
+      color: #1f2937;
+    }
   </style>
 </head>
 <body>
 
   <div class="calculator-card">
-    <h1>活動點數預測計算器</h1>
+    <!-- 標題 -->
+    <h1>Ournotes 活動點數預測計算器</h1>
 
-    <!-- 1. 活動PT加成 -->
+    <!-- 1. 隊伍加成 (原活動PT加成) -->
     <div class="form-group">
       <div class="label-row">
-        <label for="ptBonus">活動 PT 加成</label>
+        <label for="ptBonus">隊伍加成</label>
         <span class="limit-badge">上限 250%</span>
       </div>
       <div class="input-wrapper">
@@ -188,10 +218,10 @@
       </div>
     </div>
 
-    <!-- 2. 活動獎章加成 -->
+    <!-- 2. 快照加成 (原活動獎章加成) -->
     <div class="form-group">
       <div class="label-row">
-        <label for="medalBonus">活動獎章加成</label>
+        <label for="medalBonus">快照加成</label>
         <span class="limit-badge">上限 250%</span>
       </div>
       <div class="input-wrapper">
@@ -200,7 +230,7 @@
       </div>
     </div>
 
-    <!-- 3. 團體評分 & 4. 消耗火數 (並列) -->
+    <!-- 3. 團體評分 & 4. 消耗火數 -->
     <div class="grid-2">
       <div class="form-group">
         <div class="label-row">
@@ -257,10 +287,17 @@
       * 最終點數採無條件捨去（Floor）計算。<br>
       * 個人單獨評分不影響收益，以全場總和結算的「團體評分」為準。
     </div>
+
+    <!-- 作者與聯絡資訊 -->
+    <div class="author-footer">
+      <div>以上皆在測試中，有問題可以聯繫：</div>
+      <div>作者：<strong>巧克力</strong></div>
+      <div>IG：<a href="https://www.instagram.com/chocolate_09.21/" target="_blank" rel="noopener noreferrer">chocolate_09.21</a></div>
+      <div>國際服 ID：<span class="highlight-id">28221772576</span></div>
+    </div>
   </div>
 
   <script>
-    // 依反推規律訂定的各階級基礎底分常數
     const RANK_CONFIG = {
       'SS': { pt: 65, medal: 78, livePt: 8 },
       'S':  { pt: 55, medal: 66, livePt: 7 },
@@ -280,7 +317,6 @@
     const resLivePT = document.getElementById('resLivePT');
 
     function calculate() {
-      // 讀取並防呆限制加成在 0 ~ 250 區間
       let ptBonus = parseFloat(ptInput.value) || 0;
       let medalBonus = parseFloat(medalInput.value) || 0;
 
@@ -300,24 +336,20 @@
       const multiplier = parseInt(fireSelect.value, 10);
       const base = RANK_CONFIG[rank];
 
-      // 核心計算公式 (無條件捨去)
       const livePt = base.livePt * multiplier;
       const pt = Math.floor(base.pt * (1 + ptBonus / 100) * multiplier);
       const medal = Math.floor(base.medal * (1 + medalBonus / 100) * multiplier);
 
-      // 渲染結果並加上千分位逗號
       resPT.textContent = pt.toLocaleString();
       resMedal.textContent = medal.toLocaleString();
       resLivePT.textContent = livePt.toLocaleString();
     }
 
-    // 監聽各輸入與變更事件，提供即時運算響應
     [ptInput, medalInput, rankSelect, fireSelect].forEach(el => {
       el.addEventListener('input', calculate);
       el.addEventListener('change', calculate);
     });
 
-    // 頁面初始化立即試算
     calculate();
   </script>
 </body>
