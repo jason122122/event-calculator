@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>活動點數與獎章預測計算器</title>
+  <style>
+    :root {
+      --bg: #f3f4f6;
+      --card-bg: #ffffff;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --text: #111827;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --card-inner: #f9fafb;
+      --pt-color: #3b82f6;
+      --medal-color: #f59e0b;
+      --live-color: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 24px 16px;
+    }
+
+    .calculator-card {
+      background: var(--card-bg);
+      width: 100%;
+      max-width: 480px;
+      border-radius: 20px;
+      padding: 28px 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .limit-badge {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    input[type="number"], select {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 1rem;
+      font-weight: 500;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      background-color: #fff;
+      transition: all 0.2s ease;
+    }
+
+    input[type="number"]:focus, select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    }
+
+    .unit {
+      position: absolute;
+      right: 14px;
+      color: var(--text-muted);
+      font-weight: 600;
+      pointer-events: none;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .results-panel {
+      margin-top: 24px;
+      background: var(--card-inner);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .panel-header {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 4px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .result-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .result-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .result-val {
+      font-size: 1.35rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .pt-val { color: var(--pt-color); }
+    .medal-val { color: var(--medal-color); }
+    .live-val { color: var(--live-color); }
+
+    .formula-note {
+      margin-top: 16px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calculator-card">
+    <h1>活動點數預測計算器</h1>
+
+    <!-- 1. 活動PT加成 -->
+    <div class="form-group">
+      <div class="label-row">
+        <label for="ptBonus">活動 PT 加成</label>
+        <span class="limit-badge">上限 250%</span>
+      </div>
+      <div class="input-wrapper">
+        <input type="number" id="ptBonus" value="178" min="0" max="250" step="1">
+        <span class="unit">%</span>
+      </div>
+    </div>
+
+    <!-- 2. 活動獎章加成 -->
+    <div class="form-group">
+      <div class="label-row">
+        <label for="medalBonus">活動獎章加成</label>
+        <span class="limit-badge">上限 250%</span>
+      </div>
+      <div class="input-wrapper">
+        <input type="number" id="medalBonus" value="114" min="0" max="250" step="1">
+        <span class="unit">%</span>
+      </div>
+    </div>
+
+    <!-- 3. 團體評分 & 4. 消耗火數 (並列) -->
+    <div class="grid-2">
+      <div class="form-group">
+        <div class="label-row">
+          <label for="teamRank">團體評分</label>
+        </div>
+        <select id="teamRank">
+          <option value="SS">SS 級</option>
+          <option value="S">S 級</option>
+          <option value="A">A 級</option>
+          <option value="B" selected>B 級</option>
+          <option value="C">C 級</option>
+          <option value="D">D 級</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <div class="label-row">
+          <label for="fireCount">消耗火數 (倍數)</label>
+        </div>
+        <select id="fireCount">
+          <option value="1">0 火 (1倍)</option>
+          <option value="5">1 火 (5倍)</option>
+          <option value="10">2 火 (10倍)</option>
+          <option value="15" selected>3 火 (15倍)</option>
+          <option value="20">4 火 (20倍)</option>
+          <option value="25">5 火 (25倍)</option>
+          <option value="30">6 火 (30倍)</option>
+          <option value="35">7 火 (35倍)</option>
+          <option value="40">8 火 (40倍)</option>
+          <option value="45">9 火 (45倍)</option>
+          <option value="50">10 火 (50倍)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- 預測結果展示 -->
+    <div class="results-panel">
+      <div class="panel-header">預測最終結算獲得</div>
+      <div class="result-item">
+        <span class="result-name">活動 PT</span>
+        <span class="result-val pt-val" id="resPT">0</span>
+      </div>
+      <div class="result-item">
+        <span class="result-name">活動獎章</span>
+        <span class="result-val medal-val" id="resMedal">0</span>
+      </div>
+      <div class="result-item">
+        <span class="result-name">Live PT</span>
+        <span class="result-val live-val" id="resLivePT">0</span>
+      </div>
+    </div>
+
+    <div class="formula-note">
+      * 最終點數採無條件捨去（Floor）計算。<br>
+      * 個人單獨評分不影響收益，以全場總和結算的「團體評分」為準。
+    </div>
+  </div>
+
+  <script>
+    // 依反推規律訂定的各階級基礎底分常數
+    const RANK_CONFIG = {
+      'SS': { pt: 65, medal: 78, livePt: 8 },
+      'S':  { pt: 55, medal: 66, livePt: 7 },
+      'A':  { pt: 45, medal: 54, livePt: 6 },
+      'B':  { pt: 35, medal: 42, livePt: 5 },
+      'C':  { pt: 25, medal: 30, livePt: 4 },
+      'D':  { pt: 15, medal: 18, livePt: 3 }
+    };
+
+    const ptInput = document.getElementById('ptBonus');
+    const medalInput = document.getElementById('medalBonus');
+    const rankSelect = document.getElementById('teamRank');
+    const fireSelect = document.getElementById('fireCount');
+
+    const resPT = document.getElementById('resPT');
+    const resMedal = document.getElementById('resMedal');
+    const resLivePT = document.getElementById('resLivePT');
+
+    function calculate() {
+      // 讀取並防呆限制加成在 0 ~ 250 區間
+      let ptBonus = parseFloat(ptInput.value) || 0;
+      let medalBonus = parseFloat(medalInput.value) || 0;
+
+      if (ptBonus < 0) ptBonus = 0;
+      if (ptBonus > 250) {
+        ptBonus = 250;
+        ptInput.value = 250;
+      }
+
+      if (medalBonus < 0) medalBonus = 0;
+      if (medalBonus > 250) {
+        medalBonus = 250;
+        medalInput.value = 250;
+      }
+
+      const rank = rankSelect.value;
+      const multiplier = parseInt(fireSelect.value, 10);
+      const base = RANK_CONFIG[rank];
+
+      // 核心計算公式 (無條件捨去)
+      const livePt = base.livePt * multiplier;
+      const pt = Math.floor(base.pt * (1 + ptBonus / 100) * multiplier);
+      const medal = Math.floor(base.medal * (1 + medalBonus / 100) * multiplier);
+
+      // 渲染結果並加上千分位逗號
+      resPT.textContent = pt.toLocaleString();
+      resMedal.textContent = medal.toLocaleString();
+      resLivePT.textContent = livePt.toLocaleString();
+    }
+
+    // 監聽各輸入與變更事件，提供即時運算響應
+    [ptInput, medalInput, rankSelect, fireSelect].forEach(el => {
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    });
+
+    // 頁面初始化立即試算
+    calculate();
+  </script>
+</body>
+</html>
