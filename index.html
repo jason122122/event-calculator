@@ -48,11 +48,49 @@
     }
 
     h1 {
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       font-weight: 800;
       text-align: center;
       color: var(--primary);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
+    }
+
+    /* 模式切換按鈕 */
+    .tab-group {
+      display: flex;
+      background: var(--card-inner);
+      padding: 4px;
+      border-radius: 12px;
+      margin-bottom: 22px;
+      border: 1px solid var(--border);
+      gap: 4px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 10px 0;
+      font-size: 0.9rem;
+      font-weight: 700;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35);
+    }
+
+    .mode-section {
+      display: none;
+    }
+
+    .mode-section.active {
+      display: block;
     }
 
     .form-group {
@@ -94,7 +132,7 @@
       border: 1.5px solid var(--border);
       border-radius: 10px;
       outline: none;
-      background-color: #0f172a;
+      background-color: var(--card-inner);
       color: var(--text);
       transition: all 0.2s ease;
     }
@@ -114,9 +152,9 @@
 
     .sub-hint-red {
       margin-top: 6px;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: var(--hint-red);
-      line-height: 1.35;
+      line-height: 1.45;
       font-weight: 500;
     }
 
@@ -128,7 +166,7 @@
     }
 
     .results-panel {
-      margin-top: 24px;
+      margin-top: 22px;
       background: var(--card-inner);
       border: 1.5px solid var(--border);
       border-radius: 14px;
@@ -175,11 +213,17 @@
     .live-val { color: var(--live-color); }
 
     .formula-note {
-      margin-top: 16px;
+      margin-top: 14px;
       font-size: 0.78rem;
       color: var(--text-muted);
       text-align: center;
-      line-height: 1.4;
+      line-height: 1.5;
+    }
+
+    .note-red {
+      color: var(--hint-red);
+      font-weight: 500;
+      margin-top: 4px;
     }
 
     .author-footer {
@@ -219,104 +263,190 @@
 <body>
 
   <div class="calculator-card">
-    <h1>Ournotes 活動點數預測計算器</h1>
+    <h1 id="pageTitle">通常演出預測計算器</h1>
 
-    <!-- 1. 隊伍加成 -->
-    <div class="form-group">
-      <div class="label-row">
-        <label for="ptBonus">隊伍加成</label>
-        <span class="limit-badge">上限 500%</span>
-      </div>
-      <div class="input-wrapper">
-        <input type="number" id="ptBonus" value="375" min="0" max="500" step="1">
-        <span class="unit">%</span>
-      </div>
+    <!-- 模式切換按鈕 -->
+    <div class="tab-group">
+      <button class="tab-btn active" id="tabMode1">通常演出 (激奏/自由)</button>
+      <button class="tab-btn" id="tabMode2">挑戰演出 (CP模式)</button>
     </div>
 
-    <!-- 2. 快照加成 -->
-    <div class="form-group">
-      <div class="label-row">
-        <label for="medalBonus">快照加成</label>
-        <span class="limit-badge">上限 500%</span>
-      </div>
-      <div class="input-wrapper">
-        <input type="number" id="medalBonus" value="375" min="0" max="500" step="1">
-        <span class="unit">%</span>
-      </div>
-    </div>
-
-    <!-- 3. 評分 & 4. 消耗火數 -->
-    <div class="grid-2">
+    <!-- ================= 模式一：通常演出 ================= -->
+    <div class="mode-section active" id="sectionMode1">
+      <!-- 1. 隊伍加成 -->
       <div class="form-group">
         <div class="label-row">
-          <label for="teamRank">評分</label>
+          <label for="ptBonus1">隊伍加成</label>
+          <span class="limit-badge">上限 500%</span>
         </div>
-        <select id="teamRank">
-          <option value="SS">SS 級</option>
-          <option value="S">S 級</option>
-          <option value="A" selected>A 級</option>
-          <option value="B">B 級</option>
-          <option value="C">C 級</option>
-          <option value="D">D 級</option>
-        </select>
-        <div class="sub-hint-red">若為激奏演出請填團體評分，若為自由演出請填最終評分</div>
+        <div class="input-wrapper">
+          <input type="number" id="ptBonus1" value="375" min="0" max="500" step="1">
+          <span class="unit">%</span>
+        </div>
       </div>
 
+      <!-- 2. 快照加成 -->
       <div class="form-group">
         <div class="label-row">
-          <label for="fireCount">消耗火數 (倍數)</label>
+          <label for="medalBonus1">快照加成</label>
+          <span class="limit-badge">上限 500%</span>
         </div>
-        <select id="fireCount">
-          <option value="1">0 火 (1倍)</option>
-          <option value="5">1 火 (5倍)</option>
-          <option value="10">2 火 (10倍)</option>
-          <option value="15">3 火 (15倍)</option>
-          <option value="20">4 火 (20倍)</option>
-          <option value="25">5 火 (25倍)</option>
-          <option value="30">6 火 (30倍)</option>
-          <option value="35">7 火 (35倍)</option>
-          <option value="40">8 火 (40倍)</option>
-          <option value="45">9 火 (45倍)</option>
-          <option value="50" selected>10 火 (50倍)</option>
-        </select>
+        <div class="input-wrapper">
+          <input type="number" id="medalBonus1" value="375" min="0" max="500" step="1">
+          <span class="unit">%</span>
+        </div>
+      </div>
+
+      <!-- 3. 評分 & 4. 消耗火數 -->
+      <div class="grid-2">
+        <div class="form-group">
+          <div class="label-row">
+            <label for="teamRank1">評分</label>
+          </div>
+          <select id="teamRank1">
+            <option value="SS">SS 級</option>
+            <option value="S">S 級</option>
+            <option value="A" selected>A 級</option>
+            <option value="B">B 級</option>
+            <option value="C">C 級</option>
+            <option value="D">D 級</option>
+          </select>
+          <div class="sub-hint-red">
+            若為激奏演出請填團體評分<br>
+            若為自由演出請填最終評分
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="fireCount">消耗火數 (倍數)</label>
+          </div>
+          <select id="fireCount">
+            <option value="1">0 火 (1倍)</option>
+            <option value="5">1 火 (5倍)</option>
+            <option value="10">2 火 (10倍)</option>
+            <option value="15">3 火 (15倍)</option>
+            <option value="20">4 火 (20倍)</option>
+            <option value="25">5 火 (25倍)</option>
+            <option value="30">6 火 (30倍)</option>
+            <option value="35">7 火 (35倍)</option>
+            <option value="40">8 火 (40倍)</option>
+            <option value="45">9 火 (45倍)</option>
+            <option value="50" selected>10 火 (50倍)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 預測結果展示 -->
+      <div class="results-panel">
+        <div class="panel-header">預測最終結算獲得</div>
+        <div class="result-item">
+          <span class="result-name">活動 PT</span>
+          <span class="result-val pt-val" id="resPT1">0</span>
+        </div>
+        <div class="result-item">
+          <span class="result-name">活動獎章</span>
+          <span class="result-val medal-val" id="resMedal1">0</span>
+        </div>
+        <div class="result-item">
+          <span class="result-name">Live PT</span>
+          <span class="result-val live-val" id="resLivePT1">0</span>
+        </div>
+      </div>
+
+      <div class="formula-note">
+        * 最終點數採無條件捨去（Floor）計算。<br>
+        * 個人單獨評分不影響收益，以全場總和結算的「評分」為準。<br>
+        以上是適用激奏演出以及自由演出
       </div>
     </div>
 
-    <!-- 預測結果展示 -->
-    <div class="results-panel">
-      <div class="panel-header">預測最終結算獲得</div>
-      <div class="result-item">
-        <span class="result-name">活動 PT</span>
-        <span class="result-val pt-val" id="resPT">0</span>
+    <!-- ================= 模式二：挑戰演出 ================= -->
+    <div class="mode-section" id="sectionMode2">
+      <!-- 1. 隊伍加成 -->
+      <div class="form-group">
+        <div class="label-row">
+          <label for="ptBonus2">隊伍加成</label>
+          <span class="limit-badge">上限 500%</span>
+        </div>
+        <div class="input-wrapper">
+          <input type="number" id="ptBonus2" value="286" min="0" max="500" step="1">
+          <span class="unit">%</span>
+        </div>
       </div>
-      <div class="result-item">
-        <span class="result-name">活動獎章</span>
-        <span class="result-val medal-val" id="resMedal">0</span>
-      </div>
-      <div class="result-item">
-        <span class="result-name">Live PT</span>
-        <span class="result-val live-val" id="resLivePT">0</span>
-      </div>
-    </div>
 
-    <div class="formula-note">
-      * 最終點數採無條件捨去（Floor）計算。<br>
-      * 個人單獨評分不影響收益，以全場總和結算的「評分」為準。
+      <!-- 2. 快照加成 -->
+      <div class="form-group">
+        <div class="label-row">
+          <label for="medalBonus2">快照加成</label>
+          <span class="limit-badge">上限 500%</span>
+        </div>
+        <div class="input-wrapper">
+          <input type="number" id="medalBonus2" value="286" min="0" max="500" step="1">
+          <span class="unit">%</span>
+        </div>
+      </div>
+
+      <!-- 3. 評分 & 4. CP幣 -->
+      <div class="grid-2">
+        <div class="form-group">
+          <div class="label-row">
+            <label for="teamRank2">評分</label>
+          </div>
+          <select id="teamRank2">
+            <option value="SS" selected>SS 級</option>
+            <option value="S">S 級</option>
+            <option value="A">A 級</option>
+            <option value="B">B 級</option>
+            <option value="C">C 級</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="cpCount">CP 幣</label>
+          </div>
+          <select id="cpCount">
+            <option value="1">200 CP (1倍)</option>
+            <option value="2">400 CP (2倍)</option>
+            <option value="4">800 CP (4倍)</option>
+            <option value="8" selected>1600 CP (8倍)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 預測結果展示 -->
+      <div class="results-panel">
+        <div class="panel-header">預測最終結算獲得</div>
+        <div class="result-item">
+          <span class="result-name">活動 PT</span>
+          <span class="result-val pt-val" id="resPT2">0</span>
+        </div>
+        <div class="result-item">
+          <span class="result-name">活動獎章</span>
+          <span class="result-val medal-val" id="resMedal2">0</span>
+        </div>
+      </div>
+
+      <div class="formula-note">
+        * 最終點數採無條件捨去（Floor）計算。<br>
+        <div class="note-red">* 評分為 S 的預測最終結算尚未有數據，只是先行推測</div>
+      </div>
     </div>
 
     <!-- 作者與聯絡資訊 -->
     <div class="author-footer">
-      <div>以上是適用激奏演出以及自由演出</div>
       <div>如有重大問題可以聯繫：</div>
       <div>作者：<strong>巧克力</strong></div>
       <div>IG：<a href="https://www.instagram.com/chocolate_09.21/" target="_blank" rel="noopener noreferrer">chocolate_09.21</a></div>
+      <div>Discord：<span class="highlight-id">chocolate09.21</span></div>
       <div>國際服 ID：<span class="highlight-id">28221772576</span></div>
     </div>
   </div>
 
   <script>
-    // 全階級實測完整定案常數表
-    const RANK_CONFIG = {
+    // 模式一：通常演出 (實測定案)
+    const RANK_CONFIG_MODE1 = {
       'SS': { pt: 100, medal: 120, livePt: 10 },
       'S':  { pt: 75,  medal: 90,  livePt: 8 },
       'A':  { pt: 50,  medal: 60,  livePt: 6 },
@@ -325,51 +455,117 @@
       'D':  { pt: 15,  medal: 18,  livePt: 3 }
     };
 
-    const ptInput = document.getElementById('ptBonus');
-    const medalInput = document.getElementById('medalBonus');
-    const rankSelect = document.getElementById('teamRank');
+    // 模式二：挑戰演出 (CP模式 - S 先行設定為 4125 / 4350)
+    const RANK_CONFIG_MODE2 = {
+      'SS': { pt: 5000, medal: 4950 },
+      'S':  { pt: 4125, medal: 4350 }, // 數學中點先行推算
+      'A':  { pt: 3250, medal: 3750 },
+      'B':  { pt: 2550, medal: 3400 },
+      'C':  { pt: 2000, medal: 2650 }
+    };
+
+    // 模式一 DOM 元素
+    const ptInput1 = document.getElementById('ptBonus1');
+    const medalInput1 = document.getElementById('medalBonus1');
+    const rankSelect1 = document.getElementById('teamRank1');
     const fireSelect = document.getElementById('fireCount');
+    const resPT1 = document.getElementById('resPT1');
+    const resMedal1 = document.getElementById('resMedal1');
+    const resLivePT1 = document.getElementById('resLivePT1');
 
-    const resPT = document.getElementById('resPT');
-    const resMedal = document.getElementById('resMedal');
-    const resLivePT = document.getElementById('resLivePT');
+    // 模式二 DOM 元素
+    const ptInput2 = document.getElementById('ptBonus2');
+    const medalInput2 = document.getElementById('medalBonus2');
+    const rankSelect2 = document.getElementById('teamRank2');
+    const cpSelect = document.getElementById('cpCount');
+    const resPT2 = document.getElementById('resPT2');
+    const resMedal2 = document.getElementById('resMedal2');
 
-    function calculate() {
-      let ptBonus = parseFloat(ptInput.value) || 0;
-      let medalBonus = parseFloat(medalInput.value) || 0;
+    // 頁籤元素
+    const pageTitle = document.getElementById('pageTitle');
+    const tabMode1 = document.getElementById('tabMode1');
+    const tabMode2 = document.getElementById('tabMode2');
+    const sectionMode1 = document.getElementById('sectionMode1');
+    const sectionMode2 = document.getElementById('sectionMode2');
+
+    // 模式一計算
+    function calculateMode1() {
+      let ptBonus = parseFloat(ptInput1.value) || 0;
+      let medalBonus = parseFloat(medalInput1.value) || 0;
 
       if (ptBonus < 0) ptBonus = 0;
-      if (ptBonus > 500) {
-        ptBonus = 500;
-        ptInput.value = 500;
-      }
-
+      if (ptBonus > 500) { ptBonus = 500; ptInput1.value = 500; }
       if (medalBonus < 0) medalBonus = 0;
-      if (medalBonus > 500) {
-        medalBonus = 500;
-        medalInput.value = 500;
-      }
+      if (medalBonus > 500) { medalBonus = 500; medalInput1.value = 500; }
 
-      const rank = rankSelect.value;
+      const rank = rankSelect1.value;
       const multiplier = parseInt(fireSelect.value, 10);
-      const base = RANK_CONFIG[rank];
+      const base = RANK_CONFIG_MODE1[rank];
 
-      // 純整數運算避免浮點數精度誤差
       const livePt = base.livePt * multiplier;
       const pt = Math.floor((base.pt * (100 + ptBonus) * multiplier) / 100);
       const medal = Math.floor((base.medal * (100 + medalBonus) * multiplier) / 100);
 
-      resPT.textContent = pt.toLocaleString();
-      resMedal.textContent = medal.toLocaleString();
-      resLivePT.textContent = livePt.toLocaleString();
+      resPT1.textContent = pt.toLocaleString();
+      resMedal1.textContent = medal.toLocaleString();
+      resLivePT1.textContent = livePt.toLocaleString();
     }
 
-    [ptInput, medalInput, rankSelect, fireSelect].forEach(el => {
-      el.addEventListener('input', calculate);
-      el.addEventListener('change', calculate);
+    // 模式二計算
+    function calculateMode2() {
+      let ptBonus = parseFloat(ptInput2.value) || 0;
+      let medalBonus = parseFloat(medalInput2.value) || 0;
+
+      if (ptBonus < 0) ptBonus = 0;
+      if (ptBonus > 500) { ptBonus = 500; ptInput2.value = 500; }
+      if (medalBonus < 0) medalBonus = 0;
+      if (medalBonus > 500) { medalBonus = 500; medalInput2.value = 500; }
+
+      const rank = rankSelect2.value;
+      const multiplier = parseInt(cpSelect.value, 10);
+      const base = RANK_CONFIG_MODE2[rank];
+
+      const pt = Math.floor((base.pt * (100 + ptBonus) * multiplier) / 100);
+      const medal = Math.floor((base.medal * (100 + medalBonus) * multiplier) / 100);
+
+      resPT2.textContent = pt.toLocaleString();
+      resMedal2.textContent = medal.toLocaleString();
+    }
+
+    // 頁籤切換事件
+    tabMode1.addEventListener('click', () => {
+      tabMode1.classList.add('active');
+      tabMode2.classList.remove('active');
+      sectionMode1.classList.add('active');
+      sectionMode2.classList.remove('active');
+      pageTitle.textContent = '通常演出預測計算器';
+      calculateMode1();
     });
 
-    calculate();
+    tabMode2.addEventListener('click', () => {
+      tabMode2.classList.add('active');
+      tabMode1.classList.remove('active');
+      sectionMode2.classList.add('active');
+      sectionMode1.classList.remove('active');
+      pageTitle.textContent = '挑戰演出預測計算器';
+      calculateMode2();
+    });
+
+    // 模式一監聽
+    [ptInput1, medalInput1, rankSelect1, fireSelect].forEach(el => {
+      el.addEventListener('input', calculateMode1);
+      el.addEventListener('change', calculateMode1);
+    });
+
+    // 模式二監聽
+    [ptInput2, medalInput2, rankSelect2, cpSelect].forEach(el => {
+      el.addEventListener('input', calculateMode2);
+      el.addEventListener('change', calculateMode2);
+    });
+
+    // 初始計算
+    calculateMode1();
+    calculateMode2();
   </script>
 </body>
 </html>
