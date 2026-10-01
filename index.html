@@ -399,6 +399,7 @@
             <option value="A">A 級</option>
             <option value="B">B 級</option>
             <option value="C">C 級</option>
+            <option value="D">D 級</option>
           </select>
         </div>
 
@@ -455,13 +456,14 @@
       'D':  { pt: 15,  medal: 18,  livePt: 3 }
     };
 
-    // 模式二：挑戰演出 (CP模式 - S 先行設定為 4125 / 4350)
+    // 模式二：挑戰演出 (CP模式 - D 實測確認 1500/1450；S 先行推測 4125/4350)
     const RANK_CONFIG_MODE2 = {
       'SS': { pt: 5000, medal: 4950 },
       'S':  { pt: 4125, medal: 4350 }, // 數學中點先行推算
       'A':  { pt: 3250, medal: 3750 },
       'B':  { pt: 2550, medal: 3400 },
-      'C':  { pt: 2000, medal: 2650 }
+      'C':  { pt: 2000, medal: 2650 },
+      'D':  { pt: 1500, medal: 1450 }
     };
 
     // 模式一 DOM 元素
