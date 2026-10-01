@@ -225,10 +225,10 @@
     <div class="form-group">
       <div class="label-row">
         <label for="ptBonus">隊伍加成</label>
-        <span class="limit-badge">上限 250%</span>
+        <span class="limit-badge">上限 500%</span>
       </div>
       <div class="input-wrapper">
-        <input type="number" id="ptBonus" value="178" min="0" max="250" step="1">
+        <input type="number" id="ptBonus" value="375" min="0" max="500" step="1">
         <span class="unit">%</span>
       </div>
     </div>
@@ -237,10 +237,10 @@
     <div class="form-group">
       <div class="label-row">
         <label for="medalBonus">快照加成</label>
-        <span class="limit-badge">上限 250%</span>
+        <span class="limit-badge">上限 500%</span>
       </div>
       <div class="input-wrapper">
-        <input type="number" id="medalBonus" value="114" min="0" max="250" step="1">
+        <input type="number" id="medalBonus" value="375" min="0" max="500" step="1">
         <span class="unit">%</span>
       </div>
     </div>
@@ -254,8 +254,8 @@
         <select id="teamRank">
           <option value="SS">SS 級</option>
           <option value="S">S 級</option>
-          <option value="A">A 級</option>
-          <option value="B" selected>B 級</option>
+          <option value="A" selected>A 級</option>
+          <option value="B">B 級</option>
           <option value="C">C 級</option>
           <option value="D">D 級</option>
         </select>
@@ -270,14 +270,14 @@
           <option value="1">0 火 (1倍)</option>
           <option value="5">1 火 (5倍)</option>
           <option value="10">2 火 (10倍)</option>
-          <option value="15" selected>3 火 (15倍)</option>
+          <option value="15">3 火 (15倍)</option>
           <option value="20">4 火 (20倍)</option>
           <option value="25">5 火 (25倍)</option>
           <option value="30">6 火 (30倍)</option>
           <option value="35">7 火 (35倍)</option>
           <option value="40">8 火 (40倍)</option>
           <option value="45">9 火 (45倍)</option>
-          <option value="50">10 火 (50倍)</option>
+          <option value="50" selected>10 火 (50倍)</option>
         </select>
       </div>
     </div>
@@ -301,7 +301,7 @@
 
     <div class="formula-note">
       * 最終點數採無條件捨去（Floor）計算。<br>
-      * 個人單獨評分不影響收益，以全場總和結算的「團體評分」為準。
+      * 個人單獨評分不影響收益，以全場總和結算的「評分」為準。
     </div>
 
     <!-- 作者與聯絡資訊 -->
@@ -315,13 +315,14 @@
   </div>
 
   <script>
+    // 全階級實測完整定案常數表
     const RANK_CONFIG = {
-      'SS': { pt: 65, medal: 78, livePt: 8 },
-      'S':  { pt: 55, medal: 66, livePt: 7 },
-      'A':  { pt: 45, medal: 54, livePt: 6 },
-      'B':  { pt: 35, medal: 42, livePt: 5 },
-      'C':  { pt: 25, medal: 30, livePt: 4 },
-      'D':  { pt: 15, medal: 18, livePt: 3 }
+      'SS': { pt: 100, medal: 120, livePt: 10 },
+      'S':  { pt: 75,  medal: 90,  livePt: 8 },
+      'A':  { pt: 50,  medal: 60,  livePt: 6 },
+      'B':  { pt: 35,  medal: 42,  livePt: 5 },
+      'C':  { pt: 25,  medal: 30,  livePt: 4 },
+      'D':  { pt: 15,  medal: 18,  livePt: 3 }
     };
 
     const ptInput = document.getElementById('ptBonus');
@@ -338,22 +339,22 @@
       let medalBonus = parseFloat(medalInput.value) || 0;
 
       if (ptBonus < 0) ptBonus = 0;
-      if (ptBonus > 250) {
-        ptBonus = 250;
-        ptInput.value = 250;
+      if (ptBonus > 500) {
+        ptBonus = 500;
+        ptInput.value = 500;
       }
 
       if (medalBonus < 0) medalBonus = 0;
-      if (medalBonus > 250) {
-        medalBonus = 250;
-        medalInput.value = 250;
+      if (medalBonus > 500) {
+        medalBonus = 500;
+        medalInput.value = 500;
       }
 
       const rank = rankSelect.value;
       const multiplier = parseInt(fireSelect.value, 10);
       const base = RANK_CONFIG[rank];
 
-      // 整數精確運算，避免二進位浮點數精度誤差
+      // 純整數運算避免浮點數精度誤差
       const livePt = base.livePt * multiplier;
       const pt = Math.floor((base.pt * (100 + ptBonus) * multiplier) / 100);
       const medal = Math.floor((base.medal * (100 + medalBonus) * multiplier) / 100);
