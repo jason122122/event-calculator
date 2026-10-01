@@ -220,12 +220,6 @@
       line-height: 1.5;
     }
 
-    .note-red {
-      color: var(--hint-red);
-      font-weight: 500;
-      margin-top: 4px;
-    }
-
     .author-footer {
       margin-top: 20px;
       padding-top: 16px;
@@ -430,8 +424,7 @@
       </div>
 
       <div class="formula-note">
-        * 最終點數採無條件捨去（Floor）計算。<br>
-        <div class="note-red">* 評分為 S 的預測最終結算尚未有數據，只是先行推測</div>
+        * 最終點數採無條件捨去（Floor）計算。
       </div>
     </div>
 
@@ -446,7 +439,7 @@
   </div>
 
   <script>
-    // 模式一：通常演出 (實測定案)
+    // 模式一：通常演出 (全評級 100% 實測定案)
     const RANK_CONFIG_MODE1 = {
       'SS': { pt: 100, medal: 120, livePt: 10 },
       'S':  { pt: 75,  medal: 90,  livePt: 8 },
@@ -456,10 +449,10 @@
       'D':  { pt: 15,  medal: 18,  livePt: 3 }
     };
 
-    // 模式二：挑戰演出 (CP模式 - D 實測確認 1500/1450；S 先行推測 4125/4350)
+    // 模式二：挑戰演出 (全評級 100% 實測定案)
     const RANK_CONFIG_MODE2 = {
       'SS': { pt: 5000, medal: 4950 },
-      'S':  { pt: 4125, medal: 4350 }, // 數學中點先行推算
+      'S':  { pt: 3900, medal: 4450 },
       'A':  { pt: 3250, medal: 3750 },
       'B':  { pt: 2550, medal: 3400 },
       'C':  { pt: 2000, medal: 2650 },
