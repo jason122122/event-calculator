@@ -395,7 +395,7 @@
           <span class="result-val medal-val" id="resMedal1">0</span>
         </div>
         <div class="result-item">
-          <span class="result-name">Live PT</span>
+          <span class="result-name" id="resLblChallengePT1">挑戰 PT</span>
           <span class="result-val live-val" id="resLivePT1">0</span>
         </div>
       </div>
@@ -512,6 +512,7 @@
         panelHeader: "預測最終結算獲得",
         lblPt: "活動 PT",
         lblBadge: "活動獎章",
+        lblChallengePt: "挑戰 PT",
         rankSuffix: " 級",
         fireOptions: [
           { val: 1, text: "0🔥 (1倍)" },
@@ -557,6 +558,7 @@
         panelHeader: "Predicted Final Rewards",
         lblPt: "Event PT",
         lblBadge: "Event Badges",
+        lblChallengePt: "Challenge PT",
         rankSuffix: " Rank",
         fireOptions: [
           { val: 1, text: "0🔥 (1x)" },
@@ -697,6 +699,7 @@
       document.getElementById('panelHeader1').textContent = t.panelHeader;
       document.getElementById('resLblPT1').textContent = t.lblPt;
       document.getElementById('resLblMedal1').textContent = t.lblBadge;
+      document.getElementById('resLblChallengePT1').textContent = t.lblChallengePt;
       document.getElementById('hintMode1PlayType').innerHTML = t.hintPlayType;
       document.getElementById('hintSrAwaken2_1').textContent = t.hintAwaken2;
       document.getElementById('hintSrAwaken4_1').textContent = t.hintAwaken4;
