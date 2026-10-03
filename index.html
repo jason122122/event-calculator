@@ -298,6 +298,15 @@
       border-radius: 4px;
       color: #f8fafc;
     }
+
+    /* 確保國旗在任何平台都能正常等高渲染 */
+    .flag-tw {
+      display: inline-block;
+      width: 1.15em;
+      height: 1.15em;
+      vertical-align: -0.15em;
+      margin: 0 1px;
+    }
   </style>
 </head>
 <body>
@@ -452,7 +461,7 @@
           <select id="teamRank2">
             <option value="SS" selected>SS 級</option>
             <option value="S">S 級</option>
-            <option value="A">A 級</option>
+            <option value="A" selected>A 級</option>
             <option value="B">B 級</option>
             <option value="C">C 級</option>
             <option value="D">D 級</option>
@@ -491,11 +500,14 @@
       <div><span id="footerAuthorLbl">作者</span>：<strong>巧克力</strong></div>
       <div>IG：<a href="https://www.instagram.com/chocolate_09.21/" target="_blank" rel="noopener noreferrer">chocolate_09.21</a></div>
       <div>Discord：<span class="highlight-id">chocolate09.21</span></div>
-      <div><span id="footerGameIdLbl">國際服（TW🇹🇼）</span>：<span class="highlight-id">28221772576</span></div>
+      <div><span id="footerGameIdLbl">國際服（TW<img class="flag-tw" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1f9-1f1fc.svg" alt="🇹🇼">）</span>：<span class="highlight-id">28221772576</span></div>
     </div>
   </div>
 
   <script>
+    // 跨平台 SVG 國旗元素
+    const TW_FLAG_HTML = '<img class="flag-tw" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1f9-1f1fc.svg" alt="🇹🇼">';
+
     // 語言字典 (中 / EN)
     const I18N = {
       zh: {
@@ -542,7 +554,7 @@
         formulaNote2: "* 最終點數採無條件捨去（Floor）計算。",
         contactTitle: "如有重大問題可以聯繫：",
         authorLbl: "作者",
-        gameIdLbl: "國際服（TW🇹🇼）"
+        gameIdHtml: `國際服（TW${TW_FLAG_HTML}）`
       },
       en: {
         titleMode1: "Standard Live Point Calculator",
@@ -588,7 +600,7 @@
         formulaNote2: "* Rounded down (Floor) to the nearest integer.",
         contactTitle: "For major bugs or questions, contact:",
         authorLbl: "Author",
-        gameIdLbl: "Global Server (TW🇹🇼)"
+        gameIdHtml: `Global Server (TW${TW_FLAG_HTML})`
       }
     };
 
@@ -726,7 +738,7 @@
       // 頁尾
       document.getElementById('footerContactTitle').textContent = t.contactTitle;
       document.getElementById('footerAuthorLbl').textContent = t.authorLbl;
-      document.getElementById('footerGameIdLbl').textContent = t.gameIdLbl;
+      document.getElementById('footerGameIdLbl').innerHTML = t.gameIdHtml;
 
       // 下拉選單更新
       renderRankOptions(rankSelect1);
