@@ -320,7 +320,7 @@
       color: #f8fafc;
     }
 
-    /* 確保國旗在任何平台都能正常等高渲染 */
+    /* 跨平台國旗 SVG */
     .flag-tw {
       display: inline-block;
       width: 1.15em;
@@ -482,7 +482,7 @@
           <select id="teamRank2">
             <option value="SS" selected>SS 級</option>
             <option value="S">S 級</option>
-            <option value="A" selected>A 級</option>
+            <option value="A">A 級</option>
             <option value="B">B 級</option>
             <option value="C">C 級</option>
             <option value="D">D 級</option>
@@ -663,7 +663,7 @@
 
     let currentLang = 'zh';
 
-    // 模式一：通常演出 (全評級 100% 實測定案)
+    // 模式一：通常演出 (數值維持不變)
     const RANK_CONFIG_MODE1 = {
       'SS': { pt: 100, medal: 120, livePt: 10 },
       'S':  { pt: 75,  medal: 90,  livePt: 8 },
@@ -673,14 +673,14 @@
       'D':  { pt: 15,  medal: 18,  livePt: 3 }
     };
 
-    // 模式二：挑戰演出 (全評級 100% 實測定案)
+    // 模式二：挑戰演出 (已同步更新官方最新平衡調整數值)
     const RANK_CONFIG_MODE2 = {
-      'SS': { pt: 5000, medal: 4950 },
-      'S':  { pt: 3900, medal: 4450 },
-      'A':  { pt: 3250, medal: 3750 },
-      'B':  { pt: 2550, medal: 3400 },
+      'SS': { pt: 5500, medal: 5650 },
+      'S':  { pt: 4500, medal: 4900 },
+      'A':  { pt: 3500, medal: 4150 },
+      'B':  { pt: 2750, medal: 3400 },
       'C':  { pt: 2000, medal: 2650 },
-      'D':  { pt: 1500, medal: 1450 }
+      'D':  { pt: 1500, medal: 2150 }
     };
 
     // DOM 元素
