@@ -571,16 +571,16 @@
       </div>
     </div>
 
-    <!-- ================= 模式三：隊伍優劣比較 (新增) ================= -->
+    <!-- ================= 模式三：隊伍優劣比較 ================= -->
     <div class="mode-section" id="sectionMode3">
       <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:12px; text-align:center;" id="descCompareMode">
-        以 40 火（200 倍通常演出）獲得的挑戰 PT，自動換算挑戰場次並合併總所得進行對比。
+        以 40 火（200 整數倍挑戰 PT)，自動換算挑戰場次並合併總所得進行對比。
       </div>
 
       <!-- 隊伍 1 -->
       <div class="compare-box">
         <div class="compare-title">
-          <span id="titleTeamA">隊伍一（通常 Live）</span>
+          <span id="titleTeamA">隊伍1（通常 Live）</span>
           <span class="badge-tag" id="tagTeamA">40🔥 基準</span>
         </div>
         <div class="grid-3">
@@ -609,7 +609,7 @@
       <!-- 隊伍 2 -->
       <div class="compare-box">
         <div class="compare-title">
-          <span id="titleTeamB">隊伍二（通常 Live）</span>
+          <span id="titleTeamB">隊伍2（通常 Live）</span>
           <span class="badge-tag" id="tagTeamB">40🔥 基準</span>
         </div>
         <div class="grid-3">
@@ -671,8 +671,8 @@
           <thead>
             <tr>
               <th id="thCategory">項目</th>
-              <th id="thTeamA">隊伍一</th>
-              <th id="thTeamB">隊伍二</th>
+              <th id="thTeamA">隊伍1</th>
+              <th id="thTeamB">隊伍2</th>
             </tr>
           </thead>
           <tbody>
@@ -717,11 +717,11 @@
               <td style="color:var(--medal-color);" id="totalMedalB">0</td>
             </tr>
             <tr style="background:rgba(255,255,255,0.03);">
-              <td id="tdDiffPt">PT 差距 (二 - 一)</td>
+              <td id="tdDiffPt">PT 差距 (隊伍2 - 隊伍1)</td>
               <td colspan="2" id="diffPtVal" class="diff-highlight">0</td>
             </tr>
             <tr style="background:rgba(255,255,255,0.03);">
-              <td id="tdDiffMedal">獎章差距 (二 - 一)</td>
+              <td id="tdDiffMedal">獎章差距 (隊伍2 - 隊伍1)</td>
               <td colspan="2" id="diffMedalVal" class="diff-highlight">0</td>
             </tr>
           </tbody>
@@ -730,7 +730,7 @@
 
       <div class="formula-note" id="formulaNote3">
         * 挑戰演出數值已採用最新平衡底分計算（200 CP = 1 場次）。<br>
-        * 差距為正數表示隊伍二勝出，負數表示隊伍一勝出。
+        * 差距為正數表示隊伍2勝出，負數表示隊伍1勝出。
       </div>
     </div>
 
@@ -750,13 +750,13 @@
             <stop stop-color="#285AEB" offset="90%" />
           </radialGradient>
           <rect width="24" height="24" rx="6" fill="url(#rg)" />
-          <path d="M12 7.03c-2.74 0-4.97 2.23-4.97 4.97 0 2.74 2.23 4.97 4.97 4.97 2.74 0 4.97-2.23 4.97-4.97 0-2.74-2.23-4.97-4.97-4.97zm0 8.22c-1.8 0-3.25-1.45-3.25-3.25s1.45-3.25 3.25-3.25 3.25 1.45 3.25 3.25-1.45 3.25-3.25 3.25zm5.17-8.58c-.65 0-1.17.52-1.17 1.17s.52 1.17 1.17 1.17 1.17-.52 1.17-1.17-.52-1.17-1.17-1.17zM18.8 6.5c-.32-.87-1-1.55-1.87-1.87C15.7 4.14 12 4.14 12 4.14s-3.7 0-4.93.49c-.87.32-1.55 1-1.87 1.87C4.71 7.73 4.71 12 4.71 12s0 4.27.49 5.5c.32.87 1 1.55 1.87 1.87 1.23.49 4.93.49 4.93.49s3.7 0 4.93-.49c.87-.32 1.55-1 1.87-1.87.49-1.23.49-5.5.49-5.5s0-4.27-.49-5.5zm-1.8 11.23c-.22.55-.65.98-1.2 1.2-1.03.41-4.08.32-5.8.32-1.72 0-4.77.09-5.8-.32-.55-.22-.98-.65-1.2-1.2-.41-1.03-.32-4.08-.32-5.8 0-1.72-.09-4.77.32-5.8.22-.55.65-.98 1.2-1.2 1.03-.41 4.08-.32 5.8-.32 1.72 0 4.77-.09 5.8.32.55.22.98.65 1.2 1.2.41 1.03.32 4.08.32 5.8 0 1.72.09 4.77-.32 5.8z" fill="#ffffff" />
+          <path d="M12 7.03c-2.74 0-4.97 2.23-4.97 4.97 0 2.74 2.23 4.97 4.97 2.74 0 4.97-2.23 4.97-4.97 0-2.74-2.23-4.97-4.97-4.97zm0 8.22c-1.8 0-3.25-1.45-3.25-3.25s1.45-3.25 3.25-3.25 3.25 1.45 3.25 3.25-1.45 3.25-3.25 3.25zm5.17-8.58c-.65 0-1.17.52-1.17 1.17s.52 1.17 1.17 1.17 1.17-.52 1.17-1.17-.52-1.17-1.17-1.17zM18.8 6.5c-.32-.87-1-1.55-1.87-1.87C15.7 4.14 12 4.14 12 4.14s-3.7 0-4.93.49c-.87.32-1.55 1-1.87 1.87C4.71 7.73 4.71 12 4.71 12s0 4.27.49 5.5c.32.87 1 1.55 1.87 1.87 1.23.49 4.93.49 4.93.49s3.7 0 4.93-.49c.87-.32 1.55-1 1.87-1.87.49-1.23.49-5.5.49-5.5s0-4.27-.49-5.5zm-1.8 11.23c-.22.55-.65.98-1.2 1.2-1.03.41-4.08.32-5.8.32-1.72 0-4.77.09-5.8-.32-.55-.22-.98-.65-1.2-1.2-.41-1.03-.32-4.08-.32-5.8 0-1.72-.09-4.77.32-5.8.22-.55.65-.98 1.2-1.2 1.03-.41 4.08-.32 5.8-.32 1.72 0 4.77-.09 5.8.32.55.22.98.65 1.2 1.2.41 1.03.32 4.08.32 5.8 0 1.72.09 4.77-.32 5.8z" fill="#ffffff" />
         </svg>
         <span>IG：</span>
         <a href="https://www.instagram.com/chocolate_09.21/" target="_blank" rel="noopener noreferrer">chocolate_09.21</a>
       </div>
 
-      <!-- YT (文字支援多語系切換) -->
+      <!-- YT -->
       <div class="social-row">
         <svg class="social-icon" viewBox="0 0 24 24" fill="none">
           <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z" fill="#FF0000" />
@@ -829,19 +829,19 @@
         hintLimit4: "活動SR卡開放上限4 遊戲內顯示是22%，但實際是22.5%，請自行+0.5%",
         formulaNote1: "* 最終點數採無條件捨去（Floor）計算。<br>* 個人單獨評分不影響收益，以全場總和結算的「評分」為準。<br>以上是適用激奏演出以及自由演出",
         formulaNote2: "* 最終點數採無條件捨去（Floor）計算。",
-        formulaNote3: "* 挑戰演出數值已採用最新平衡底分計算（200 CP = 1 場次）。<br>* 差距為正數表示隊伍二勝出，負數表示隊伍一勝出。",
+        formulaNote3: "* 挑戰演出數值已採用最新平衡底分計算（200 CP = 1 場次）。<br>* 差距為正數表示隊伍2勝出，負數表示隊伍1勝出。",
         contactTitle: "如有重大問題可以聯繫：",
         authorLbl: "作者",
         ytBtnText: "前往頻道",
         gameIdHtml: `國際服（TW${TW_FLAG_HTML}）`,
-        descCompare: "以 40 火（200 倍通常演出）獲得的挑戰 PT，自動換算挑戰場次並合併總所得進行對比。",
-        titleTeamA: "隊伍一（通常 Live）",
-        titleTeamB: "隊伍二（通常 Live）",
+        descCompare: "以 40 火（200 整數倍挑戰 PT)，自動換算挑戰場次並合併總所得進行對比。",
+        titleTeamA: "隊伍1（通常 Live）",
+        titleTeamB: "隊伍2（通常 Live）",
         titleTeamCP: "挑戰 Live 隊伍設定",
         panelHeader3: "40🔥 週期所得完整對比",
         thCategory: "項目",
-        thTeamA: "隊伍一",
-        thTeamB: "隊伍二",
+        thTeamA: "隊伍1",
+        thTeamB: "隊伍2",
         tdNormalPt: "通常 PT (40🔥)",
         tdNormalMedal: "通常獎章 (40🔥)",
         tdCpEarned: "獲得挑戰 PT",
@@ -850,8 +850,8 @@
         tdCpMedal: "挑戰獎章所得",
         tdTotalPt: "總活動 PT",
         tdTotalMedal: "總活動獎章",
-        tdDiffPt: "PT 差距 (二 - 一)",
-        tdDiffMedal: "獎章差距 (二 - 一)",
+        tdDiffPt: "PT 差距 (隊伍2 - 隊伍1)",
+        tdDiffMedal: "獎章差距 (隊伍2 - 隊伍1)",
         playsUnit: " 場"
       },
       en: {
@@ -903,7 +903,7 @@
         authorLbl: "Author",
         ytBtnText: "Visit Channel",
         gameIdHtml: `Global Server (TW${TW_FLAG_HTML})`,
-        descCompare: "Based on 40🔥 (200x Standard Live multiplier), auto-calculating earned Challenge PT, play counts, and total rewards.",
+        descCompare: "Based on 40🔥 (integer multiples of 200 Challenge PT), auto-calculating challenge plays and comparing combined rewards.",
         titleTeamA: "Team 1 (Standard Live)",
         titleTeamB: "Team 2 (Standard Live)",
         titleTeamCP: "Challenge Live Team Setup",
@@ -919,8 +919,8 @@
         tdCpMedal: "Challenge Badge Yield",
         tdTotalPt: "Total Event PT",
         tdTotalMedal: "Total Event Badges",
-        tdDiffPt: "PT Diff (T2 - T1)",
-        tdDiffMedal: "Badge Diff (T2 - T1)",
+        tdDiffPt: "PT Gap (Team 2 - Team 1)",
+        tdDiffMedal: "Badge Gap (Team 2 - Team 1)",
         playsUnit: " Plays"
       }
     };
@@ -1171,14 +1171,14 @@
       const medalBonusCPVal = parseFloat(medalBonusCP.value) || 0;
       const rankCPVal = teamRankCP.value;
 
-      // 1. 隊伍一 通常 40 火
+      // 1. 隊伍1 通常 40 火
       const baseA = RANK_CONFIG_MODE1[rankAVal];
       const normPtA = Math.floor((baseA.pt * (100 + ptBonusAVal) * multNormal) / 100);
       const normMedalA = Math.floor((baseA.medal * (100 + medalBonusAVal) * multNormal) / 100);
       const earnedCpPtA = baseA.livePt * multNormal; // 挑戰 PT
       const playsA = Math.floor(earnedCpPtA / 200); // 挑戰場次
 
-      // 2. 隊伍二 通常 40 火
+      // 2. 隊伍2 通常 40 火
       const baseB = RANK_CONFIG_MODE1[rankBVal];
       const normPtB = Math.floor((baseB.pt * (100 + ptBonusBVal) * multNormal) / 100);
       const normMedalB = Math.floor((baseB.medal * (100 + medalBonusBVal) * multNormal) / 100);
@@ -1204,7 +1204,7 @@
       const sumPtB = normPtB + cpTotalPtB;
       const sumMedalB = normMedalB + cpTotalMedalB;
 
-      // 6. 差距 (隊伍二 - 隊伍一)
+      // 6. 差距 (隊伍2 - 隊伍1)
       const diffPt = sumPtB - sumPtA;
       const diffMedal = sumMedalB - sumMedalA;
 
