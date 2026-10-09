@@ -573,8 +573,16 @@
 
     <!-- ================= 模式三：隊伍優劣比較 ================= -->
     <div class="mode-section" id="sectionMode3">
-      <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:12px; text-align:center;" id="descCompareMode">
+      <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; text-align:center;" id="descCompareMode">
         以 40 火（200 整數倍挑戰 PT)，自動換算挑戰場次並合併總所得進行對比。
+      </div>
+
+      <!-- 模式三 專屬紅字提示區 -->
+      <div class="sub-hint-red-spaced" style="margin-bottom:14px; text-align:center;">
+        <div id="hintSrAwaken2_3">活動SR卡覺醒2 遊戲內顯示是17%，但實際是17.5%，請自行+0.5%</div>
+        <div>活動SR卡覺醒4 遊戲內顯示是22%，但實際是22.5%，請自行+0.5%</div>
+        <div id="hintSrLimit2_3">活動SR卡開放上限2 遊戲內顯示是17%，但實際是17.5%，請自行+0.5%</div>
+        <div>活動SR卡開放上限4 遊戲內顯示是22%，但實際是22.5%，請自行+0.5%</div>
       </div>
 
       <!-- 隊伍 1 -->
@@ -677,12 +685,12 @@
           </thead>
           <tbody>
             <tr>
-              <td id="tdNormalPt">通常 PT (40🔥)</td>
+              <td id="tdNormalPt">通常演出 活動 PT 所得 (40🔥)</td>
               <td id="cmpNormPtA">0</td>
               <td id="cmpNormPtB">0</td>
             </tr>
             <tr>
-              <td id="tdNormalMedal">通常獎章 (40🔥)</td>
+              <td id="tdNormalMedal">通常演出 獎章 所得 (40🔥)</td>
               <td id="cmpNormMedalA">0</td>
               <td id="cmpNormMedalB">0</td>
             </tr>
@@ -697,12 +705,12 @@
               <td id="cmpCpCountB">0 場</td>
             </tr>
             <tr>
-              <td id="tdCpPt">挑戰 PT 所得</td>
+              <td id="tdCpPt">挑戰演出 活動 PT 所得</td>
               <td id="cmpCpTotalPtA">0</td>
               <td id="cmpCpTotalPtB">0</td>
             </tr>
             <tr>
-              <td id="tdCpMedal">挑戰獎章所得</td>
+              <td id="tdCpMedal">挑戰演出 獎章 所得</td>
               <td id="cmpCpTotalMedalA">0</td>
               <td id="cmpCpTotalMedalB">0</td>
             </tr>
@@ -717,7 +725,7 @@
               <td style="color:var(--medal-color);" id="totalMedalB">0</td>
             </tr>
             <tr style="background:rgba(255,255,255,0.03);">
-              <td id="tdDiffPt">PT 差距 (隊伍2 - 隊伍1)</td>
+              <td id="tdDiffPt">活動 PT 差距 (隊伍2 - 隊伍1)</td>
               <td colspan="2" id="diffPtVal" class="diff-highlight">0</td>
             </tr>
             <tr style="background:rgba(255,255,255,0.03);">
@@ -750,7 +758,7 @@
             <stop stop-color="#285AEB" offset="90%" />
           </radialGradient>
           <rect width="24" height="24" rx="6" fill="url(#rg)" />
-          <path d="M12 7.03c-2.74 0-4.97 2.23-4.97 4.97 0 2.74 2.23 4.97 4.97 2.74 0 4.97-2.23 4.97-4.97 0-2.74-2.23-4.97-4.97-4.97zm0 8.22c-1.8 0-3.25-1.45-3.25-3.25s1.45-3.25 3.25-3.25 3.25 1.45 3.25 3.25-1.45 3.25-3.25 3.25zm5.17-8.58c-.65 0-1.17.52-1.17 1.17s.52 1.17 1.17 1.17 1.17-.52 1.17-1.17-.52-1.17-1.17-1.17zM18.8 6.5c-.32-.87-1-1.55-1.87-1.87C15.7 4.14 12 4.14 12 4.14s-3.7 0-4.93.49c-.87.32-1.55 1-1.87 1.87C4.71 7.73 4.71 12 4.71 12s0 4.27.49 5.5c.32.87 1 1.55 1.87 1.87 1.23.49 4.93.49 4.93.49s3.7 0 4.93-.49c.87-.32 1.55-1 1.87-1.87.49-1.23.49-5.5.49-5.5s0-4.27-.49-5.5zm-1.8 11.23c-.22.55-.65.98-1.2 1.2-1.03.41-4.08.32-5.8.32-1.72 0-4.77.09-5.8-.32-.55-.22-.98-.65-1.2-1.2-.41-1.03-.32-4.08-.32-5.8 0-1.72-.09-4.77.32-5.8.22-.55.65-.98 1.2-1.2 1.03-.41 4.08-.32 5.8-.32 1.72 0 4.77-.09 5.8.32.55.22.98.65 1.2 1.2.41 1.03.32 4.08.32 5.8 0 1.72.09 4.77-.32 5.8z" fill="#ffffff" />
+          <path d="M12 7.03c-2.74 0-4.97 2.23-4.97 4.97 0 2.74 2.23 4.97 4.97 4.97 2.74 0 4.97-2.23 4.97-4.97 0-2.74-2.23-4.97-4.97-4.97zm0 8.22c-1.8 0-3.25-1.45-3.25-3.25s1.45-3.25 3.25-3.25 3.25 1.45 3.25 3.25-1.45 3.25-3.25 3.25zm5.17-8.58c-.65 0-1.17.52-1.17 1.17s.52 1.17 1.17 1.17 1.17-.52 1.17-1.17-.52-1.17-1.17-1.17zM18.8 6.5c-.32-.87-1-1.55-1.87-1.87C15.7 4.14 12 4.14 12 4.14s-3.7 0-4.93.49c-.87.32-1.55 1-1.87 1.87C4.71 7.73 4.71 12 4.71 12s0 4.27.49 5.5c.32.87 1 1.55 1.87 1.87 1.23.49 4.93.49 4.93.49s3.7 0 4.93-.49c.87-.32 1.55-1 1.87-1.87.49-1.23.49-5.5.49-5.5s0-4.27-.49-5.5zm-1.8 11.23c-.22.55-.65.98-1.2 1.2-1.03.41-4.08.32-5.8.32-1.72 0-4.77.09-5.8-.32-.55-.22-.98-.65-1.2-1.2-.41-1.03-.32-4.08-.32-5.8 0-1.72-.09-4.77.32-5.8.22-.55.65-.98 1.2-1.2 1.03-.41 4.08-.32 5.8-.32 1.72 0 4.77-.09 5.8.32.55.22.98.65 1.2 1.2.41 1.03.32 4.08.32 5.8 0 1.72.09 4.77-.32 5.8z" fill="#ffffff" />
         </svg>
         <span>IG：</span>
         <a href="https://www.instagram.com/chocolate_09.21/" target="_blank" rel="noopener noreferrer">chocolate_09.21</a>
@@ -842,15 +850,15 @@
         thCategory: "項目",
         thTeamA: "隊伍1",
         thTeamB: "隊伍2",
-        tdNormalPt: "通常 PT (40🔥)",
-        tdNormalMedal: "通常獎章 (40🔥)",
+        tdNormalPt: "通常演出 活動 PT 所得 (40🔥)",
+        tdNormalMedal: "通常演出 獎章 所得 (40🔥)",
         tdCpEarned: "獲得挑戰 PT",
         tdCpPlays: "可打挑戰場次",
-        tdCpPt: "挑戰 PT 所得",
-        tdCpMedal: "挑戰獎章所得",
+        tdCpPt: "挑戰演出 活動 PT 所得",
+        tdCpMedal: "挑戰演出 獎章 所得",
         tdTotalPt: "總活動 PT",
         tdTotalMedal: "總活動獎章",
-        tdDiffPt: "PT 差距 (隊伍2 - 隊伍1)",
+        tdDiffPt: "活動 PT 差距 (隊伍2 - 隊伍1)",
         tdDiffMedal: "獎章差距 (隊伍2 - 隊伍1)",
         playsUnit: " 場"
       },
@@ -911,15 +919,15 @@
         thCategory: "Metrics",
         thTeamA: "Team 1",
         thTeamB: "Team 2",
-        tdNormalPt: "Standard PT (40🔥)",
-        tdNormalMedal: "Standard Badges (40🔥)",
+        tdNormalPt: "Standard Live Event PT Gain (40🔥)",
+        tdNormalMedal: "Standard Live Badges Gain (40🔥)",
         tdCpEarned: "Earned Challenge PT",
         tdCpPlays: "Challenge Plays",
-        tdCpPt: "Challenge PT Yield",
-        tdCpMedal: "Challenge Badge Yield",
+        tdCpPt: "Challenge Live Event PT Gain",
+        tdCpMedal: "Challenge Live Badges Gain",
         tdTotalPt: "Total Event PT",
         tdTotalMedal: "Total Event Badges",
-        tdDiffPt: "PT Gap (Team 2 - Team 1)",
+        tdDiffPt: "Event PT Gap (Team 2 - Team 1)",
         tdDiffMedal: "Badge Gap (Team 2 - Team 1)",
         playsUnit: " Plays"
       }
