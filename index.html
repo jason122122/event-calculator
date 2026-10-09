@@ -41,9 +41,9 @@
     .calculator-card {
       background: var(--card-bg);
       width: 100%;
-      max-width: 520px;
+      max-width: 540px;
       border-radius: 20px;
-      padding: 28px 24px;
+      padding: 26px 20px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
       border: 1px solid var(--border);
       position: relative;
@@ -82,28 +82,30 @@
     }
 
     h1 {
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       font-weight: 800;
       text-align: center;
       color: var(--primary);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
-    /* 模式切換按鈕 (三頁籤) */
+    /* 模式切換按鈕 (四頁籤) */
     .tab-group {
       display: flex;
       background: var(--card-inner);
       padding: 4px;
       border-radius: 12px;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       border: 1px solid var(--border);
       gap: 4px;
+      overflow-x: auto;
     }
 
     .tab-btn {
       flex: 1;
-      padding: 9px 0;
-      font-size: 0.8rem;
+      min-width: 72px;
+      padding: 8px 4px;
+      font-size: 0.78rem;
       font-weight: 700;
       border: none;
       background: transparent;
@@ -112,6 +114,7 @@
       cursor: pointer;
       transition: all 0.2s ease;
       text-align: center;
+      white-space: nowrap;
     }
 
     .tab-btn.active {
@@ -129,24 +132,24 @@
     }
 
     .form-group {
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .label-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     label {
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 600;
       color: var(--text);
     }
 
     .limit-badge {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
       background: #334155;
       padding: 2px 6px;
@@ -162,7 +165,7 @@
     input[type="number"], select {
       width: 100%;
       padding: 9px 12px;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 500;
       border: 1.5px solid var(--border);
       border-radius: 10px;
@@ -186,29 +189,29 @@
     }
 
     .sub-hint-red {
-      margin-top: 6px;
-      font-size: 0.76rem;
+      margin-top: 5px;
+      font-size: 0.74rem;
       color: var(--hint-red);
-      line-height: 1.45;
+      line-height: 1.4;
       font-weight: 500;
     }
 
     .sub-hint-red-spaced {
-      margin-top: 6px;
-      font-size: 0.76rem;
+      margin-top: 5px;
+      font-size: 0.74rem;
       color: var(--hint-red);
-      line-height: 1.45;
+      line-height: 1.4;
       font-weight: 500;
     }
 
     .sub-hint-red-spaced .spacer {
-      height: 6px;
+      height: 4px;
     }
 
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 10px;
       align-items: start;
     }
 
@@ -219,27 +222,26 @@
       align-items: end;
     }
 
-    /* 比較模式專用樣式 */
     .compare-box {
       background: rgba(15, 23, 42, 0.6);
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 12px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .compare-title {
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 700;
       color: var(--primary);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .badge-tag {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       padding: 2px 6px;
       border-radius: 4px;
       background: #334155;
@@ -249,12 +251,12 @@
     .summary-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.82rem;
-      margin-top: 8px;
+      font-size: 0.8rem;
+      margin-top: 6px;
     }
 
     .summary-table th, .summary-table td {
-      padding: 8px 6px;
+      padding: 7px 5px;
       text-align: right;
       border-bottom: 1px solid var(--border);
     }
@@ -279,7 +281,7 @@
     }
 
     .results-panel {
-      margin-top: 20px;
+      margin-top: 18px;
       background: var(--card-inner);
       border: 1.5px solid var(--border);
       border-radius: 14px;
@@ -287,7 +289,7 @@
     }
 
     .panel-header {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
       letter-spacing: 0.05em;
       color: var(--text-muted);
@@ -300,7 +302,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px 4px;
+      padding: 7px 4px;
       border-bottom: 1px dashed var(--border);
     }
 
@@ -310,13 +312,13 @@
     }
 
     .result-name {
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       font-weight: 600;
       color: var(--text);
     }
 
     .result-val {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 800;
       font-variant-numeric: tabular-nums;
     }
@@ -326,25 +328,99 @@
     .live-val { color: var(--live-color); }
 
     .formula-note {
-      margin-top: 14px;
-      font-size: 0.78rem;
+      margin-top: 12px;
+      font-size: 0.76rem;
       color: var(--text-muted);
       text-align: center;
-      line-height: 1.5;
+      line-height: 1.45;
+    }
+
+    /* 模式 4 特殊樣式：兌換清單與切換開關 */
+    .reward-checklist {
+      max-height: 220px;
+      overflow-y: auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 10px;
+      background: var(--card-inner);
+      margin-top: 6px;
+    }
+
+    .reward-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.78rem;
+    }
+
+    .reward-item:last-child {
+      border-bottom: none;
+    }
+
+    .reward-info {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      margin-right: 8px;
+    }
+
+    .reward-cost {
+      font-size: 0.72rem;
+      color: var(--medal-color);
+    }
+
+    .reward-select {
+      width: 70px !important;
+      padding: 4px 6px !important;
+      font-size: 0.78rem !important;
+    }
+
+    .shift-toggle-group {
+      display: flex;
+      background: var(--card-inner);
+      padding: 3px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+
+    .shift-btn {
+      flex: 1;
+      padding: 6px 0;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      border-radius: 7px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .shift-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .opt-red {
+      color: var(--hint-red);
+      font-weight: 700;
     }
 
     .author-footer {
-      margin-top: 20px;
-      padding-top: 16px;
+      margin-top: 18px;
+      padding-top: 14px;
       border-top: 1px solid var(--border);
       text-align: center;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
       line-height: 1.8;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 3px;
+      gap: 2px;
     }
 
     .author-footer strong {
@@ -370,15 +446,15 @@
     }
 
     .social-icon {
-      width: 15px;
-      height: 15px;
+      width: 14px;
+      height: 14px;
       vertical-align: -2px;
       flex-shrink: 0;
     }
 
     .highlight-id {
       font-family: monospace;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       background: #334155;
       padding: 1px 6px;
       border-radius: 4px;
@@ -397,7 +473,6 @@
 <body>
 
   <div class="calculator-card">
-    <!-- 語言切換按鈕 -->
     <div class="top-bar">
       <div class="lang-switcher">
         <button class="lang-btn active" id="btnLangZh">中文</button>
@@ -407,11 +482,12 @@
 
     <h1 id="pageTitle">通常演出預測計算器</h1>
 
-    <!-- 模式切換按鈕 (三頁籤) -->
+    <!-- 模式切換按鈕 (四頁籤) -->
     <div class="tab-group">
       <button class="tab-btn active" id="tabMode1">通常演出</button>
       <button class="tab-btn" id="tabMode2">挑戰演出</button>
       <button class="tab-btn" id="tabMode3">隊伍優劣比較</button>
+      <button class="tab-btn" id="tabMode4">活動獎勵所需資源</button>
     </div>
 
     <!-- ================= 模式一：通常演出 ================= -->
@@ -573,16 +649,15 @@
 
     <!-- ================= 模式三：隊伍優劣比較 ================= -->
     <div class="mode-section" id="sectionMode3">
-      <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; text-align:center;" id="descCompareMode">
+      <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:6px; text-align:center;" id="descCompareMode">
         以 40 火（200 整數倍挑戰 PT)，自動換算挑戰場次並合併總所得進行對比。
       </div>
 
-      <!-- 模式三 專屬紅字提示區 -->
-      <div class="sub-hint-red-spaced" style="margin-bottom:14px; text-align:center;">
+      <div class="sub-hint-red-spaced" style="margin-bottom:12px; text-align:center;">
         <div id="hintSrAwaken2_3">活動SR卡覺醒2 遊戲內顯示是17%，但實際是17.5%，請自行+0.5%</div>
-        <div>活動SR卡覺醒4 遊戲內顯示是22%，但實際是22.5%，請自行+0.5%</div>
+        <div id="hintSrAwaken4_3">活動SR卡覺醒4 遊戲內顯示是22%，但實際是22.5%，請自行+0.5%</div>
         <div id="hintSrLimit2_3">活動SR卡開放上限2 遊戲內顯示是17%，但實際是17.5%，請自行+0.5%</div>
-        <div>活動SR卡開放上限4 遊戲內顯示是22%，但實際是22.5%，請自行+0.5%</div>
+        <div id="hintSrLimit4_3">活動SR卡開放上限4 遊戲內顯示是22%，但實際是22.5%，請自行+0.5%</div>
       </div>
 
       <!-- 隊伍 1 -->
@@ -672,7 +747,6 @@
         </div>
       </div>
 
-      <!-- 比較結算報表 -->
       <div class="results-panel" style="margin-top:14px;">
         <div class="panel-header" id="panelHeader3">40🔥 週期所得完整對比</div>
         <table class="summary-table">
@@ -742,12 +816,177 @@
       </div>
     </div>
 
-    <!-- 作者與聯絡資訊 (含官方彩色向量圖示) -->
+    <!-- ================= 模式四：活動獎勵所需資源 (全新新增) ================= -->
+    <div class="mode-section" id="sectionMode4">
+      <!-- 4行紅字提醒 -->
+      <div class="sub-hint-red-spaced" style="margin-bottom:12px; text-align:center;">
+        <div id="hintSrAwaken2_4">活動SR卡覺醒2 遊戲內顯示是17%，但實際是17.5%，請自行+0.5%</div>
+        <div id="hintSrAwaken4_4">活動SR卡覺醒4 遊戲內顯示是22%，但實際是22.5%，請自行+0.5%</div>
+        <div id="hintSrLimit2_4">活動SR卡開放上限2 遊戲內顯示是17%，但實際是17.5%，請自行+0.5%</div>
+        <div id="hintSrLimit4_4">活動SR卡開放上限4 遊戲內顯示是22%，但實際是22.5%，請自行+0.5%</div>
+      </div>
+
+      <!-- 目前持有 -->
+      <div class="compare-box">
+        <div class="compare-title">
+          <span id="titleCurrentHold">目前所持資源</span>
+        </div>
+        <div class="grid-3">
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:0.75rem;" id="lblCurPt">活動 PT</label>
+            <input type="number" id="curPt" value="0" min="0">
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:0.75rem;" id="lblCurMedal">活動獎章</label>
+            <input type="number" id="curMedal" value="0" min="0">
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:0.75rem;" id="lblCurCp">CP 幣</label>
+            <input type="number" id="curCp" value="0" min="0">
+          </div>
+        </div>
+      </div>
+
+      <!-- 隊伍加成設定 -->
+      <div class="compare-box">
+        <div class="compare-title">
+          <span id="titleNormalTeam4">通常 Live 隊伍設定</span>
+        </div>
+        <div class="grid-3">
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:0.75rem;" id="lblPtBonus4_1">隊伍加成</label>
+            <input type="number" id="ptBonus4_1" value="286" step="0.5">
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:0.75rem;" id="lblMedalBonus4_1">快照加成</label>
+            <input type="number" id="medalBonus4_1" value="286" step="0.5">
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:0.75rem;" id="lblRank4_1">評分</label>
+            <select id="teamRank4_1">
+              <option value="SS" selected>SS</option>
+              <option value="S">S</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="compare-box">
+        <div class="compare-title">
+          <span id="titleChallengeTeam4">挑戰 Live 隊伍設定</span>
+        </div>
+        <div class="grid-3">
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:0.75rem;" id="lblPtBonus4_2">隊伍加成</label>
+            <input type="number" id="ptBonus4_2" value="286" step="0.5">
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:0.75rem;" id="lblMedalBonus4_2">快照加成</label>
+            <input type="number" id="medalBonus4_2" value="286" step="0.5">
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:0.75rem;" id="lblRank4_2">評分</label>
+            <select id="teamRank4_2">
+              <option value="SS" selected>SS</option>
+              <option value="S">S</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 目標設定區 -->
+      <div class="compare-box">
+        <div class="compare-title">
+          <span id="titleTargetSetting">目標設定</span>
+        </div>
+        <!-- 目標 PT -->
+        <div class="form-group">
+          <div class="label-row">
+            <label for="targetPtInput" id="lblTargetPt">目標活動 PT</label>
+          </div>
+          <div class="grid-2">
+            <input type="number" id="targetPtInput" value="525000" min="0">
+            <select id="targetPtSelect"></select>
+          </div>
+        </div>
+
+        <!-- 目標獎章 -->
+        <div class="form-group" style="margin-bottom:0;">
+          <div class="label-row">
+            <label for="targetMedalInput" id="lblTargetMedal">目標活動獎章</label>
+            <span style="font-size:0.75rem; color:var(--text-muted);" id="lblAutoSumNote">(勾選下方商品可自動加總)</span>
+          </div>
+          <input type="number" id="targetMedalInput" value="75000" min="0">
+
+          <div class="reward-checklist" id="rewardChecklist"></div>
+        </div>
+      </div>
+
+      <!-- 結果展示與 Shift 切換 -->
+      <div class="results-panel">
+        <div class="panel-header" id="panelHeader4">所需資源預測結果</div>
+        
+        <div class="shift-toggle-group">
+          <button class="shift-btn active" id="btnShiftPt">活動 PT 目標視角</button>
+          <button class="shift-btn" id="btnShiftMedal">活動獎章目標視角</button>
+        </div>
+
+        <table class="summary-table">
+          <tbody>
+            <tr>
+              <td id="tdReqNormalLivePt">通常演出 活動 PT 所得 (<span id="lblFireNeeded1">0</span>🔥)</td>
+              <td id="resNormalPt4">0</td>
+            </tr>
+            <tr>
+              <td id="tdReqNormalLiveMedal">通常演出 獎章 所得 (<span id="lblFireNeeded2">0</span>🔥)</td>
+              <td id="resNormalMedal4">0</td>
+            </tr>
+            <tr>
+              <td id="tdReqCpEarned">獲得挑戰 PT (加上目前所持)</td>
+              <td id="resCpEarned4">0</td>
+            </tr>
+            <tr>
+              <td id="tdReqCpPlays">可打挑戰場次</td>
+              <td id="resCpPlays4">0 場</td>
+            </tr>
+            <tr>
+              <td id="tdReqCpLivePt">挑戰演出 活動 PT 所得</td>
+              <td id="resCpPt4">0</td>
+            </tr>
+            <tr>
+              <td id="tdReqCpLiveMedal">挑戰演出 獎章 所得</td>
+              <td id="resCpMedal4">0</td>
+            </tr>
+            <tr style="border-top:1.5px solid var(--border); font-weight:700;">
+              <td style="color:var(--pt-color);" id="tdReqTotalPt">總活動 PT (加上目前所持)</td>
+              <td style="color:var(--pt-color);" id="resTotalPt4">0</td>
+            </tr>
+            <tr style="font-weight:700;">
+              <td style="color:var(--medal-color);" id="tdReqTotalMedal">總活動獎章 (加上目前所持)</td>
+              <td style="color:var(--medal-color);" id="resTotalMedal4">0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="formula-note" id="formulaNote4">
+        * 所需🔥採向上取整（不足 1 火算 1 火），自動將通常 live 產生的 CP 幣打滿挑戰 live 計算最終總計。
+      </div>
+    </div>
+
+    <!-- 作者與聯絡資訊 -->
     <div class="author-footer">
       <div id="footerContactTitle">如有重大問題可以聯繫：</div>
       <div><span id="footerAuthorLbl">作者</span>：<strong>巧克力</strong></div>
       
-      <!-- IG -->
       <div class="social-row">
         <svg class="social-icon" viewBox="0 0 24 24" fill="none">
           <radialGradient id="rg" r="150%" cx="30%" cy="107%">
@@ -764,7 +1003,6 @@
         <a href="https://www.instagram.com/chocolate_09.21/" target="_blank" rel="noopener noreferrer">chocolate_09.21</a>
       </div>
 
-      <!-- YT -->
       <div class="social-row">
         <svg class="social-icon" viewBox="0 0 24 24" fill="none">
           <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z" fill="#FF0000" />
@@ -774,7 +1012,6 @@
         <a href="https://youtube.com/channel/UCYAu5CQFwbndHxa5ZXEsh0A?si=QG76WiJM74QJ3P6v" target="_blank" rel="noopener noreferrer" id="footerYtLink">前往頻道</a>
       </div>
 
-      <!-- Discord -->
       <div class="social-row">
         <svg class="social-icon" viewBox="0 0 24 24" fill="#5865F2">
           <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
@@ -783,7 +1020,6 @@
         <span class="highlight-id">chocolate09.21</span>
       </div>
 
-      <!-- 伺服器 ID -->
       <div><span id="footerGameIdLbl">國際服（TW<img class="flag-tw" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1f9-1f1fc.svg" alt="🇹🇼">）</span>：<span class="highlight-id">28221772576</span></div>
     </div>
   </div>
@@ -791,15 +1027,54 @@
   <script>
     const TW_FLAG_HTML = '<img class="flag-tw" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1f9-1f1fc.svg" alt="🇹🇼">';
 
+    // 兌換所獎勵項目清單 (中/英對照、單價、上限)
+    const REWARD_STORE_ITEMS = [
+      { id: "item1", zh: "活動SR卡", en: "Event SR", cost: 75000, max: 1 },
+      { id: "item2", zh: "活動SR卡", en: "Event SR", cost: 100000, max: 4 },
+      { id: "item3", zh: "轉蛋券", en: "Gacha Ticket", cost: 100000, max: 3 },
+      { id: "item4", zh: "樂曲兌換券", en: "Song Ticket", cost: 5000, max: 10 },
+      { id: "item5", zh: "奇蹟水晶*5", en: "Crystal of Miracle*5", cost: 13500, max: 6 },
+      { id: "item6", zh: "幸運水晶*5", en: "Crystal of Fortune*5", cost: 7200, max: 10 },
+      { id: "item7", zh: "SP技能強化券*5", en: "SP Skill Upgrade Ticket*5", cost: 13500, max: 20 },
+      { id: "item8", zh: "技能強化券*5", en: "Skill Upgrade Ticket*5", cost: 7200, max: 20 },
+      { id: "item9", zh: "演出技能強化券*5", en: "LIVE Skill Upgrade Ticket*5", cost: 2100, max: 45 },
+      { id: "item10", zh: "激奏技能強化券*5", en: "GEKISO Skill Upgrade Ticket*5", cost: 2100, max: 45 },
+      { id: "item11", zh: "希望稜晶*5", en: "Hope Prism*5", cost: 13500, max: 15 },
+      { id: "item12", zh: "團體稜晶*5", en: "Team Prism*5", cost: 7200, max: 30 },
+      { id: "item13", zh: "大碎片*120", en: "Fragment (L)*120", cost: 5500, max: 50 },
+      { id: "item14", zh: "中碎片*240", en: "Fragment (M)*240", cost: 5500, max: 50 },
+      { id: "item15", zh: "小碎片*400", en: "Fragment (S)*400", cost: 5500, max: 50 },
+      { id: "item16", zh: "團員EXP*20000", en: "Member EXP*20000", cost: 1100, max: 20 },
+      { id: "item17", zh: "快照EXP*20000", en: "Snapshot EXP*20000", cost: 1100, max: 20 },
+      { id: "item18", zh: "金幣*60000", en: "Coin*60000", cost: 2800, max: 20 }
+    ];
+
+    // 活動 PT 目標選單清單
+    const PT_TARGET_OPTIONS = [
+      500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000,
+      12000, 14000, 16000, 18000, 20000, 22000, 24000, 27000, 30000,
+      35000, 40000, 45000, 50000, 55000, 60000, 65000, 70000, 75000,
+      80000, 85000, 90000, 100000, 105000, 110000, 115000, 120000, 125000,
+      130000, 135000, 140000, 145000, 150000, 155000, 160000, 165000, 170000,
+      175000, 180000, 185000, 190000, 195000, 200000, 210000, 220000, 230000,
+      240000, 250000, 260000, 270000, 280000, 290000, 300000, 330000, 375000,
+      450000, 525000, 600000, 675000, 750000, 825000, 900000, 1000000, 1250000,
+      1500000, 2000000
+    ];
+
+    const RED_SPECIAL_PTS = [75000, 125000, 200000, 300000, 525000];
+
     // 語言字典 (中 / EN)
     const I18N = {
       zh: {
         titleMode1: "通常演出預測計算器",
         titleMode2: "挑戰演出預測計算器",
         titleMode3: "隊伍優劣比較計算器",
+        titleMode4: "活動獎勵所需資源計算器",
         tabMode1: "通常演出",
         tabMode2: "挑戰演出",
         tabMode3: "隊伍優劣比較",
+        tabMode4: "活動獎勵所需資源",
         lblMembersBonus: "隊伍加成",
         lblSnapshotsBonus: "快照加成",
         limitBadge: "上限 500%",
@@ -838,6 +1113,7 @@
         formulaNote1: "* 最終點數採無條件捨去（Floor）計算。<br>* 個人單獨評分不影響收益，以全場總和結算的「評分」為準。<br>以上是適用激奏演出以及自由演出",
         formulaNote2: "* 最終點數採無條件捨去（Floor）計算。",
         formulaNote3: "* 挑戰演出數值已採用最新平衡底分計算（200 CP = 1 場次）。<br>* 差距為正數表示隊伍2勝出，負數表示隊伍1勝出。",
+        formulaNote4: "* 所需🔥採向上取整（不足 1 火算 1 火），自動將通常 live 產生的 CP 幣打滿挑戰 live 計算最終總計。",
         contactTitle: "如有重大問題可以聯繫：",
         authorLbl: "作者",
         ytBtnText: "前往頻道",
@@ -860,15 +1136,39 @@
         tdTotalMedal: "總活動獎章",
         tdDiffPt: "活動 PT 差距 (隊伍2 - 隊伍1)",
         tdDiffMedal: "獎章差距 (隊伍2 - 隊伍1)",
-        playsUnit: " 場"
+        playsUnit: " 場",
+        // 模式 4
+        titleCurrentHold: "目前所持資源",
+        titleNormalTeam4: "通常 Live 隊伍設定",
+        titleChallengeTeam4: "挑戰 Live 隊伍設定",
+        titleTargetSetting: "目標設定",
+        lblCurPt: "活動 PT",
+        lblCurMedal: "活動獎章",
+        lblCurCp: "CP 幣",
+        lblTargetPt: "目標活動 PT",
+        lblTargetMedal: "目標活動獎章",
+        lblAutoSumNote: "(調整下方商品可自動加總)",
+        panelHeader4: "所需資源預測結果",
+        btnShiftPt: "活動 PT 目標視角",
+        btnShiftMedal: "活動獎章目標視角",
+        tdReqNormalLivePt: "通常演出 活動 PT 所得",
+        tdReqNormalLiveMedal: "通常演出 獎章 所得",
+        tdReqCpEarned: "獲得挑戰 PT (加上目前所持)",
+        tdReqCpPlays: "可打挑戰場次",
+        tdReqCpLivePt: "挑戰演出 活動 PT 所得",
+        tdReqCpLiveMedal: "挑戰演出 獎章 所得",
+        tdReqTotalPt: "總活動 PT (加上目前所持)",
+        tdReqTotalMedal: "總活動獎章 (加上目前所持)"
       },
       en: {
         titleMode1: "Standard Live Point Calculator",
         titleMode2: "Challenge Live Point Calculator",
         titleMode3: "Team Comparison Calculator",
+        titleMode4: "Event Rewards Resource Calculator",
         tabMode1: "Standard",
         tabMode2: "Challenge",
         tabMode3: "Comparison",
+        tabMode4: "Rewards Req.",
         lblMembersBonus: "Members Bonus",
         lblSnapshotsBonus: "Snapshots Bonus",
         limitBadge: "Max 500%",
@@ -907,6 +1207,7 @@
         formulaNote1: "* Rounded down (Floor) to the nearest integer.<br>* Solo scores do not affect yields; rewards are based on the room's total Rank.<br>Applicable to both Gekiso Live and Free Live.",
         formulaNote2: "* Rounded down (Floor) to the nearest integer.",
         formulaNote3: "* Challenge calculations apply the updated rebalance bases (200 CP = 1 play).<br>* Positive diff means Team 2 wins; negative means Team 1 wins.",
+        formulaNote4: "* Required Flames are rounded up (Ceil). Automatically consumes all generated Challenge PT for final total.",
         contactTitle: "For major bugs or questions, contact:",
         authorLbl: "Author",
         ytBtnText: "Visit Channel",
@@ -929,13 +1230,34 @@
         tdTotalMedal: "Total Event Badges",
         tdDiffPt: "Event PT Gap (Team 2 - Team 1)",
         tdDiffMedal: "Badge Gap (Team 2 - Team 1)",
-        playsUnit: " Plays"
+        playsUnit: " Plays",
+        // 模式 4
+        titleCurrentHold: "Current Held Resources",
+        titleNormalTeam4: "Standard Live Team Setup",
+        titleChallengeTeam4: "Challenge Live Team Setup",
+        titleTargetSetting: "Target Settings",
+        lblCurPt: "Event PT",
+        lblCurMedal: "Badges",
+        lblCurCp: "CP Currency",
+        lblTargetPt: "Target Event PT",
+        lblTargetMedal: "Target Event Badges",
+        lblAutoSumNote: "(Adjust items below to auto-sum)",
+        panelHeader4: "Resource Requirement Results",
+        btnShiftPt: "Target Event PT View",
+        btnShiftMedal: "Target Badges View",
+        tdReqNormalLivePt: "Standard Live Event PT Gain",
+        tdReqNormalLiveMedal: "Standard Live Badges Gain",
+        tdReqCpEarned: "Earned Challenge PT (+Current)",
+        tdReqCpPlays: "Challenge Plays",
+        tdReqCpLivePt: "Challenge Live Event PT Gain",
+        tdReqCpLiveMedal: "Challenge Live Badges Gain",
+        tdReqTotalPt: "Total Event PT (+Current)",
+        tdReqTotalMedal: "Total Badges (+Current)"
       }
     };
 
     let currentLang = 'zh';
 
-    // 模式一：通常演出底分 (1倍)
     const RANK_CONFIG_MODE1 = {
       'SS': { pt: 100, medal: 120, livePt: 10 },
       'S':  { pt: 75,  medal: 90,  livePt: 8 },
@@ -945,7 +1267,6 @@
       'D':  { pt: 15,  medal: 18,  livePt: 3 }
     };
 
-    // 模式二：挑戰演出底分 (官方最新平衡調整，200 CP = 1倍)
     const RANK_CONFIG_MODE2 = {
       'SS': { pt: 5500, medal: 5650 },
       'S':  { pt: 4500, medal: 4900 },
@@ -962,9 +1283,11 @@
     const tabMode1 = document.getElementById('tabMode1');
     const tabMode2 = document.getElementById('tabMode2');
     const tabMode3 = document.getElementById('tabMode3');
+    const tabMode4 = document.getElementById('tabMode4');
     const sectionMode1 = document.getElementById('sectionMode1');
     const sectionMode2 = document.getElementById('sectionMode2');
     const sectionMode3 = document.getElementById('sectionMode3');
+    const sectionMode4 = document.getElementById('sectionMode4');
 
     // 模式一 DOM
     const ptInput1 = document.getElementById('ptBonus1');
@@ -988,14 +1311,34 @@
     const ptBonusA = document.getElementById('ptBonusA');
     const medalBonusA = document.getElementById('medalBonusA');
     const teamRankA = document.getElementById('teamRankA');
-
     const ptBonusB = document.getElementById('ptBonusB');
     const medalBonusB = document.getElementById('medalBonusB');
     const teamRankB = document.getElementById('teamRankB');
-
     const ptBonusCP = document.getElementById('ptBonusCP');
     const medalBonusCP = document.getElementById('medalBonusCP');
     const teamRankCP = document.getElementById('teamRankCP');
+
+    // 模式四 DOM
+    const curPtInput = document.getElementById('curPt');
+    const curMedalInput = document.getElementById('curMedal');
+    const curCpInput = document.getElementById('curCp');
+
+    const ptBonus4_1 = document.getElementById('ptBonus4_1');
+    const medalBonus4_1 = document.getElementById('medalBonus4_1');
+    const teamRank4_1 = document.getElementById('teamRank4_1');
+
+    const ptBonus4_2 = document.getElementById('ptBonus4_2');
+    const medalBonus4_2 = document.getElementById('medalBonus4_2');
+    const teamRank4_2 = document.getElementById('teamRank4_2');
+
+    const targetPtInput = document.getElementById('targetPtInput');
+    const targetPtSelect = document.getElementById('targetPtSelect');
+    const targetMedalInput = document.getElementById('targetMedalInput');
+    const rewardChecklist = document.getElementById('rewardChecklist');
+
+    const btnShiftPt = document.getElementById('btnShiftPt');
+    const btnShiftMedal = document.getElementById('btnShiftMedal');
+    let currentShiftMode = 'pt'; // 'pt' or 'medal'
 
     function renderSelectOptions(selectEl, optionsData, defaultValue) {
       const currentVal = selectEl.value || defaultValue;
@@ -1026,6 +1369,78 @@
       });
     }
 
+    // 初始化目標 PT 下拉選單 (含指定紅色標註)
+    function initTargetPtSelect() {
+      targetPtSelect.innerHTML = '';
+      const defaultOpt = document.createElement('option');
+      defaultOpt.value = "";
+      defaultOpt.textContent = currentLang === 'zh' ? "-- 快速選取目標 PT --" : "-- Select Target PT --";
+      targetPtSelect.appendChild(defaultOpt);
+
+      PT_TARGET_OPTIONS.forEach(pt => {
+        const opt = document.createElement('option');
+        opt.value = pt;
+        opt.textContent = pt.toLocaleString() + " pt";
+        if (RED_SPECIAL_PTS.includes(pt)) {
+          opt.classList.add('opt-red');
+          opt.textContent += currentLang === 'zh' ? " (特別獎勵)" : " (Special)";
+        }
+        targetPtSelect.appendChild(opt);
+      });
+    }
+
+    // 初始化獎勵兌換清單
+    function initRewardChecklist() {
+      rewardChecklist.innerHTML = '';
+      REWARD_STORE_ITEMS.forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'reward-item';
+
+        const info = document.createElement('div');
+        info.className = 'reward-info';
+
+        const nameSpan = document.createElement('span');
+        nameSpan.textContent = currentLang === 'zh' ? item.zh : item.en;
+
+        const costSpan = document.createElement('span');
+        costSpan.className = 'reward-cost';
+        costSpan.textContent = `${item.cost.toLocaleString()} ${currentLang === 'zh' ? '獎章/個' : 'Badges/ea'}`;
+
+        info.appendChild(nameSpan);
+        info.appendChild(costSpan);
+
+        const select = document.createElement('select');
+        select.className = 'reward-select';
+        select.id = `reward_${item.id}`;
+
+        for (let i = 0; i <= item.max; i++) {
+          const opt = document.createElement('option');
+          opt.value = i;
+          opt.textContent = i;
+          select.appendChild(opt);
+        }
+
+        select.addEventListener('change', autoSumRewardMedals);
+
+        row.appendChild(info);
+        row.appendChild(select);
+        rewardChecklist.appendChild(row);
+      });
+    }
+
+    function autoSumRewardMedals() {
+      let sum = 0;
+      REWARD_STORE_ITEMS.forEach(item => {
+        const sel = document.getElementById(`reward_${item.id}`);
+        if (sel) {
+          const count = parseInt(sel.value, 10) || 0;
+          sum += count * item.cost;
+        }
+      });
+      targetMedalInput.value = sum;
+      calculateMode4();
+    }
+
     function updateLanguage(lang) {
       currentLang = lang;
       const t = I18N[lang];
@@ -1040,11 +1455,13 @@
 
       if (sectionMode1.classList.contains('active')) pageTitle.textContent = t.titleMode1;
       else if (sectionMode2.classList.contains('active')) pageTitle.textContent = t.titleMode2;
-      else pageTitle.textContent = t.titleMode3;
+      else if (sectionMode3.classList.contains('active')) pageTitle.textContent = t.titleMode3;
+      else pageTitle.textContent = t.titleMode4;
 
       tabMode1.textContent = t.tabMode1;
       tabMode2.textContent = t.tabMode2;
       tabMode3.textContent = t.tabMode3;
+      tabMode4.textContent = t.tabMode4;
 
       // 模式一
       document.getElementById('lblPtBonus1').textContent = t.lblMembersBonus;
@@ -1082,6 +1499,10 @@
 
       // 模式三
       document.getElementById('descCompareMode').textContent = t.descCompare;
+      document.getElementById('hintSrAwaken2_3').textContent = t.hintAwaken2;
+      document.getElementById('hintSrAwaken4_3').textContent = t.hintAwaken4;
+      document.getElementById('hintSrLimit2_3').textContent = t.hintLimit2;
+      document.getElementById('hintSrLimit4_3').textContent = t.hintLimit4;
       document.getElementById('titleTeamA').textContent = t.titleTeamA;
       document.getElementById('titleTeamB').textContent = t.titleTeamB;
       document.getElementById('titleTeamCP').textContent = t.titleTeamCP;
@@ -1094,7 +1515,6 @@
       document.getElementById('lblPtBonusCP').textContent = t.lblMembersBonus;
       document.getElementById('lblMedalBonusCP').textContent = t.lblSnapshotsBonus;
       document.getElementById('lblRankCP').textContent = t.lblRank;
-
       document.getElementById('panelHeader3').textContent = t.panelHeader3;
       document.getElementById('thCategory').textContent = t.thCategory;
       document.getElementById('thTeamA').textContent = t.thTeamA;
@@ -1111,6 +1531,40 @@
       document.getElementById('tdDiffMedal').textContent = t.tdDiffMedal;
       document.getElementById('formulaNote3').innerHTML = t.formulaNote3;
 
+      // 模式四
+      document.getElementById('hintSrAwaken2_4').textContent = t.hintAwaken2;
+      document.getElementById('hintSrAwaken4_4').textContent = t.hintAwaken4;
+      document.getElementById('hintSrLimit2_4').textContent = t.hintLimit2;
+      document.getElementById('hintSrLimit4_4').textContent = t.hintLimit4;
+      document.getElementById('titleCurrentHold').textContent = t.titleCurrentHold;
+      document.getElementById('titleNormalTeam4').textContent = t.titleNormalTeam4;
+      document.getElementById('titleChallengeTeam4').textContent = t.titleChallengeTeam4;
+      document.getElementById('titleTargetSetting').textContent = t.titleTargetSetting;
+      document.getElementById('lblCurPt').textContent = t.lblCurPt;
+      document.getElementById('lblCurMedal').textContent = t.lblCurMedal;
+      document.getElementById('lblCurCp').textContent = t.lblCurCp;
+      document.getElementById('lblPtBonus4_1').textContent = t.lblMembersBonus;
+      document.getElementById('lblMedalBonus4_1').textContent = t.lblSnapshotsBonus;
+      document.getElementById('lblRank4_1').textContent = t.lblRank;
+      document.getElementById('lblPtBonus4_2').textContent = t.lblMembersBonus;
+      document.getElementById('lblMedalBonus4_2').textContent = t.lblSnapshotsBonus;
+      document.getElementById('lblRank4_2').textContent = t.lblRank;
+      document.getElementById('lblTargetPt').textContent = t.lblTargetPt;
+      document.getElementById('lblTargetMedal').textContent = t.lblTargetMedal;
+      document.getElementById('lblAutoSumNote').textContent = t.lblAutoSumNote;
+      document.getElementById('panelHeader4').textContent = t.panelHeader4;
+      btnShiftPt.textContent = t.btnShiftPt;
+      btnShiftMedal.textContent = t.btnShiftMedal;
+      document.getElementById('tdReqNormalLivePt').childNodes[0].textContent = t.tdReqNormalLivePt + " (";
+      document.getElementById('tdReqNormalLiveMedal').childNodes[0].textContent = t.tdReqNormalLiveMedal + " (";
+      document.getElementById('tdReqCpEarned').textContent = t.tdReqCpEarned;
+      document.getElementById('tdReqCpPlays').textContent = t.tdReqCpPlays;
+      document.getElementById('tdReqCpLivePt').textContent = t.tdReqCpLivePt;
+      document.getElementById('tdReqCpLiveMedal').textContent = t.tdReqCpLiveMedal;
+      document.getElementById('tdReqTotalPt').textContent = t.tdReqTotalPt;
+      document.getElementById('tdReqTotalMedal').textContent = t.tdReqTotalMedal;
+      document.getElementById('formulaNote4').innerHTML = t.formulaNote4;
+
       // 頁尾
       document.getElementById('footerContactTitle').textContent = t.contactTitle;
       document.getElementById('footerAuthorLbl').textContent = t.authorLbl;
@@ -1122,9 +1576,13 @@
       renderSelectOptions(fireSelect, t.fireOptions, 50);
       renderSelectOptions(cpSelect, t.cpOptions, 8);
 
+      initTargetPtSelect();
+      initRewardChecklist();
+
       calculateMode1();
       calculateMode2();
       calculateMode3();
+      calculateMode4();
     }
 
     function calculateMode1() {
@@ -1163,9 +1621,8 @@
       resMedal2.textContent = medal.toLocaleString();
     }
 
-    // 模式三：隊伍優劣比較計算 (40🔥 基準 = 200倍)
     function calculateMode3() {
-      const multNormal = 200; // 40火消耗相當於 40 * 5 = 200倍基礎
+      const multNormal = 200;
 
       const ptBonusAVal = parseFloat(ptBonusA.value) || 0;
       const medalBonusAVal = parseFloat(medalBonusA.value) || 0;
@@ -1179,47 +1636,37 @@
       const medalBonusCPVal = parseFloat(medalBonusCP.value) || 0;
       const rankCPVal = teamRankCP.value;
 
-      // 1. 隊伍1 通常 40 火
       const baseA = RANK_CONFIG_MODE1[rankAVal];
       const normPtA = Math.floor((baseA.pt * (100 + ptBonusAVal) * multNormal) / 100);
       const normMedalA = Math.floor((baseA.medal * (100 + medalBonusAVal) * multNormal) / 100);
-      const earnedCpPtA = baseA.livePt * multNormal; // 挑戰 PT
-      const playsA = Math.floor(earnedCpPtA / 200); // 挑戰場次
+      const earnedCpPtA = baseA.livePt * multNormal;
+      const playsA = Math.floor(earnedCpPtA / 200);
 
-      // 2. 隊伍2 通常 40 火
       const baseB = RANK_CONFIG_MODE1[rankBVal];
       const normPtB = Math.floor((baseB.pt * (100 + ptBonusBVal) * multNormal) / 100);
       const normMedalB = Math.floor((baseB.medal * (100 + medalBonusBVal) * multNormal) / 100);
       const earnedCpPtB = baseB.livePt * multNormal;
       const playsB = Math.floor(earnedCpPtB / 200);
 
-      // 3. 挑戰隊伍單場收益 (1倍 / 200 CP)
       const baseCP = RANK_CONFIG_MODE2[rankCPVal];
       const singleCpPt = Math.floor((baseCP.pt * (100 + ptBonusCPVal)) / 100);
       const singleCpMedal = Math.floor((baseCP.medal * (100 + medalBonusCPVal)) / 100);
 
-      // 4. 累積挑戰收益
       const cpTotalPtA = singleCpPt * playsA;
       const cpTotalMedalA = singleCpMedal * playsA;
-
       const cpTotalPtB = singleCpPt * playsB;
       const cpTotalMedalB = singleCpMedal * playsB;
 
-      // 5. 總計所得
       const sumPtA = normPtA + cpTotalPtA;
       const sumMedalA = normMedalA + cpTotalMedalA;
-
       const sumPtB = normPtB + cpTotalPtB;
       const sumMedalB = normMedalB + cpTotalMedalB;
 
-      // 6. 差距 (隊伍2 - 隊伍1)
       const diffPt = sumPtB - sumPtA;
       const diffMedal = sumMedalB - sumMedalA;
 
-      // 更新畫面 DOM
       document.getElementById('cmpNormPtA').textContent = normPtA.toLocaleString();
       document.getElementById('cmpNormPtB').textContent = normPtB.toLocaleString();
-
       document.getElementById('cmpNormMedalA').textContent = normMedalA.toLocaleString();
       document.getElementById('cmpNormMedalB').textContent = normMedalB.toLocaleString();
 
@@ -1232,17 +1679,14 @@
 
       document.getElementById('cmpCpTotalPtA').textContent = cpTotalPtA.toLocaleString();
       document.getElementById('cmpCpTotalPtB').textContent = cpTotalPtB.toLocaleString();
-
       document.getElementById('cmpCpTotalMedalA').textContent = cpTotalMedalA.toLocaleString();
       document.getElementById('cmpCpTotalMedalB').textContent = cpTotalMedalB.toLocaleString();
 
       document.getElementById('totalPtA').textContent = sumPtA.toLocaleString();
       document.getElementById('totalPtB').textContent = sumPtB.toLocaleString();
-
       document.getElementById('totalMedalA').textContent = sumMedalA.toLocaleString();
       document.getElementById('totalMedalB').textContent = sumMedalB.toLocaleString();
 
-      // 差距色彩渲染
       const diffPtEl = document.getElementById('diffPtVal');
       const diffMedalEl = document.getElementById('diffMedalVal');
 
@@ -1253,14 +1697,131 @@
       diffMedalEl.className = diffMedal >= 0 ? "diff-highlight" : "diff-negative";
     }
 
+    // 模式四：活動獎勵所需資源逆推計算核心
+    function calculateMode4() {
+      const curPt = parseFloat(curPtInput.value) || 0;
+      const curMedal = parseFloat(curMedalInput.value) || 0;
+      const curCp = parseFloat(curCpInput.value) || 0;
+
+      const targetPt = parseFloat(targetPtInput.value) || 0;
+      const targetMedal = parseFloat(targetMedalInput.value) || 0;
+
+      const ptBonus1Val = parseFloat(ptBonus4_1.value) || 0;
+      const medalBonus1Val = parseFloat(medalBonus4_1.value) || 0;
+      const rank1Val = teamRank4_1.value;
+
+      const ptBonus2Val = parseFloat(ptBonus4_2.value) || 0;
+      const medalBonus2Val = parseFloat(medalBonus4_2.value) || 0;
+      const rank2Val = teamRank4_2.value;
+
+      const base1 = RANK_CONFIG_MODE1[rank1Val];
+      const base2 = RANK_CONFIG_MODE2[rank2Val];
+
+      // 每 1 火的通常收益 (1火 = 5倍)
+      const ptPerFire = Math.floor((base1.pt * (100 + ptBonus1Val) * 5) / 100);
+      const medalPerFire = Math.floor((base1.medal * (100 + medalBonus1Val) * 5) / 100);
+      const cpPerFire = base1.livePt * 5; // 每火挑戰 PT
+
+      // 挑戰演出 1 場收益 (200 CP)
+      const singleCpPt = Math.floor((base2.pt * (100 + ptBonus2Val)) / 100);
+      const singleCpMedal = Math.floor((base2.medal * (100 + medalBonus2Val)) / 100);
+
+      // 模擬函數：給予火數 F，回傳累積收益與指標
+      function simulateYield(fires) {
+        const normPt = fires * ptPerFire;
+        const normMedal = fires * medalPerFire;
+        const totalCp = curCp + (fires * cpPerFire);
+        const cpPlays = Math.floor(totalCp / 200);
+
+        const cpPt = cpPlays * singleCpPt;
+        const cpMedal = cpPlays * singleCpMedal;
+
+        const totalPt = curPt + normPt + cpPt;
+        const totalMedal = curMedal + normMedal + cpMedal;
+
+        return { fires, normPt, normMedal, totalCp, cpPlays, cpPt, cpMedal, totalPt, totalMedal };
+      }
+
+      // 尋找達到目標所需的最小整數火數
+      function findMinFire(type) {
+        let low = 0;
+        let high = 100000;
+        let ans = high;
+
+        // 二分搜尋或遞增探測
+        while (low <= high) {
+          let mid = Math.floor((low + high) / 2);
+          let res = simulateYield(mid);
+
+          let reached = false;
+          if (type === 'pt') {
+            reached = res.totalPt >= targetPt;
+          } else {
+            reached = res.totalMedal >= targetMedal;
+          }
+
+          if (reached) {
+            ans = mid;
+            high = mid - 1;
+          } else {
+            low = mid + 1;
+          }
+        }
+        return ans;
+      }
+
+      const neededFire = findMinFire(currentShiftMode);
+      const finalSim = simulateYield(neededFire);
+
+      // 渲染畫面
+      document.getElementById('lblFireNeeded1').textContent = finalSim.fires;
+      document.getElementById('lblFireNeeded2').textContent = finalSim.fires;
+
+      document.getElementById('resNormalPt4').textContent = finalSim.normPt.toLocaleString();
+      document.getElementById('resNormalMedal4').textContent = finalSim.normMedal.toLocaleString();
+
+      const playsUnit = I18N[currentLang].playsUnit;
+      document.getElementById('resCpEarned4').textContent = `${(finalSim.fires * cpPerFire).toLocaleString()} (+${curCp.toLocaleString()})`;
+      document.getElementById('resCpPlays4').textContent = finalSim.cpPlays + playsUnit;
+
+      document.getElementById('resCpPt4').textContent = finalSim.cpPt.toLocaleString();
+      document.getElementById('resCpMedal4').textContent = finalSim.cpMedal.toLocaleString();
+
+      document.getElementById('resTotalPt4').textContent = finalSim.totalPt.toLocaleString();
+      document.getElementById('resTotalMedal4').textContent = finalSim.totalMedal.toLocaleString();
+    }
+
+    // Shift 切換監聽
+    btnShiftPt.addEventListener('click', () => {
+      currentShiftMode = 'pt';
+      btnShiftPt.classList.add('active');
+      btnShiftMedal.classList.remove('active');
+      calculateMode4();
+    });
+
+    btnShiftMedal.addEventListener('click', () => {
+      currentShiftMode = 'medal';
+      btnShiftMedal.classList.add('active');
+      btnShiftPt.classList.remove('active');
+      calculateMode4();
+    });
+
+    // 模式四連動：目標 PT 選單選取時同步更新輸入框
+    targetPtSelect.addEventListener('change', () => {
+      if (targetPtSelect.value !== "") {
+        targetPtInput.value = targetPtSelect.value;
+        calculateMode4();
+      }
+    });
+
     // 語言切換
     btnLangZh.addEventListener('click', () => updateLanguage('zh'));
     btnLangEn.addEventListener('click', () => updateLanguage('en'));
 
     // 頁籤切換
     function switchTab(targetMode) {
-      [tabMode1, tabMode2, tabMode3].forEach(b => b.classList.remove('active'));
-      [sectionMode1, sectionMode2, sectionMode3].forEach(s => s.classList.remove('active'));
+      [tabMode1, tabMode2, tabMode3, tabMode4].forEach(b => b.classList.remove('active'));
+      [sectionMode1, sectionMode2, sectionMode3, sectionMode4].forEach(s => s.classList.remove('active'));
 
       if (targetMode === 1) {
         tabMode1.classList.add('active');
@@ -1272,19 +1833,25 @@
         sectionMode2.classList.add('active');
         pageTitle.textContent = I18N[currentLang].titleMode2;
         calculateMode2();
-      } else {
+      } else if (targetMode === 3) {
         tabMode3.classList.add('active');
         sectionMode3.classList.add('active');
         pageTitle.textContent = I18N[currentLang].titleMode3;
         calculateMode3();
+      } else {
+        tabMode4.classList.add('active');
+        sectionMode4.classList.add('active');
+        pageTitle.textContent = I18N[currentLang].titleMode4;
+        calculateMode4();
       }
     }
 
     tabMode1.addEventListener('click', () => switchTab(1));
     tabMode2.addEventListener('click', () => switchTab(2));
     tabMode3.addEventListener('click', () => switchTab(3));
+    tabMode4.addEventListener('click', () => switchTab(4));
 
-    // 事件監聽
+    // 模式一、二、三事件監聽
     [ptInput1, medalInput1, rankSelect1, fireSelect].forEach(el => {
       el.addEventListener('input', calculateMode1);
       el.addEventListener('change', calculateMode1);
@@ -1300,7 +1867,18 @@
       el.addEventListener('change', calculateMode3);
     });
 
-    // 初始化
+    // 模式四輸入事件監聽
+    [
+      curPtInput, curMedalInput, curCpInput,
+      ptBonus4_1, medalBonus4_1, teamRank4_1,
+      ptBonus4_2, medalBonus4_2, teamRank4_2,
+      targetPtInput, targetMedalInput
+    ].forEach(el => {
+      el.addEventListener('input', calculateMode4);
+      el.addEventListener('change', calculateMode4);
+    });
+
+    // 初始化載入
     updateLanguage('zh');
   </script>
 </body>
