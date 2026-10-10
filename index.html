@@ -38,12 +38,13 @@
       padding: 24px 16px;
     }
 
+    /* 拓寬最大寬度至 680px，防止長日文句子跳行 */
     .calculator-card {
       background: var(--card-bg);
       width: 100%;
-      max-width: 540px;
+      max-width: 680px;
       border-radius: 20px;
-      padding: 26px 20px;
+      padding: 28px 24px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
       border: 1px solid var(--border);
       position: relative;
@@ -105,7 +106,7 @@
       flex: 1;
       min-width: 72px;
       padding: 8px 4px;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       font-weight: 700;
       border: none;
       background: transparent;
@@ -198,10 +199,12 @@
 
     .sub-hint-red-spaced {
       margin-top: 5px;
-      font-size: 0.74rem;
+      font-size: 0.75rem;
       color: var(--hint-red);
-      line-height: 1.4;
+      line-height: 1.45;
       font-weight: 500;
+      word-break: keep-all;
+      overflow-wrap: normal;
     }
 
     .sub-hint-red-spaced .spacer {
@@ -251,7 +254,7 @@
     .summary-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       margin-top: 6px;
     }
 
@@ -834,7 +837,6 @@
 
     <!-- ================= 模式四：活動獎勵所需資源 ================= -->
     <div class="mode-section" id="sectionMode4">
-      <!-- 4行加成提醒 + 2行評分說明 -->
       <div class="sub-hint-red-spaced" style="margin-bottom:12px; text-align:center;">
         <div id="hintSrAwaken2_4">活動SR卡覺醒2 遊戲內顯示是17%，但實際是17.5%，請自行+0.5%</div>
         <div id="hintSrAwaken4_4">活動SR卡覺醒4 遊戲內顯示是22%，但實際是22.5%，請自行+0.5%</div>
@@ -1006,12 +1008,13 @@
       </div>
     </div>
 
-    <!-- 作者與聯絡資訊 -->
+    <!-- 作者與聯絡資訊 (包含更新後的 X 連結與不常使用註記) -->
     <div class="author-footer">
       <div id="footerNotice1">日文跟韓文版本還在試作中</div>
       <div id="footerNotice2">如能提供翻譯或有重大問題可以聯繫：</div>
       <div><span id="footerAuthorLbl">作者</span>：<strong>巧克力</strong></div>
       
+      <!-- IG -->
       <div class="social-row">
         <svg class="social-icon" viewBox="0 0 24 24" fill="none">
           <radialGradient id="rg" r="150%" cx="30%" cy="107%">
@@ -1028,6 +1031,7 @@
         <a href="https://www.instagram.com/chocolate_09.21/" target="_blank" rel="noopener noreferrer">chocolate_09.21</a>
       </div>
 
+      <!-- YT -->
       <div class="social-row">
         <svg class="social-icon" viewBox="0 0 24 24" fill="none">
           <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z" fill="#FF0000" />
@@ -1037,6 +1041,16 @@
         <a href="https://youtube.com/channel/UCYAu5CQFwbndHxa5ZXEsh0A?si=QG76WiJM74QJ3P6v" target="_blank" rel="noopener noreferrer" id="footerYtLink">前往頻道</a>
       </div>
 
+      <!-- X (Twitter) -->
+      <div class="social-row">
+        <svg class="social-icon" viewBox="0 0 24 24" fill="#ffffff">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span id="footerXText">X (不常使用)：</span>
+        <a href="https://x.com/chocolate_pjsk" target="_blank" rel="noopener noreferrer" id="footerXLink">前往連結</a>
+      </div>
+
+      <!-- Discord -->
       <div class="social-row">
         <svg class="social-icon" viewBox="0 0 24 24" fill="#5865F2">
           <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
@@ -1052,7 +1066,7 @@
   <script>
     const TW_FLAG_HTML = '<img class="flag-tw" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1f9-1f1fc.svg" alt="🇹🇼">';
 
-    // 兌換所獎勵項目清單 (中/英/日)
+    // 兌換所獎勵項目清單 (中/英/日 - 激奏全面改為撃奏)
     const REWARD_STORE_ITEMS = [
       { id: "item1", zh: "活動SR卡", en: "Event SR", ja: "イベントSRカード", cost: 75000, max: 1 },
       { id: "item2", zh: "活動SR卡", en: "Event SR", ja: "イベントSRカード", cost: 100000, max: 4 },
@@ -1063,7 +1077,7 @@
       { id: "item7", zh: "SP技能強化券*5", en: "SP Skill Upgrade Ticket*5", ja: "SPスキル強化チケット*5", cost: 13500, max: 20 },
       { id: "item8", zh: "技能強化券*5", en: "Skill Upgrade Ticket*5", ja: "スキル強化チケット*5", cost: 7200, max: 20 },
       { id: "item9", zh: "演出技能強化券*5", en: "LIVE Skill Upgrade Ticket*5", ja: "ライブスキル練習チケット*5", cost: 2100, max: 45 },
-      { id: "item10", zh: "激奏技能強化券*5", en: "GEKISO Skill Upgrade Ticket*5", ja: "激奏スキル練習チケット*5", cost: 2100, max: 45 },
+      { id: "item10", zh: "激奏技能強化券*5", en: "GEKISO Skill Upgrade Ticket*5", ja: "撃奏スキル練習チケット*5", cost: 2100, max: 45 },
       { id: "item11", zh: "希望稜晶*5", en: "Hope Prism*5", ja: "希望のプリズム*5", cost: 13500, max: 15 },
       { id: "item12", zh: "團體稜晶*5", en: "Band Prism*5", ja: "バンドプリズム*5", cost: 7200, max: 30 },
       { id: "item13", zh: "大碎片*120", en: "Fragment (L)*120", ja: "かけら(大)*120", cost: 5500, max: 50 },
@@ -1144,6 +1158,8 @@
         footerNotice2: "如能提供翻譯或有重大問題可以聯繫：",
         authorLbl: "作者",
         ytBtnText: "前往頻道",
+        xText: "X (不常使用)：",
+        xBtnText: "前往連結",
         gameIdHtml: `國際服（TW${TW_FLAG_HTML}）`,
         descCompare: "以 40 火（200 整數倍挑戰 PT)，自動換算挑戰場次並合併總所得進行對比。",
         titleTeamA: "隊伍1（通常 Live）",
@@ -1243,6 +1259,8 @@
         footerNotice2: "If you can provide translations or find major bugs, please contact:",
         authorLbl: "Author",
         ytBtnText: "Visit Channel",
+        xText: "X (Rarely used): ",
+        xBtnText: "Visit Link",
         gameIdHtml: `Global Server (TW${TW_FLAG_HTML})`,
         descCompare: "Based on 40 Boost (integer multiples of 200 Challenge PT), auto-calculates challenge plays and compares combined yields.",
         titleTeamA: "Team 1 (Standard Live)",
@@ -1327,14 +1345,14 @@
           { val: 4, text: "800 CP (4倍)" },
           { val: 8, text: "1600 CP (8倍)" }
         ],
-        hintPlayType: "激奏ライブの場合は総合ランクを入力<br>フリーライブの場合は最終ランクを入力",
+        hintPlayType: "撃奏ライブの場合は総合ランクを入力<br>フリーライブの場合は最終ランクを入力",
         hintAwaken2: "イベントSR覚醒2 ゲーム内表記は17%ですが、実際は17.5%のため各自+0.5%してください",
         hintAwaken4: "イベントSR覚醒4 ゲーム内表記は22%ですが、実際は22.5%のため各自+0.5%してください",
         hintLimit2: "イベントSR上限解放2 ゲーム内表記は17%ですが、実際は17.5%のため各自+0.5%してください",
         hintLimit4: "イベントSR上限解放4 ゲーム内表記は22%ですが、実際は22.5%のため各自+0.5%してください",
-        hintNormalLiveRank1: "通常ライブ 激奏ライブの場合は総合ランクを入力",
+        hintNormalLiveRank1: "通常ライブ 撃奏ライブの場合は総合ランクを入力",
         hintNormalLiveRank2: "通常ライブ フリーライブの場合は最終ランクを入力",
-        formulaNote1: "※ 最終ポイントは切り捨て（Floor）で計算されます。<br>※ 個人のスコアは報酬に影響せず、全体の総合リザルト「ランク」が基準となります。<br>上記は激奏ライブおよびフリーライブの両方に適用されます。",
+        formulaNote1: "※ 最終ポイントは切り捨て（Floor）で計算されます。<br>※ 個人のスコアは報酬に影響せず、全体の総合リザルト「ランク」が基準となります。<br>上記は撃奏ライブおよびフリーライブの両方に適用されます。",
         formulaNote2: "※ 最終ポイントは切り捨て（Floor）で計算されます。",
         formulaNote3: "※ チャレンジライブの数値は最新のバランス調整後の基礎点（200 CP = 1回）で計算されています。<br>※ 差分がプラスの場合は編成2が優位、マイナスの場合は編成1が優位となります。",
         formulaNote4: "※ 通常ライブで獲得したチャレンジPをすべて消費した場合の最終合計を計算します。",
@@ -1342,6 +1360,8 @@
         footerNotice2: "翻訳の提供や重大な不具合等の連絡先：",
         authorLbl: "製作者",
         ytBtnText: "チャンネルへ",
+        xText: "X (低浮上)：",
+        xBtnText: "リンクへ",
         gameIdHtml: `グローバル版（TW${TW_FLAG_HTML}）`,
         descCompare: "40ブースト（200の整数倍チャレンジCP）を基準に、挑戦回数を自動換算して総合獲得量を比較します。",
         titleTeamA: "編成1（通常ライブ）",
@@ -1441,6 +1461,8 @@
     const resPT2 = document.getElementById('resPT2');
     const resMedal2 = document.getElementById('resMedal2');
     const footerYtLink = document.getElementById('footerYtLink');
+    const footerXText = document.getElementById('footerXText');
+    const footerXLink = document.getElementById('footerXLink');
 
     // 模式三 DOM
     const ptBonusA = document.getElementById('ptBonusA');
@@ -1724,6 +1746,8 @@
       document.getElementById('footerNotice2').textContent = t.footerNotice2;
       document.getElementById('footerAuthorLbl').textContent = t.authorLbl;
       footerYtLink.textContent = t.ytBtnText;
+      footerXText.textContent = t.xText;
+      footerXLink.textContent = t.xBtnText;
       document.getElementById('footerGameIdLbl').innerHTML = t.gameIdHtml;
 
       renderRankOptions(rankSelect1);
