@@ -38,7 +38,6 @@
       padding: 24px 16px;
     }
 
-    /* 拓寬最大寬度至 680px，防止長日文句子跳行 */
     .calculator-card {
       background: var(--card-bg);
       width: 100%;
@@ -1008,7 +1007,7 @@
       </div>
     </div>
 
-    <!-- 作者與聯絡資訊 (包含更新後的 X 連結與不常使用註記) -->
+    <!-- 作者與聯絡資訊 (作者標示已調整為 TW 國旗，並移除遊戲 ID 列) -->
     <div class="author-footer">
       <div id="footerNotice1">日文跟韓文版本還在試作中</div>
       <div id="footerNotice2">如能提供翻譯或有重大問題可以聯繫：</div>
@@ -1058,15 +1057,13 @@
         <span>Discord：</span>
         <span class="highlight-id">chocolate09.21</span>
       </div>
-
-      <div><span id="footerGameIdLbl">國際服（TW<img class="flag-tw" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1f9-1f1fc.svg" alt="🇹🇼">）</span>：<span class="highlight-id">28221772576</span></div>
     </div>
   </div>
 
   <script>
     const TW_FLAG_HTML = '<img class="flag-tw" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1f9-1f1fc.svg" alt="🇹🇼">';
 
-    // 兌換所獎勵項目清單 (中/英/日 - 激奏全面改為撃奏)
+    // 兌換所獎勵項目清單
     const REWARD_STORE_ITEMS = [
       { id: "item1", zh: "活動SR卡", en: "Event SR", ja: "イベントSRカード", cost: 75000, max: 1 },
       { id: "item2", zh: "活動SR卡", en: "Event SR", ja: "イベントSRカード", cost: 100000, max: 4 },
@@ -1088,7 +1085,6 @@
       { id: "item18", zh: "金幣*60000", en: "Coins*60000", ja: "コイン*60000", cost: 2800, max: 20 }
     ];
 
-    // 活動 PT 目標選單清單
     const PT_TARGET_OPTIONS = [
       500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000,
       12000, 14000, 16000, 18000, 20000, 22000, 24000, 27000, 30000,
@@ -1156,11 +1152,10 @@
         formulaNote4: "* 自動將通常 live 產生的 CP 幣打滿挑戰 live 計算最終總計。",
         footerNotice1: "日文跟韓文版本還在試作中",
         footerNotice2: "如能提供翻譯或有重大問題可以聯繫：",
-        authorLbl: "作者",
+        authorHtml: `作者 (TW${TW_FLAG_HTML})`,
         ytBtnText: "前往頻道",
         xText: "X (不常使用)：",
         xBtnText: "前往連結",
-        gameIdHtml: `國際服（TW${TW_FLAG_HTML}）`,
         descCompare: "以 40 火（200 整數倍挑戰 PT)，自動換算挑戰場次並合併總所得進行對比。",
         titleTeamA: "隊伍1（通常 Live）",
         titleTeamB: "隊伍2（通常 Live）",
@@ -1257,11 +1252,10 @@
         formulaNote4: "* Automatically consumes all generated Challenge PT for final total.",
         footerNotice1: "Japanese and Korean versions are currently in development.",
         footerNotice2: "If you can provide translations or find major bugs, please contact:",
-        authorLbl: "Author",
+        authorHtml: `Author (TW${TW_FLAG_HTML})`,
         ytBtnText: "Visit Channel",
         xText: "X (Rarely used): ",
         xBtnText: "Visit Link",
-        gameIdHtml: `Global Server (TW${TW_FLAG_HTML})`,
         descCompare: "Based on 40 Boost (integer multiples of 200 Challenge PT), auto-calculates challenge plays and compares combined yields.",
         titleTeamA: "Team 1 (Standard Live)",
         titleTeamB: "Team 2 (Standard Live)",
@@ -1358,11 +1352,10 @@
         formulaNote4: "※ 通常ライブで獲得したチャレンジPをすべて消費した場合の最終合計を計算します。",
         footerNotice1: "日本語版および韓国語版は現在試作段階です。",
         footerNotice2: "翻訳の提供や重大な不具合等の連絡先：",
-        authorLbl: "製作者",
+        authorHtml: `製作者 (TW${TW_FLAG_HTML})`,
         ytBtnText: "チャンネルへ",
         xText: "X (低浮上)：",
         xBtnText: "リンクへ",
-        gameIdHtml: `グローバル版（TW${TW_FLAG_HTML}）`,
         descCompare: "40ブースト（200の整数倍チャレンジCP）を基準に、挑戦回数を自動換算して総合獲得量を比較します。",
         titleTeamA: "編成1（通常ライブ）",
         titleTeamB: "編成2（通常ライブ）",
@@ -1744,11 +1737,10 @@
       // 頁尾
       document.getElementById('footerNotice1').textContent = t.footerNotice1;
       document.getElementById('footerNotice2').textContent = t.footerNotice2;
-      document.getElementById('footerAuthorLbl').textContent = t.authorLbl;
+      document.getElementById('footerAuthorLbl').innerHTML = t.authorHtml;
       footerYtLink.textContent = t.ytBtnText;
       footerXText.textContent = t.xText;
       footerXLink.textContent = t.xBtnText;
-      document.getElementById('footerGameIdLbl').innerHTML = t.gameIdHtml;
 
       renderRankOptions(rankSelect1);
       renderRankOptions(rankSelect2);
