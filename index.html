@@ -335,7 +335,6 @@
       line-height: 1.45;
     }
 
-    /* 模式 4 特殊樣式：兌換清單與切換開關 */
     .reward-checklist {
       max-height: 220px;
       overflow-y: auto;
@@ -491,6 +490,7 @@
       <div class="lang-switcher">
         <button class="lang-btn active" id="btnLangZh">中文</button>
         <button class="lang-btn" id="btnLangEn">EN</button>
+        <button class="lang-btn" id="btnLangJa">日本語</button>
       </div>
     </div>
 
@@ -544,12 +544,12 @@
             <label for="teamRank1" id="lblRank1">評分</label>
           </div>
           <select id="teamRank1">
-            <option value="SS">SS 級</option>
-            <option value="S">S 級</option>
-            <option value="A" selected>A 級</option>
-            <option value="B">B 級</option>
-            <option value="C">C 級</option>
-            <option value="D">D 級</option>
+            <option value="SS">SS</option>
+            <option value="S">S</option>
+            <option value="A" selected>A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
           </select>
           <div class="sub-hint-red" id="hintMode1PlayType">
             若為激奏演出請填團體評分<br>若為自由演出請填最終評分
@@ -627,12 +627,12 @@
             <label for="teamRank2" id="lblRank2">評分</label>
           </div>
           <select id="teamRank2">
-            <option value="SS" selected>SS 級</option>
-            <option value="S">S 級</option>
-            <option value="A">A 級</option>
-            <option value="B">B 級</option>
-            <option value="C">C 級</option>
-            <option value="D">D 級</option>
+            <option value="SS" selected>SS</option>
+            <option value="S">S</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
           </select>
         </div>
 
@@ -672,6 +672,8 @@
         <div id="hintSrAwaken4_3">活動SR卡覺醒4 遊戲內顯示是22%，但實際是22.5%，請自行+0.5%</div>
         <div id="hintSrLimit2_3">活動SR卡開放上限2 遊戲內顯示是17%，但實際是17.5%，請自行+0.5%</div>
         <div id="hintSrLimit4_3">活動SR卡開放上限4 遊戲內顯示是22%，但實際是22.5%，請自行+0.5%</div>
+        <div id="hintNormalLiveRank1_3">通常 Live 評分若為激奏演出請填團體評分</div>
+        <div id="hintNormalLiveRank2_3">通常 Live 評分若為自由演出請填最終評分</div>
       </div>
 
       <!-- 隊伍 1 -->
@@ -832,12 +834,14 @@
 
     <!-- ================= 模式四：活動獎勵所需資源 ================= -->
     <div class="mode-section" id="sectionMode4">
-      <!-- 4行紅字提醒 -->
+      <!-- 4行加成提醒 + 2行評分說明 -->
       <div class="sub-hint-red-spaced" style="margin-bottom:12px; text-align:center;">
         <div id="hintSrAwaken2_4">活動SR卡覺醒2 遊戲內顯示是17%，但實際是17.5%，請自行+0.5%</div>
         <div id="hintSrAwaken4_4">活動SR卡覺醒4 遊戲內顯示是22%，但實際是22.5%，請自行+0.5%</div>
         <div id="hintSrLimit2_4">活動SR卡開放上限2 遊戲內顯示是17%，但實際是17.5%，請自行+0.5%</div>
         <div id="hintSrLimit4_4">活動SR卡開放上限4 遊戲內顯示是22%，但實際是22.5%，請自行+0.5%</div>
+        <div id="hintNormalLiveRank1_4">通常 Live 評分若為激奏演出請填團體評分</div>
+        <div id="hintNormalLiveRank2_4">通常 Live 評分若為自由演出請填最終評分</div>
       </div>
 
       <!-- 1. 通常 Live 隊伍設定 -->
@@ -896,7 +900,7 @@
         </div>
       </div>
 
-      <!-- 3. 目前所持資源 (已移至挑戰 Live 隊伍設定下方) -->
+      <!-- 3. 目前所持資源 -->
       <div class="compare-box">
         <div class="compare-title">
           <span id="titleCurrentHold">目前所持資源</span>
@@ -922,7 +926,6 @@
         <div class="compare-title">
           <span id="titleTargetSetting">目標設定</span>
         </div>
-        <!-- 目標 PT -->
         <div class="form-group">
           <div class="label-row">
             <label for="targetPtInput" id="lblTargetPt">目標活動 PT</label>
@@ -933,7 +936,6 @@
           </div>
         </div>
 
-        <!-- 目標獎章 -->
         <div class="form-group" style="margin-bottom:0;">
           <div class="label-row">
             <label for="targetMedalInput" id="lblTargetMedal">目標活動獎章</label>
@@ -949,7 +951,6 @@
       <div class="results-panel">
         <div class="panel-header" id="panelHeader4">所需資源預測結果</div>
         
-        <!-- 目標 (活動 PT ⇄ 活動獎章) 切換欄 -->
         <div class="shift-toggle-container">
           <span class="shift-prefix-label" id="lblShiftPrefix">目標</span>
           <div class="shift-toggle-group">
@@ -960,7 +961,6 @@
 
         <table class="summary-table">
           <tbody>
-            <!-- 所需🔥 獨立列 -->
             <tr>
               <td id="tdReqFireRow" style="font-weight:700; color:var(--win-color);">所需🔥</td>
               <td id="resFireTotal4" style="font-weight:800; font-size:1.05rem; color:var(--win-color);">0</td>
@@ -1008,7 +1008,8 @@
 
     <!-- 作者與聯絡資訊 -->
     <div class="author-footer">
-      <div id="footerContactTitle">如有重大問題可以聯繫：</div>
+      <div id="footerNotice1">日文跟韓文版本還在試作中</div>
+      <div id="footerNotice2">如能提供翻譯或有重大問題可以聯繫：</div>
       <div><span id="footerAuthorLbl">作者</span>：<strong>巧克力</strong></div>
       
       <div class="social-row">
@@ -1051,26 +1052,26 @@
   <script>
     const TW_FLAG_HTML = '<img class="flag-tw" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1f9-1f1fc.svg" alt="🇹🇼">';
 
-    // 兌換所獎勵項目清單
+    // 兌換所獎勵項目清單 (中/英/日)
     const REWARD_STORE_ITEMS = [
-      { id: "item1", zh: "活動SR卡", en: "Event SR", cost: 75000, max: 1 },
-      { id: "item2", zh: "活動SR卡", en: "Event SR", cost: 100000, max: 4 },
-      { id: "item3", zh: "轉蛋券", en: "Gacha Ticket", cost: 100000, max: 3 },
-      { id: "item4", zh: "樂曲兌換券", en: "Song Ticket", cost: 5000, max: 10 },
-      { id: "item5", zh: "奇蹟水晶*5", en: "Crystal of Miracle*5", cost: 13500, max: 6 },
-      { id: "item6", zh: "幸運水晶*5", en: "Crystal of Fortune*5", cost: 7200, max: 10 },
-      { id: "item7", zh: "SP技能強化券*5", en: "SP Skill Upgrade Ticket*5", cost: 13500, max: 20 },
-      { id: "item8", zh: "技能強化券*5", en: "Skill Upgrade Ticket*5", cost: 7200, max: 20 },
-      { id: "item9", zh: "演出技能強化券*5", en: "LIVE Skill Upgrade Ticket*5", cost: 2100, max: 45 },
-      { id: "item10", zh: "激奏技能強化券*5", en: "GEKISO Skill Upgrade Ticket*5", cost: 2100, max: 45 },
-      { id: "item11", zh: "希望稜晶*5", en: "Hope Prism*5", cost: 13500, max: 15 },
-      { id: "item12", zh: "團體稜晶*5", en: "Team Prism*5", cost: 7200, max: 30 },
-      { id: "item13", zh: "大碎片*120", en: "Fragment (L)*120", cost: 5500, max: 50 },
-      { id: "item14", zh: "中碎片*240", en: "Fragment (M)*240", cost: 5500, max: 50 },
-      { id: "item15", zh: "小碎片*400", en: "Fragment (S)*400", cost: 5500, max: 50 },
-      { id: "item16", zh: "團員EXP*20000", en: "Member EXP*20000", cost: 1100, max: 20 },
-      { id: "item17", zh: "快照EXP*20000", en: "Snapshot EXP*20000", cost: 1100, max: 20 },
-      { id: "item18", zh: "金幣*60000", en: "Coin*60000", cost: 2800, max: 20 }
+      { id: "item1", zh: "活動SR卡", en: "Event SR", ja: "イベントSRカード", cost: 75000, max: 1 },
+      { id: "item2", zh: "活動SR卡", en: "Event SR", ja: "イベントSRカード", cost: 100000, max: 4 },
+      { id: "item3", zh: "轉蛋券", en: "Gacha Ticket", ja: "ガチャチケット", cost: 100000, max: 3 },
+      { id: "item4", zh: "樂曲兌換券", en: "Song Ticket", ja: "楽曲交換チケット", cost: 5000, max: 10 },
+      { id: "item5", zh: "奇蹟水晶*5", en: "Miracle Crystal*5", ja: "奇跡のクリスタル*5", cost: 13500, max: 6 },
+      { id: "item6", zh: "幸運水晶*5", en: "Fortune Crystal*5", ja: "幸運のクリスタル*5", cost: 7200, max: 10 },
+      { id: "item7", zh: "SP技能強化券*5", en: "SP Skill Upgrade Ticket*5", ja: "SPスキル強化チケット*5", cost: 13500, max: 20 },
+      { id: "item8", zh: "技能強化券*5", en: "Skill Upgrade Ticket*5", ja: "スキル強化チケット*5", cost: 7200, max: 20 },
+      { id: "item9", zh: "演出技能強化券*5", en: "LIVE Skill Upgrade Ticket*5", ja: "ライブスキル練習チケット*5", cost: 2100, max: 45 },
+      { id: "item10", zh: "激奏技能強化券*5", en: "GEKISO Skill Upgrade Ticket*5", ja: "激奏スキル練習チケット*5", cost: 2100, max: 45 },
+      { id: "item11", zh: "希望稜晶*5", en: "Hope Prism*5", ja: "希望のプリズム*5", cost: 13500, max: 15 },
+      { id: "item12", zh: "團體稜晶*5", en: "Band Prism*5", ja: "バンドプリズム*5", cost: 7200, max: 30 },
+      { id: "item13", zh: "大碎片*120", en: "Fragment (L)*120", ja: "かけら(大)*120", cost: 5500, max: 50 },
+      { id: "item14", zh: "中碎片*240", en: "Fragment (M)*240", ja: "かけら(中)*240", cost: 5500, max: 50 },
+      { id: "item15", zh: "小碎片*400", en: "Fragment (S)*400", ja: "かけら(小)*400", cost: 5500, max: 50 },
+      { id: "item16", zh: "團員EXP*20000", en: "Member EXP*20000", ja: "メンバーEXP*20000", cost: 1100, max: 20 },
+      { id: "item17", zh: "快照EXP*20000", en: "Snapshot EXP*20000", ja: "スナップEXP*20000", cost: 1100, max: 20 },
+      { id: "item18", zh: "金幣*60000", en: "Coins*60000", ja: "コイン*60000", cost: 2800, max: 20 }
     ];
 
     // 活動 PT 目標選單清單
@@ -1086,10 +1087,9 @@
       1500000, 2000000
     ];
 
-    // 5 個活動 SR 卡特別標籤值
     const RED_SPECIAL_PTS = [75000, 125000, 200000, 300000, 525000];
 
-    // 語言字典 (中 / EN)
+    // 語言字典 (中 / EN / JA)
     const I18N = {
       zh: {
         titleMode1: "通常演出預測計算器",
@@ -1110,7 +1110,6 @@
         lblPt: "活動 PT",
         lblBadge: "活動獎章",
         lblChallengePt: "挑戰 PT",
-        rankSuffix: " 級",
         fireOptions: [
           { val: 1, text: "0🔥 (1倍)" },
           { val: 5, text: "1🔥 (5倍)" },
@@ -1135,11 +1134,14 @@
         hintAwaken4: "活動SR卡覺醒4 遊戲內顯示是22%，但實際是22.5%，請自行+0.5%",
         hintLimit2: "活動SR卡開放上限2 遊戲內顯示是17%，但實際是17.5%，請自行+0.5%",
         hintLimit4: "活動SR卡開放上限4 遊戲內顯示是22%，但實際是22.5%，請自行+0.5%",
+        hintNormalLiveRank1: "通常 Live 評分若為激奏演出請填團體評分",
+        hintNormalLiveRank2: "通常 Live 評分若為自由演出請填最終評分",
         formulaNote1: "* 最終點數採無條件捨去（Floor）計算。<br>* 個人單獨評分不影響收益，以全場總和結算的「評分」為準。<br>以上是適用激奏演出以及自由演出",
         formulaNote2: "* 最終點數採無條件捨去（Floor）計算。",
         formulaNote3: "* 挑戰演出數值已採用最新平衡底分計算（200 CP = 1 場次）。<br>* 差距為正數表示隊伍2勝出，負數表示隊伍1勝出。",
         formulaNote4: "* 自動將通常 live 產生的 CP 幣打滿挑戰 live 計算最終總計。",
-        contactTitle: "如有重大問題可以聯繫：",
+        footerNotice1: "日文跟韓文版本還在試作中",
+        footerNotice2: "如能提供翻譯或有重大問題可以聯繫：",
         authorLbl: "作者",
         ytBtnText: "前往頻道",
         gameIdHtml: `國際服（TW${TW_FLAG_HTML}）`,
@@ -1162,7 +1164,6 @@
         tdDiffPt: "活動 PT 差距 (隊伍2 - 隊伍1)",
         tdDiffMedal: "獎章差距 (隊伍2 - 隊伍1)",
         playsUnit: " 場",
-        // 模式 4
         titleCurrentHold: "目前所持資源",
         titleNormalTeam4: "通常 Live 隊伍設定",
         titleChallengeTeam4: "挑戰 Live 隊伍設定",
@@ -1208,7 +1209,6 @@
         lblPt: "Event PT",
         lblBadge: "Event Badges",
         lblChallengePt: "Challenge PT",
-        rankSuffix: " Rank",
         fireOptions: [
           { val: 1, text: "0🔥 (1x)" },
           { val: 5, text: "1🔥 (5x)" },
@@ -1233,15 +1233,18 @@
         hintAwaken4: "Event SR Awakening 4 displays as 22%, actual is 22.5% (+0.5% manually)",
         hintLimit2: "Event SR Limit Break 2 displays as 17%, actual is 17.5% (+0.5% manually)",
         hintLimit4: "Event SR Limit Break 4 displays as 22%, actual is 22.5% (+0.5% manually)",
+        hintNormalLiveRank1: "For Gekiso Live, enter Team Rank",
+        hintNormalLiveRank2: "For Free Live, enter Final Rank",
         formulaNote1: "* Rounded down (Floor) to the nearest integer.<br>* Solo scores do not affect yields; rewards are based on the room's total Rank.<br>Applicable to both Gekiso Live and Free Live.",
         formulaNote2: "* Rounded down (Floor) to the nearest integer.",
         formulaNote3: "* Challenge calculations apply the updated rebalance bases (200 CP = 1 play).<br>* Positive diff means Team 2 wins; negative means Team 1 wins.",
         formulaNote4: "* Automatically consumes all generated Challenge PT for final total.",
-        contactTitle: "For major bugs or questions, contact:",
+        footerNotice1: "Japanese and Korean versions are currently in development.",
+        footerNotice2: "If you can provide translations or find major bugs, please contact:",
         authorLbl: "Author",
         ytBtnText: "Visit Channel",
         gameIdHtml: `Global Server (TW${TW_FLAG_HTML})`,
-        descCompare: "Based on 40🔥 (integer multiples of 200 Challenge PT), auto-calculating challenge plays and comparing combined rewards.",
+        descCompare: "Based on 40 Boost (integer multiples of 200 Challenge PT), auto-calculates challenge plays and compares combined yields.",
         titleTeamA: "Team 1 (Standard Live)",
         titleTeamB: "Team 2 (Standard Live)",
         titleTeamCP: "Challenge Live Team Setup",
@@ -1260,7 +1263,6 @@
         tdDiffPt: "Event PT Gap (Team 2 - Team 1)",
         tdDiffMedal: "Badge Gap (Team 2 - Team 1)",
         playsUnit: " Plays",
-        // 模式 4
         titleCurrentHold: "Current Resources",
         titleNormalTeam4: "Standard Live Team Setup",
         titleChallengeTeam4: "Challenge Live Team Setup",
@@ -1286,6 +1288,105 @@
         tdReqTotalMedal: "Total Badges (+Current)",
         eachUnit: "Badges/each",
         srBadgeText: " (Event SR)"
+      },
+      ja: {
+        titleMode1: "通常ライブ予測計算機",
+        titleMode2: "チャレンジライブ予測計算機",
+        titleMode3: "編成比較計算機",
+        titleMode4: "イベント報酬必要リソース計算機",
+        tabMode1: "通常ライブ",
+        tabMode2: "チャレンジ",
+        tabMode3: "編成比較",
+        tabMode4: "必要リソース",
+        lblMembersBonus: "メンバーボーナス",
+        lblSnapshotsBonus: "スナップ ボーナス",
+        limitBadge: "上限 500%",
+        lblRank: "スコアランク",
+        lblFire: "消費🔥 (倍率)",
+        lblCp: "チャレンジCP",
+        panelHeader: "最終リザルト獲得予測",
+        lblPt: "イベントPT",
+        lblBadge: "イベントバッジ",
+        lblChallengePt: "チャレンジPT",
+        fireOptions: [
+          { val: 1, text: "0🔥 (1倍)" },
+          { val: 5, text: "1🔥 (5倍)" },
+          { val: 10, text: "2🔥 (10倍)" },
+          { val: 15, text: "3🔥 (15倍)" },
+          { val: 20, text: "4🔥 (20倍)" },
+          { val: 25, text: "5🔥 (25倍)" },
+          { val: 30, text: "6🔥 (30倍)" },
+          { val: 35, text: "7🔥 (35倍)" },
+          { val: 40, text: "8🔥 (40倍)" },
+          { val: 45, text: "9🔥 (45倍)" },
+          { val: 50, text: "10🔥 (50倍)" }
+        ],
+        cpOptions: [
+          { val: 1, text: "200 CP (1倍)" },
+          { val: 2, text: "400 CP (2倍)" },
+          { val: 4, text: "800 CP (4倍)" },
+          { val: 8, text: "1600 CP (8倍)" }
+        ],
+        hintPlayType: "激奏ライブの場合は総合ランクを入力<br>フリーライブの場合は最終ランクを入力",
+        hintAwaken2: "イベントSR覚醒2 ゲーム内表記は17%ですが、実際は17.5%のため各自+0.5%してください",
+        hintAwaken4: "イベントSR覚醒4 ゲーム内表記は22%ですが、実際は22.5%のため各自+0.5%してください",
+        hintLimit2: "イベントSR上限解放2 ゲーム内表記は17%ですが、実際は17.5%のため各自+0.5%してください",
+        hintLimit4: "イベントSR上限解放4 ゲーム内表記は22%ですが、実際は22.5%のため各自+0.5%してください",
+        hintNormalLiveRank1: "通常ライブ 激奏ライブの場合は総合ランクを入力",
+        hintNormalLiveRank2: "通常ライブ フリーライブの場合は最終ランクを入力",
+        formulaNote1: "※ 最終ポイントは切り捨て（Floor）で計算されます。<br>※ 個人のスコアは報酬に影響せず、全体の総合リザルト「ランク」が基準となります。<br>上記は激奏ライブおよびフリーライブの両方に適用されます。",
+        formulaNote2: "※ 最終ポイントは切り捨て（Floor）で計算されます。",
+        formulaNote3: "※ チャレンジライブの数値は最新のバランス調整後の基礎点（200 CP = 1回）で計算されています。<br>※ 差分がプラスの場合は編成2が優位、マイナスの場合は編成1が優位となります。",
+        formulaNote4: "※ 通常ライブで獲得したチャレンジPをすべて消費した場合の最終合計を計算します。",
+        footerNotice1: "日本語版および韓国語版は現在試作段階です。",
+        footerNotice2: "翻訳の提供や重大な不具合等の連絡先：",
+        authorLbl: "製作者",
+        ytBtnText: "チャンネルへ",
+        gameIdHtml: `グローバル版（TW${TW_FLAG_HTML}）`,
+        descCompare: "40ブースト（200の整数倍チャレンジCP）を基準に、挑戦回数を自動換算して総合獲得量を比較します。",
+        titleTeamA: "編成1（通常ライブ）",
+        titleTeamB: "編成2（通常ライブ）",
+        titleTeamCP: "チャレンジライブ編成設定",
+        panelHeader3: "40🔥 サイクル獲得量総合比較",
+        thCategory: "項目",
+        thTeamA: "編成1",
+        thTeamB: "編成2",
+        tdNormalPt: "通常ライブ イベントPT獲得量 (40🔥)",
+        tdNormalMedal: "通常ライブ バッジ獲得量 (40🔥)",
+        tdCpEarned: "獲得チャレンジPT",
+        tdCpPlays: "プレイ可能チャレンジ回数",
+        tdCpPt: "チャレンジライブ イベントPT獲得量",
+        tdCpMedal: "チャレンジライブ バッジ獲得量",
+        tdTotalPt: "総イベントPT",
+        tdTotalMedal: "総イベントバッジ",
+        tdDiffPt: "イベントPT差分 (編成2 - 編成1)",
+        tdDiffMedal: "バッジ差分 (編成2 - 編成1)",
+        playsUnit: " 回",
+        titleCurrentHold: "現在所持リソース",
+        titleNormalTeam4: "通常ライブ編成設定",
+        titleChallengeTeam4: "チャレンジライブ編成設定",
+        titleTargetSetting: "目標設定",
+        lblCurPt: "イベントPT",
+        lblCurMedal: "イベントバッジ",
+        lblCurCp: "チャレンジCP",
+        lblTargetPt: "目標イベントPT",
+        lblTargetMedal: "目標イベントバッジ",
+        lblAutoSumNote: "(以下のアイテム数を調整すると自動で合算されます)",
+        panelHeader4: "必要リソース予測結果",
+        lblShiftPrefix: "目標",
+        btnShiftPt: "イベントPT",
+        btnShiftMedal: "イベントバッジ",
+        tdReqFireRow: "必要🔥",
+        tdReqNormalLivePt: "通常ライブ イベントPT獲得量",
+        tdReqNormalLiveMedal: "通常ライブ バッジ獲得量",
+        tdReqCpEarned: "獲得チャレンジPT (所持分加算)",
+        tdReqCpPlays: "プレイ可能チャレンジ回数",
+        tdReqCpLivePt: "チャレンジライブ イベントPT獲得量",
+        tdReqCpLiveMedal: "チャレンジライブ バッジ獲得量",
+        tdReqTotalPt: "総イベントPT (所持分加算)",
+        tdReqTotalMedal: "総イベントバッジ (所持分加算)",
+        eachUnit: "バッジ/個",
+        srBadgeText: " (イベントSR)"
       }
     };
 
@@ -1312,6 +1413,7 @@
     // DOM 元素
     const btnLangZh = document.getElementById('btnLangZh');
     const btnLangEn = document.getElementById('btnLangEn');
+    const btnLangJa = document.getElementById('btnLangJa');
     const pageTitle = document.getElementById('pageTitle');
     const tabMode1 = document.getElementById('tabMode1');
     const tabMode2 = document.getElementById('tabMode2');
@@ -1371,7 +1473,7 @@
 
     const btnShiftPt = document.getElementById('btnShiftPt');
     const btnShiftMedal = document.getElementById('btnShiftMedal');
-    let currentShiftMode = 'pt'; // 'pt' or 'medal'
+    let currentShiftMode = 'pt';
 
     function renderSelectOptions(selectEl, optionsData, defaultValue) {
       const currentVal = selectEl.value || defaultValue;
@@ -1394,7 +1496,7 @@
       ranks.forEach(r => {
         const option = document.createElement('option');
         option.value = r;
-        option.textContent = r + I18N[currentLang].rankSuffix;
+        option.textContent = r;
         if (r === currentVal) {
           option.selected = true;
         }
@@ -1402,13 +1504,14 @@
       });
     }
 
-    // 初始化目標 PT 下拉選單 (含活動SR卡紅色標籤)
     function initTargetPtSelect() {
       const currentVal = targetPtSelect.value;
       targetPtSelect.innerHTML = '';
       const defaultOpt = document.createElement('option');
       defaultOpt.value = "";
-      defaultOpt.textContent = currentLang === 'zh' ? "-- 快速選取目標 PT --" : "-- Select Target PT --";
+      if (currentLang === 'zh') defaultOpt.textContent = "-- 快速選取目標 PT --";
+      else if (currentLang === 'ja') defaultOpt.textContent = "-- 目標PTを素早く選択 --";
+      else defaultOpt.textContent = "-- Select Target PT --";
       targetPtSelect.appendChild(defaultOpt);
 
       PT_TARGET_OPTIONS.forEach(pt => {
@@ -1426,7 +1529,6 @@
       });
     }
 
-    // 初始化獎勵兌換清單
     function initRewardChecklist() {
       const savedValues = {};
       REWARD_STORE_ITEMS.forEach(item => {
@@ -1443,7 +1545,9 @@
         info.className = 'reward-info';
 
         const nameSpan = document.createElement('span');
-        nameSpan.textContent = currentLang === 'zh' ? item.zh : item.en;
+        if (currentLang === 'zh') nameSpan.textContent = item.zh;
+        else if (currentLang === 'ja') nameSpan.textContent = item.ja;
+        else nameSpan.textContent = item.en;
 
         const costSpan = document.createElement('span');
         costSpan.className = 'reward-cost';
@@ -1491,13 +1595,9 @@
       currentLang = lang;
       const t = I18N[lang];
 
-      if (lang === 'zh') {
-        btnLangZh.classList.add('active');
-        btnLangEn.classList.remove('active');
-      } else {
-        btnLangEn.classList.add('active');
-        btnLangZh.classList.remove('active');
-      }
+      btnLangZh.classList.toggle('active', lang === 'zh');
+      btnLangEn.classList.toggle('active', lang === 'en');
+      btnLangJa.classList.toggle('active', lang === 'ja');
 
       if (sectionMode1.classList.contains('active')) pageTitle.textContent = t.titleMode1;
       else if (sectionMode2.classList.contains('active')) pageTitle.textContent = t.titleMode2;
@@ -1549,6 +1649,9 @@
       document.getElementById('hintSrAwaken4_3').textContent = t.hintAwaken4;
       document.getElementById('hintSrLimit2_3').textContent = t.hintLimit2;
       document.getElementById('hintSrLimit4_3').textContent = t.hintLimit4;
+      document.getElementById('hintNormalLiveRank1_3').textContent = t.hintNormalLiveRank1;
+      document.getElementById('hintNormalLiveRank2_3').textContent = t.hintNormalLiveRank2;
+
       document.getElementById('titleTeamA').textContent = t.titleTeamA;
       document.getElementById('titleTeamB').textContent = t.titleTeamB;
       document.getElementById('titleTeamCP').textContent = t.titleTeamCP;
@@ -1582,6 +1685,9 @@
       document.getElementById('hintSrAwaken4_4').textContent = t.hintAwaken4;
       document.getElementById('hintSrLimit2_4').textContent = t.hintLimit2;
       document.getElementById('hintSrLimit4_4').textContent = t.hintLimit4;
+      document.getElementById('hintNormalLiveRank1_4').textContent = t.hintNormalLiveRank1;
+      document.getElementById('hintNormalLiveRank2_4').textContent = t.hintNormalLiveRank2;
+
       document.getElementById('titleCurrentHold').textContent = t.titleCurrentHold;
       document.getElementById('titleNormalTeam4').textContent = t.titleNormalTeam4;
       document.getElementById('titleChallengeTeam4').textContent = t.titleChallengeTeam4;
@@ -1614,7 +1720,8 @@
       document.getElementById('formulaNote4').innerHTML = t.formulaNote4;
 
       // 頁尾
-      document.getElementById('footerContactTitle').textContent = t.contactTitle;
+      document.getElementById('footerNotice1').textContent = t.footerNotice1;
+      document.getElementById('footerNotice2').textContent = t.footerNotice2;
       document.getElementById('footerAuthorLbl').textContent = t.authorLbl;
       footerYtLink.textContent = t.ytBtnText;
       document.getElementById('footerGameIdLbl').innerHTML = t.gameIdHtml;
@@ -1745,7 +1852,6 @@
       diffMedalEl.className = diffMedal >= 0 ? "diff-highlight" : "diff-negative";
     }
 
-    // 模式四：活動獎勵所需資源逆推計算核心
     function calculateMode4() {
       const curPt = parseFloat(curPtInput.value) || 0;
       const curMedal = parseFloat(curMedalInput.value) || 0;
@@ -1765,12 +1871,10 @@
       const base1 = RANK_CONFIG_MODE1[rank1Val];
       const base2 = RANK_CONFIG_MODE2[rank2Val];
 
-      // 每 1 火通常收益 (1火 = 5倍)
       const ptPerFire = Math.floor((base1.pt * (100 + ptBonus1Val) * 5) / 100);
       const medalPerFire = Math.floor((base1.medal * (100 + medalBonus1Val) * 5) / 100);
       const cpPerFire = base1.livePt * 5;
 
-      // 挑戰演出 1 場收益 (200 CP)
       const singleCpPt = Math.floor((base2.pt * (100 + ptBonus2Val)) / 100);
       const singleCpMedal = Math.floor((base2.medal * (100 + medalBonus2Val)) / 100);
 
@@ -1818,9 +1922,7 @@
       const neededFire = findMinFire(currentShiftMode);
       const finalSim = simulateYield(neededFire);
 
-      // 渲染畫面：所需🔥 獨立列
       document.getElementById('resFireTotal4').textContent = finalSim.fires.toLocaleString();
-
       document.getElementById('resNormalPt4').textContent = finalSim.normPt.toLocaleString();
       document.getElementById('resNormalMedal4').textContent = finalSim.normMedal.toLocaleString();
 
@@ -1857,9 +1959,10 @@
       }
     });
 
-    // 語言切換
+    // 語言切換事件
     btnLangZh.addEventListener('click', () => updateLanguage('zh'));
     btnLangEn.addEventListener('click', () => updateLanguage('en'));
+    btnLangJa.addEventListener('click', () => updateLanguage('ja'));
 
     // 頁籤切換
     function switchTab(targetMode) {
@@ -1894,7 +1997,7 @@
     tabMode3.addEventListener('click', () => switchTab(3));
     tabMode4.addEventListener('click', () => switchTab(4));
 
-    // 模式一、二、三事件監聽
+    // 監聽器註冊
     [ptInput1, medalInput1, rankSelect1, fireSelect].forEach(el => {
       el.addEventListener('input', calculateMode1);
       el.addEventListener('change', calculateMode1);
@@ -1910,7 +2013,6 @@
       el.addEventListener('change', calculateMode3);
     });
 
-    // 模式四輸入事件監聽
     [
       curPtInput, curMedalInput, curCpInput,
       ptBonus4_1, medalBonus4_1, teamRank4_1,
@@ -1921,7 +2023,7 @@
       el.addEventListener('change', calculateMode4);
     });
 
-    // 初始化載入
+    // 初始載入
     updateLanguage('zh');
   </script>
 </body>
