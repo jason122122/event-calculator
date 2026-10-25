@@ -2,7 +2,8 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>Ournotes 組隊策略與評級決策全圖表</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ournotes Strategy & Decision Guide</title>
   <style>
     html {
       scroll-behavior: smooth;
@@ -24,6 +25,35 @@
       gap: 32px;
     }
     
+    /* 語言切換列 */
+    .lang-switcher-bar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
+    }
+    .lang-btn {
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid #334155;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .lang-btn:hover {
+      background: #334155;
+      color: #f8fafc;
+    }
+    .lang-btn.active {
+      background: #818cf8;
+      color: #ffffff;
+      border-color: #818cf8;
+      box-shadow: 0 0 12px rgba(129, 140, 248, 0.4);
+    }
+
     /* 頂部懶人包 */
     .summary-card {
       background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
@@ -45,13 +75,22 @@
       font-size: 0.88rem;
       color: #cbd5e1;
       margin-bottom: 16px;
-      padding: 8px 12px;
+      padding: 10px 14px;
       background: rgba(15, 23, 42, 0.6);
       border-radius: 8px;
       border: 1px solid rgba(255, 255, 255, 0.05);
+      line-height: 1.6;
     }
     .summary-subtitle strong {
       color: #38bdf8;
+    }
+    .preset-note {
+      color: #a5b4fc;
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
     .summary-grid {
       display: grid;
@@ -195,7 +234,6 @@
       background: rgba(255, 255, 255, 0.04) !important;
     }
 
-    /* 差一個評級特別高亮底色 */
     .row-adjacent-t1 {
       background-color: rgba(129, 140, 248, 0.09) !important;
       border-left: 3px solid #818cf8;
@@ -252,125 +290,132 @@
 
 <div class="container">
 
+  <!-- 語言切換按鈕列 -->
+  <div class="lang-switcher-bar">
+    <button class="lang-btn" onclick="setLanguage('zh')">繁體中文</button>
+    <button class="lang-btn" onclick="setLanguage('en')">English</button>
+    <button class="lang-btn" onclick="setLanguage('ja')">日本語</button>
+  </div>
+
   <!-- ================= 懶人包區塊 ================= -->
   <div class="summary-card">
-    <div class="summary-title">⚡ 評級抉擇懶人包速查（上限 375% 環境）</div>
-    <div class="summary-subtitle">
-      💡 <strong>代號定義說明</strong>：<strong>X<sub>1</sub></strong> 為低評分隊伍的「隊伍加成 %」、<strong>Y<sub>1</sub></strong> 為低評分隊伍的「快照加成 %」；<strong>X<sub>2</sub></strong> 為高評分隊伍的「隊伍加成 %」、<strong>Y<sub>2</sub></strong> 為高評分隊伍的「快照加成 %」。
+    <div class="summary-title" id="summary-title">⚡ 評級抉擇懶人包速查（上限 375% 環境）</div>
+    <div class="summary-subtitle" id="summary-subtitle">
+      <!-- 由 JS 動態注入 -->
     </div>
     <div class="summary-grid">
       
       <!-- S vs A -->
       <div class="summary-item">
         <div class="summary-header">
-          <span>評分 <strong>S vs A</strong></span>
+          <span><span data-i18n="score">評分</span> <strong>S vs A</strong></span>
           <div class="quick-links">
-            <a href="#t1-s-a" class="quick-btn">表1</a>
-            <a href="#t2-s-a" class="quick-btn">表2</a>
+            <a href="#t1-s-a" class="quick-btn" data-i18n="btn-t1">表1</a>
+            <a href="#t2-s-a" class="quick-btn" data-i18n="btn-t2">表2</a>
           </div>
         </div>
         <div class="summary-line">
-          <span class="pt-lbl">活動 PT：</span>
-          <span class="summary-tag-win">必選 S</span>
+          <span class="pt-lbl" data-i18n="lbl-pt">活動 PT：</span>
+          <span class="summary-tag-win" data-i18n="s-vs-a-pt">必選 S</span>
         </div>
         <div class="summary-line">
-          <span class="medal-lbl">活動獎章：</span>
-          <span class="summary-tag-win">必選 S</span>
+          <span class="medal-lbl" data-i18n="lbl-medal">活動獎章：</span>
+          <span class="summary-tag-win" data-i18n="s-vs-a-medal">必選 S</span>
         </div>
       </div>
 
       <!-- 跨 2 階以上 -->
       <div class="summary-item">
         <div class="summary-header">
-          <span>評分 <strong>跨 2 階以上</strong>（如 SS vs A、S vs B）</span>
+          <span><span data-i18n="score">評分</span> <strong data-i18n="cross-2-title">跨 2 階以上（如 SS vs A、S vs B）</strong></span>
           <div class="quick-links">
-            <a href="#t1-ss-a" class="quick-btn">表1</a>
-            <a href="#t2-ss-a" class="quick-btn">表2</a>
+            <a href="#t1-ss-a" class="quick-btn" data-i18n="btn-t1">表1</a>
+            <a href="#t2-ss-a" class="quick-btn" data-i18n="btn-t2">表2</a>
           </div>
         </div>
         <div class="summary-line">
-          <span class="pt-lbl">活動 PT：</span>
-          <span class="summary-tag-win">必選高評級</span>
+          <span class="pt-lbl" data-i18n="lbl-pt">活動 PT：</span>
+          <span class="summary-tag-win" data-i18n="cross-2-pt">必選高評級</span>
         </div>
         <div class="summary-line">
-          <span class="medal-lbl">活動獎章：</span>
-          <span class="summary-tag-win">必選高評級</span>
+          <span class="medal-lbl" data-i18n="lbl-medal">活動獎章：</span>
+          <span class="summary-tag-win" data-i18n="cross-2-medal">必選高評級</span>
         </div>
       </div>
 
       <!-- SS vs S -->
       <div class="summary-item">
         <div class="summary-header">
-          <span>評分 <strong>SS vs S</strong></span>
+          <span><span data-i18n="score">評分</span> <strong>SS vs S</strong></span>
           <div class="quick-links">
-            <a href="#t1-ss-s" class="quick-btn">表1</a>
-            <a href="#t2-ss-s" class="quick-btn">表2</a>
+            <a href="#t1-ss-s" class="quick-btn" data-i18n="btn-t1">表1</a>
+            <a href="#t2-ss-s" class="quick-btn" data-i18n="btn-t2">表2</a>
           </div>
         </div>
         <div class="summary-line">
-          <span class="pt-lbl">活動 PT：</span>
-          <span class="summary-tag-cond">X₂ &lt; 42.6% 且 X₁ &gt; 233.3% + 3.33X₂ 才選 S</span>
+          <span class="pt-lbl" data-i18n="lbl-pt">活動 PT：</span>
+          <span class="summary-tag-cond" data-i18n="ss-vs-s-pt">X₂ &lt; 42.6% 且 X₁ &gt; 233.3% + 3.33X₂ 才選 S</span>
         </div>
         <div class="summary-line">
-          <span class="medal-lbl">活動獎章：</span>
-          <span class="summary-tag-cond">Y₂ &lt; 62.3% 且 Y₁ &gt; 192.7% + 2.93Y₂ 才選 S</span>
+          <span class="medal-lbl" data-i18n="lbl-medal">活動獎章：</span>
+          <span class="summary-tag-cond" data-i18n="ss-vs-s-medal">Y₂ &lt; 62.3% 且 Y₁ &gt; 192.7% + 2.93Y₂ 才選 S</span>
         </div>
       </div>
 
       <!-- A vs B -->
       <div class="summary-item">
         <div class="summary-header">
-          <span>評分 <strong>A vs B</strong></span>
+          <span><span data-i18n="score">評分</span> <strong>A vs B</strong></span>
           <div class="quick-links">
-            <a href="#t1-a-b" class="quick-btn">表1</a>
-            <a href="#t2-a-b" class="quick-btn">表2</a>
+            <a href="#t1-a-b" class="quick-btn" data-i18n="btn-t1">表1</a>
+            <a href="#t2-a-b" class="quick-btn" data-i18n="btn-t2">表2</a>
           </div>
         </div>
         <div class="summary-line">
-          <span class="pt-lbl">活動 PT：</span>
-          <span class="summary-tag-cond">X₂ &lt; 101.9% 且 X₁ &gt; 135.3% + 2.35X₂ 才選 B</span>
+          <span class="pt-lbl" data-i18n="lbl-pt">活動 PT：</span>
+          <span class="summary-tag-cond" data-i18n="a-vs-b-pt">X₂ &lt; 101.9% 且 X₁ &gt; 135.3% + 2.35X₂ 才選 B</span>
         </div>
         <div class="summary-line">
-          <span class="medal-lbl">活動獎章：</span>
-          <span class="summary-tag-cond">Y₂ &lt; 97.9% 且 Y₁ &gt; 140.0% + 2.40Y₂ 才選 B</span>
+          <span class="medal-lbl" data-i18n="lbl-medal">活動獎章：</span>
+          <span class="summary-tag-cond" data-i18n="a-vs-b-medal">Y₂ &lt; 97.9% 且 Y₁ &gt; 140.0% + 2.40Y₂ 才選 B</span>
         </div>
       </div>
 
       <!-- B vs C -->
       <div class="summary-item">
         <div class="summary-header">
-          <span>評分 <strong>B vs C</strong></span>
+          <span><span data-i18n="score">評分</span> <strong>B vs C</strong></span>
           <div class="quick-links">
-            <a href="#t1-b-c" class="quick-btn">表1</a>
-            <a href="#t2-b-c" class="quick-btn">表2</a>
+            <a href="#t1-b-c" class="quick-btn" data-i18n="btn-t1">表1</a>
+            <a href="#t2-b-c" class="quick-btn" data-i18n="btn-t2">表2</a>
           </div>
         </div>
         <div class="summary-line">
-          <span class="pt-lbl">活動 PT：</span>
-          <span class="summary-tag-cond">X₂ &lt; 103.6% 且 X₁ &gt; 133.3% + 2.33X₂ 才選 C</span>
+          <span class="pt-lbl" data-i18n="lbl-pt">活動 PT：</span>
+          <span class="summary-tag-cond" data-i18n="b-vs-c-pt">X₂ &lt; 103.6% 且 X₁ &gt; 133.3% + 2.33X₂ 才選 C</span>
         </div>
         <div class="summary-line">
-          <span class="medal-lbl">活動獎章：</span>
-          <span class="summary-tag-cond">Y₂ &lt; 115.9% 且 Y₁ &gt; 127.8% + 2.13Y₂ 才選 C</span>
+          <span class="medal-lbl" data-i18n="lbl-medal">活動獎章：</span>
+          <span class="summary-tag-cond" data-i18n="b-vs-c-medal">Y₂ &lt; 115.9% 且 Y₁ &gt; 127.8% + 2.13Y₂ 才選 C</span>
         </div>
       </div>
 
       <!-- C vs D -->
       <div class="summary-item">
         <div class="summary-header">
-          <span>評分 <strong>C vs D</strong></span>
+          <span><span data-i18n="score">評分</span> <strong>C vs D</strong></span>
           <div class="quick-links">
-            <a href="#t1-c-d" class="quick-btn">表1</a>
-            <a href="#t2-c-d" class="quick-btn">表2</a>
+            <a href="#t1-c-d" class="quick-btn" data-i18n="btn-t1">表1</a>
+            <a href="#t2-c-d" class="quick-btn" data-i18n="btn-t2">表2</a>
           </div>
         </div>
         <div class="summary-line">
-          <span class="pt-lbl">活動 PT：</span>
-          <span class="summary-tag-cond">X₂ &lt; 80.0% 且 X₁ &gt; 175.0% + 2.50X₂ 才選 D</span>
+          <span class="pt-lbl" data-i18n="lbl-pt">活動 PT：</span>
+          <span class="summary-tag-cond" data-i18n="c-vs-d-pt">X₂ &lt; 80.0% 且 X₁ &gt; 175.0% + 2.50X₂ 才選 D</span>
         </div>
         <div class="summary-line">
-          <span class="medal-lbl">活動獎章：</span>
-          <span class="summary-tag-cond">Y₂ &lt; 83.9% 且 Y₁ &gt; 169.4% + 2.45Y₂ 才選 D</span>
+          <span class="medal-lbl" data-i18n="lbl-medal">活動獎章：</span>
+          <span class="summary-tag-cond" data-i18n="c-vs-d-medal">Y₂ &lt; 83.9% 且 Y₁ &gt; 169.4% + 2.45Y₂ 才選 D</span>
         </div>
       </div>
 
@@ -379,226 +424,219 @@
 
   <!-- ================= 表格一 ================= -->
   <div class="card">
-    <h2 class="title-t1">表格一：隊伍二隊伍加成跟快照加成加成固定為 0%</h2>
+    <h2 class="title-t1" id="t1-title">表格一：隊伍二隊伍加成跟快照加成加成固定為 0%</h2>
     
-    <div class="guide-box">
-      <div class="guide-title">📌 基準條件與圖表判讀說明（藍紫色底色為相差 1 個評級之對比）</div>
-      <div class="guide-desc">
-        • <strong>情境設定</strong>：<br>
-        &nbsp;&nbsp;- <strong>低評分隊伍（隊伍一）</strong>：為「高加成、低評級隊伍」，隊伍加成為 <strong>X<sub>1</sub></strong>、快照加成為 <strong>Y<sub>1</sub></strong>，並<strong>先假設隊伍一與挑戰隊伍配置一樣、評級也相同</strong>。<br>
-        &nbsp;&nbsp;- <strong>高評分隊伍（隊伍二）</strong>：為「純高綜合力、無加成隊伍」，隊伍加成 <strong>X<sub>2</sub></strong> 與快照加成 <strong>Y<sub>2</sub></strong> 固定為 0% 0%。<br>
-        • <strong>結算標準</strong>：以 40🔥 週期（倍率 200 倍）自動換算產生的挑戰 PT（200 CP/場）並打滿挑戰 Live 合併總產出，加成上限設定為 375%。<br>
-        • <strong>如何看此表</strong>：對比兩隊評級落差，查看低評分隊伍需要堆到多少隊伍加成 <strong>X<sub>1</sub></strong> 或快照加成 <strong>Y<sub>1</sub></strong> 才能逆轉高評分隊伍多拿 CP 幣打挑戰的優勢。
-      </div>
+    <div class="guide-box" id="t1-guide">
+      <!-- 由 JS 動態注入 -->
     </div>
 
     <table>
       <thead>
         <tr>
-          <th>隊伍二 (0%)</th>
-          <th>隊伍一評級</th>
-          <th>40🔥挑戰場次差</th>
-          <th>PT 差距公式 (隊伍2 - 隊伍1)</th>
-          <th>PT 平衡點 (X<sub>1</sub>)</th>
-          <th>獎章差距公式 (隊伍2 - 隊伍1)</th>
-          <th>獎章平衡點 (Y<sub>1</sub>)</th>
-          <th>實戰決策 (上限 375%)</th>
+          <th data-i18n="th-team2-0">隊伍二 (0%)</th>
+          <th data-i18n="th-team1-rank">隊伍一評級</th>
+          <th data-i18n="th-cp-diff">40🔥挑戰場次差</th>
+          <th data-i18n="th-pt-formula">PT 差距公式 (隊伍2 - 隊伍1)</th>
+          <th data-i18n="th-pt-eq">PT 平衡點 (X₁)</th>
+          <th data-i18n="th-medal-formula">獎章差距公式 (隊伍2 - 隊伍1)</th>
+          <th data-i18n="th-medal-eq">獎章平衡點 (Y₁)</th>
+          <th data-i18n="th-decision">實戰決策 (上限 375%)</th>
         </tr>
       </thead>
       <tbody>
         <tr id="t1-ss-s" class="row-adjacent-t1">
           <td><span class="badge-rank rank-ss">SS</span></td>
           <td><span class="badge-rank rank-s">S</span></td>
-          <td>2 場 (400 CP)</td>
-          <td>14,000 − 60X<sub>1</sub></td>
+          <td><span data-i18n="plays-2">2 場 (400 CP)</span></td>
+          <td>14,000 − 60X₁</td>
           <td class="pt-color">233.3%</td>
-          <td>15,800 − 82Y<sub>1</sub></td>
+          <td>15,800 − 82Y₁</td>
           <td class="medal-color">192.7%</td>
           <td class="decision-cell">
-            <span class="decision-item">PT 隊伍加成 X₁ &gt; <span class="tag-pick-1">234%</span> 選隊伍一</span>
-            <span class="decision-item">獎章 快照加成 Y₁ &gt; <span class="tag-pick-1">193%</span> 選隊伍一</span>
+            <span class="decision-item"><span data-i18n="pt-bonus">PT 隊伍加成</span> X₁ &gt; <span class="tag-pick-1">234%</span> <span data-i18n="pick-team1">選隊伍一</span></span>
+            <span class="decision-item"><span data-i18n="medal-bonus">獎章 快照加成</span> Y₁ &gt; <span class="tag-pick-1">193%</span> <span data-i18n="pick-team1">選隊伍一</span></span>
           </td>
         </tr>
         <tr id="t1-ss-a">
           <td><span class="badge-rank rank-ss">SS</span></td>
           <td><span class="badge-rank rank-a">A</span></td>
-          <td>4 場 (800 CP)</td>
-          <td>24,000 − 60X<sub>1</sub></td>
+          <td><span data-i18n="plays-4">4 場 (800 CP)</span></td>
+          <td>24,000 − 60X₁</td>
           <td class="pt-color">400.0%</td>
-          <td>26,600 − 46Y<sub>1</sub></td>
+          <td>26,600 − 46Y₁</td>
           <td class="medal-color">578.3%</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="tag-pick-2">無法超越，選隊伍二</span></span>
-            <span class="decision-item">獎章 <span class="tag-pick-2">無法超越，選隊伍二</span></span>
+            <span class="decision-item">PT <span class="tag-pick-2" data-i18n="cannot-surpass-pick2">無法超越，選隊伍二</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="tag-pick-2" data-i18n="cannot-surpass-pick2">無法超越，選隊伍二</span></span>
           </td>
         </tr>
         <tr>
           <td><span class="badge-rank rank-ss">SS</span></td>
           <td><span class="badge-rank rank-b">B</span></td>
-          <td>5 場 (1000 CP)</td>
-          <td>26,750 + 7.5X<sub>1</sub></td>
-          <td class="always-win">隊伍二必勝</td>
-          <td>31,000 + 10Y<sub>1</sub></td>
-          <td class="always-win">隊伍二必勝</td>
+          <td><span data-i18n="plays-5">5 場 (1000 CP)</span></td>
+          <td>26,750 + 7.5X₁</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
+          <td>31,000 + 10Y₁</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="tag-pick-2">隊伍二必勝</span></span>
-            <span class="decision-item">獎章 <span class="tag-pick-2">隊伍二必勝</span></span>
+            <span class="decision-item">PT <span class="tag-pick-2" data-i18n="team2-win">隊伍二必勝</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="tag-pick-2" data-i18n="team2-win">隊伍二必勝</span></span>
           </td>
         </tr>
         <tr>
           <td><span class="badge-rank rank-ss">SS</span></td>
           <td><span class="badge-rank rank-c">C</span></td>
-          <td>6 場 (1200 CP)</td>
-          <td>27,000 + 50X<sub>1</sub></td>
-          <td class="always-win">隊伍二必勝</td>
-          <td>31,900 + 59Y<sub>1</sub></td>
-          <td class="always-win">隊伍二必勝</td>
+          <td><span data-i18n="plays-6">6 場 (1200 CP)</span></td>
+          <td>27,000 + 50X₁</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
+          <td>31,900 + 59Y₁</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="tag-pick-2">隊伍二必勝</span></span>
-            <span class="decision-item">獎章 <span class="tag-pick-2">隊伍二必勝</span></span>
+            <span class="decision-item">PT <span class="tag-pick-2" data-i18n="team2-win">隊伍二必勝</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="tag-pick-2" data-i18n="team2-win">隊伍二必勝</span></span>
           </td>
         </tr>
         <tr>
           <td><span class="badge-rank rank-ss">SS</span></td>
           <td><span class="badge-rank rank-d">D</span></td>
-          <td>7 場 (1400 CP)</td>
-          <td>27,500 + 75X<sub>1</sub></td>
-          <td class="always-win">隊伍二必勝</td>
-          <td>33,050 + 94.5Y<sub>1</sub></td>
-          <td class="always-win">隊伍二必勝</td>
+          <td><span data-i18n="plays-7">7 場 (1400 CP)</span></td>
+          <td>27,500 + 75X₁</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
+          <td>33,050 + 94.5Y₁</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="tag-pick-2">隊伍二必勝</span></span>
-            <span class="decision-item">獎章 <span class="tag-pick-2">隊伍二必勝</span></span>
+            <span class="decision-item">PT <span class="tag-pick-2" data-i18n="team2-win">隊伍二必勝</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="tag-pick-2" data-i18n="team2-win">隊伍二必勝</span></span>
           </td>
         </tr>
         <tr id="t1-s-a" class="row-adjacent-t1">
           <td><span class="badge-rank rank-s">S</span></td>
           <td><span class="badge-rank rank-a">A</span></td>
-          <td>2 場 (400 CP)</td>
-          <td>12,000 − 30X<sub>1</sub></td>
+          <td><span data-i18n="plays-2">2 場 (400 CP)</span></td>
+          <td>12,000 − 30X₁</td>
           <td class="pt-color">400.0%</td>
-          <td>14,300 − 37Y<sub>1</sub></td>
+          <td>14,300 − 37Y₁</td>
           <td class="medal-color">386.5%</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="tag-pick-2">無法超越（差750分），選隊伍二</span></span>
-            <span class="decision-item">獎章 <span class="tag-pick-2">無法超越（差425分），選隊伍二</span></span>
+            <span class="decision-item">PT <span class="tag-pick-2" data-i18n="s-a-pt-dec">無法超越（差750分），選隊伍二</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="tag-pick-2" data-i18n="s-a-medal-dec">無法超越（差425分），選隊伍二</span></span>
           </td>
         </tr>
         <tr>
           <td><span class="badge-rank rank-s">S</span></td>
           <td><span class="badge-rank rank-b">B</span></td>
-          <td>3 場 (600 CP)</td>
-          <td>16,250 + 12.5X<sub>1</sub></td>
-          <td class="always-win">隊伍二必勝</td>
-          <td>19,800 + 18Y<sub>1</sub></td>
-          <td class="always-win">隊伍二必勝</td>
+          <td><span data-i18n="plays-3">3 場 (600 CP)</span></td>
+          <td>16,250 + 12.5X₁</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
+          <td>19,800 + 18Y₁</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="tag-pick-2">隊伍二必勝</span></span>
-            <span class="decision-item">獎章 <span class="tag-pick-2">隊伍二必勝</span></span>
+            <span class="decision-item">PT <span class="tag-pick-2" data-i18n="team2-win">隊伍二必勝</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="tag-pick-2" data-i18n="team2-win">隊伍二必勝</span></span>
           </td>
         </tr>
         <tr>
           <td><span class="badge-rank rank-s">S</span></td>
           <td><span class="badge-rank rank-c">C</span></td>
-          <td>4 場 (800 CP)</td>
-          <td>18,000 + 50X<sub>1</sub></td>
-          <td class="always-win">隊伍二必勝</td>
-          <td>22,600 + 60Y<sub>1</sub></td>
-          <td class="always-win">隊伍二必勝</td>
+          <td><span data-i18n="plays-4">4 場 (800 CP)</span></td>
+          <td>18,000 + 50X₁</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
+          <td>22,600 + 60Y₁</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="tag-pick-2">隊伍二必勝</span></span>
-            <span class="decision-item">獎章 <span class="tag-pick-2">隊伍二必勝</span></span>
+            <span class="decision-item">PT <span class="tag-pick-2" data-i18n="team2-win">隊伍二必勝</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="tag-pick-2" data-i18n="team2-win">隊伍二必勝</span></span>
           </td>
         </tr>
         <tr>
           <td><span class="badge-rank rank-s">S</span></td>
           <td><span class="badge-rank rank-d">D</span></td>
-          <td>5 場 (1000 CP)</td>
-          <td>20,000 + 70X<sub>1</sub></td>
-          <td class="always-win">隊伍二必勝</td>
-          <td>25,250 + 91.5Y<sub>1</sub></td>
-          <td class="always-win">隊伍二必勝</td>
+          <td><span data-i18n="plays-5">5 場 (1000 CP)</span></td>
+          <td>20,000 + 70X₁</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
+          <td>25,250 + 91.5Y₁</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="tag-pick-2">隊伍二必勝</span></span>
-            <span class="decision-item">獎章 <span class="tag-pick-2">隊伍二必勝</span></span>
+            <span class="decision-item">PT <span class="tag-pick-2" data-i18n="team2-win">隊伍二必勝</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="tag-pick-2" data-i18n="team2-win">隊伍二必勝</span></span>
           </td>
         </tr>
         <tr id="t1-a-b" class="row-adjacent-t1">
           <td><span class="badge-rank rank-a">A</span></td>
           <td><span class="badge-rank rank-b">B</span></td>
-          <td>1 場 (200 CP)</td>
-          <td>5,750 − 42.5X<sub>1</sub></td>
+          <td><span data-i18n="plays-1">1 場 (200 CP)</span></td>
+          <td>5,750 − 42.5X₁</td>
           <td class="pt-color">135.3%</td>
-          <td>7,000 − 50Y<sub>1</sub></td>
+          <td>7,000 − 50Y₁</td>
           <td class="medal-color">140.0%</td>
           <td class="decision-cell">
-            <span class="decision-item">PT 隊伍加成 X₁ &gt; <span class="tag-pick-1">136%</span> 選隊伍一</span>
-            <span class="decision-item">獎章 快照加成 Y₁ &gt; <span class="tag-pick-1">140%</span> 選隊伍一</span>
+            <span class="decision-item"><span data-i18n="pt-bonus">PT 隊伍加成</span> X₁ &gt; <span class="tag-pick-1">136%</span> <span data-i18n="pick-team1">選隊伍一</span></span>
+            <span class="decision-item"><span data-i18n="medal-bonus">獎章 快照加成</span> Y₁ &gt; <span class="tag-pick-1">140%</span> <span data-i18n="pick-team1">選隊伍一</span></span>
           </td>
         </tr>
         <tr>
           <td><span class="badge-rank rank-a">A</span></td>
           <td><span class="badge-rank rank-c">C</span></td>
-          <td>2 場 (400 CP)</td>
-          <td>9,000 − 10X<sub>1</sub></td>
+          <td><span data-i18n="plays-2">2 場 (400 CP)</span></td>
+          <td>9,000 − 10X₁</td>
           <td class="pt-color">900.0%</td>
-          <td>11,300 − 7Y<sub>1</sub></td>
+          <td>11,300 − 7Y₁</td>
           <td class="medal-color">1614.3%</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="tag-pick-2">無法超越，選隊伍二</span></span>
-            <span class="decision-item">獎章 <span class="tag-pick-2">無法超越，選隊伍二</span></span>
+            <span class="decision-item">PT <span class="tag-pick-2" data-i18n="cannot-surpass-pick2">無法超越，選隊伍二</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="tag-pick-2" data-i18n="cannot-surpass-pick2">無法超越，選隊伍二</span></span>
           </td>
         </tr>
         <tr>
           <td><span class="badge-rank rank-a">A</span></td>
           <td><span class="badge-rank rank-d">D</span></td>
-          <td>3 場 (600 CP)</td>
-          <td>12,500 + 15X<sub>1</sub></td>
-          <td class="always-win">隊伍二必勝</td>
-          <td>15,450 + 29.5Y<sub>1</sub></td>
-          <td class="always-win">隊伍二必勝</td>
+          <td><span data-i18n="plays-3">3 場 (600 CP)</span></td>
+          <td>12,500 + 15X₁</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
+          <td>15,450 + 29.5Y₁</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="tag-pick-2">隊伍二必勝</span></span>
-            <span class="decision-item">獎章 <span class="tag-pick-2">隊伍二必勝</span></span>
+            <span class="decision-item">PT <span class="tag-pick-2" data-i18n="team2-win">隊伍二必勝</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="tag-pick-2" data-i18n="team2-win">隊伍二必勝</span></span>
           </td>
         </tr>
         <tr id="t1-b-c" class="row-adjacent-t1">
           <td><span class="badge-rank rank-b">B</span></td>
           <td><span class="badge-rank rank-c">C</span></td>
-          <td>1 場 (200 CP)</td>
-          <td>4,000 − 30X<sub>1</sub></td>
+          <td><span data-i18n="plays-1">1 場 (200 CP)</span></td>
+          <td>4,000 − 30X₁</td>
           <td class="pt-color">133.3%</td>
-          <td>5,050 − 39.5Y<sub>1</sub></td>
+          <td>5,050 − 39.5Y₁</td>
           <td class="medal-color">127.8%</td>
           <td class="decision-cell">
-            <span class="decision-item">PT 隊伍加成 X₁ &gt; <span class="tag-pick-1">134%</span> 選隊伍一</span>
-            <span class="decision-item">獎章 快照加成 Y₁ &gt; <span class="tag-pick-1">128%</span> 選隊伍一</span>
+            <span class="decision-item"><span data-i18n="pt-bonus">PT 隊伍加成</span> X₁ &gt; <span class="tag-pick-1">134%</span> <span data-i18n="pick-team1">選隊伍一</span></span>
+            <span class="decision-item"><span data-i18n="medal-bonus">獎章 快照加成</span> Y₁ &gt; <span class="tag-pick-1">128%</span> <span data-i18n="pick-team1">選隊伍一</span></span>
           </td>
         </tr>
         <tr>
           <td><span class="badge-rank rank-b">B</span></td>
           <td><span class="badge-rank rank-d">D</span></td>
-          <td>2 場 (400 CP)</td>
-          <td>8,500 − 10X<sub>1</sub></td>
+          <td><span data-i18n="plays-2">2 場 (400 CP)</span></td>
+          <td>8,500 − 10X₁</td>
           <td class="pt-color">850.0%</td>
-          <td>10,700 − 1.5Y<sub>1</sub></td>
+          <td>10,700 − 1.5Y₁</td>
           <td class="medal-color">7133.3%</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="tag-pick-2">無法超越，選隊伍二</span></span>
-            <span class="decision-item">獎章 <span class="tag-pick-2">無法超越，選隊伍二</span></span>
+            <span class="decision-item">PT <span class="tag-pick-2" data-i18n="cannot-surpass-pick2">無法超越，選隊伍二</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="tag-pick-2" data-i18n="cannot-surpass-pick2">無法超越，選隊伍二</span></span>
           </td>
         </tr>
         <tr id="t1-c-d" class="row-adjacent-t1">
           <td><span class="badge-rank rank-c">C</span></td>
           <td><span class="badge-rank rank-d">D</span></td>
-          <td>1 場 (200 CP)</td>
-          <td>3,500 − 20X<sub>1</sub></td>
+          <td><span data-i18n="plays-1">1 場 (200 CP)</span></td>
+          <td>3,500 − 20X₁</td>
           <td class="pt-color">175.0%</td>
-          <td>4,150 − 24.5Y<sub>1</sub></td>
+          <td>4,150 − 24.5Y₁</td>
           <td class="medal-color">169.4%</td>
           <td class="decision-cell">
-            <span class="decision-item">PT 隊伍加成 X₁ &gt; <span class="tag-pick-1">175%</span> 選隊伍一</span>
-            <span class="decision-item">獎章 快照加成 Y₁ &gt; <span class="tag-pick-1">170%</span> 選隊伍一</span>
+            <span class="decision-item"><span data-i18n="pt-bonus">PT 隊伍加成</span> X₁ &gt; <span class="tag-pick-1">175%</span> <span data-i18n="pick-team1">選隊伍一</span></span>
+            <span class="decision-item"><span data-i18n="medal-bonus">獎章 快照加成</span> Y₁ &gt; <span class="tag-pick-1">170%</span> <span data-i18n="pick-team1">選隊伍一</span></span>
           </td>
         </tr>
       </tbody>
@@ -607,30 +645,22 @@
 
   <!-- ================= 表格二 ================= -->
   <div class="card">
-    <h2 class="title-t2">表格二：隊伍二帶有加成時的動態平衡關係</h2>
+    <h2 class="title-t2" id="t2-title">表格二：隊伍二帶有加成時的動態平衡關係</h2>
     
-    <div class="guide-box guide-t2">
-      <div class="guide-title">📌 基準條件與圖表判讀說明（天藍色底色為相差 1 個評級之對比）</div>
-      <div class="guide-desc">
-        • <strong>情境設定</strong>：<br>
-        &nbsp;&nbsp;- <strong>高評分隊伍（隊伍二）</strong>：為「高評級、中/低加成隊伍」，隊伍加成為 <strong>X<sub>2</sub></strong>、快照加成為 <strong>Y<sub>2</sub></strong>。<br>
-        &nbsp;&nbsp;- <strong>低評分隊伍（隊伍一）</strong>：為「低評級、高加成隊伍」，隊伍加成為 <strong>X<sub>1</sub></strong>、快照加成為 <strong>Y<sub>1</sub></strong>，並假設與挑戰隊伍配置一致且評級相同。<br>
-        • <strong>如何看此表</strong>：<br>
-        &nbsp;&nbsp;1. <strong>反超條件</strong>：低評分隊伍的加成（<strong>X<sub>1</sub></strong> 或 <strong>Y<sub>1</sub></strong>）必須大於門檻算式才能獲勝。<br>
-        &nbsp;&nbsp;2. <strong>封死臨界值</strong>：只要高評分隊伍的加成（<strong>X<sub>2</sub></strong> 或 <strong>Y<sub>2</sub></strong>）達到該數值，低評分隊伍即使堆到版本上限 375% 也無法反超，此時必選高評分隊伍（隊伍二）。
-      </div>
+    <div class="guide-box guide-t2" id="t2-guide">
+      <!-- 由 JS 動態注入 -->
     </div>
 
     <table>
       <thead>
         <tr>
-          <th>隊伍二評級</th>
-          <th>隊伍一評級</th>
-          <th>PT 差距公式 (隊伍2 - 隊伍1)</th>
-          <th>低評分隊伍反超所需 PT 加成 (X<sub>1</sub>)</th>
-          <th>獎章差距公式 (隊伍2 - 隊伍1)</th>
-          <th>低評分隊伍反超所需 獎章 加成 (Y<sub>1</sub>)</th>
-          <th>隊伍二封死臨界值 (X₂ 或 Y₂ 達到即選隊伍二)</th>
+          <th data-i18n="th-team2-rank">隊伍二評級</th>
+          <th data-i18n="th-team1-rank">隊伍一評級</th>
+          <th data-i18n="th-pt-formula">PT 差距公式 (隊伍2 - 隊伍1)</th>
+          <th data-i18n="th-t2-pt-req">低評分隊伍反超所需 PT 加成 (X₁)</th>
+          <th data-i18n="th-medal-formula">獎章差距公式 (隊伍2 - 隊伍1)</th>
+          <th data-i18n="th-t2-medal-req">低評分隊伍反超所需 獎章 加成 (Y₁)</th>
+          <th data-i18n="th-t2-crit">隊伍二封死臨界值 (X₂ 或 Y₂ 達到即選隊伍二)</th>
         </tr>
       </thead>
       <tbody>
@@ -638,180 +668,180 @@
           <td><span class="badge-rank rank-ss">SS</span></td>
           <td><span class="badge-rank rank-s">S</span></td>
           <td>14,000 + 200X₂ − 60X₁</td>
-          <td class="pt-color">X<sub>1</sub> &gt; 233.3% + 3.33X₂</td>
+          <td class="pt-color">X₁ &gt; 233.3% + 3.33X₂</td>
           <td>15,800 + 240Y₂ − 82Y₁</td>
-          <td class="medal-color">Y<sub>1</sub> &gt; 192.7% + 2.93Y₂</td>
+          <td class="medal-color">Y₁ &gt; 192.7% + 2.93Y₂</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="crit-val">X₂ ≥ 42.6%</span> 選隊伍二</span>
-            <span class="decision-item">獎章 <span class="crit-val">Y₂ ≥ 62.3%</span> 選隊伍二</span>
+            <span class="decision-item">PT <span class="crit-val">X₂ ≥ 42.6%</span> <span data-i18n="pick-team2">選隊伍二</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="crit-val">Y₂ ≥ 62.3%</span> <span data-i18n="pick-team2">選隊伍二</span></span>
           </td>
         </tr>
         <tr id="t2-ss-a">
           <td><span class="badge-rank rank-ss">SS</span></td>
           <td><span class="badge-rank rank-a">A</span></td>
           <td>24,000 + 200X₂ − 60X₁</td>
-          <td class="pt-color">X<sub>1</sub> &gt; 400.0% + 3.33X₂</td>
+          <td class="pt-color">X₁ &gt; 400.0% + 3.33X₂</td>
           <td>26,600 + 240Y₂ − 46Y₁</td>
-          <td class="medal-color">Y<sub>1</sub> &gt; 578.3% + 5.22Y₂</td>
+          <td class="medal-color">Y₁ &gt; 578.3% + 5.22Y₂</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="crit-val">無論幾 % 均選隊伍二</span></span>
-            <span class="decision-item">獎章 <span class="crit-val">無論幾 % 均選隊伍二</span></span>
+            <span class="decision-item">PT <span class="crit-val" data-i18n="any-pct-pick2">無論幾 % 均選隊伍二</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="crit-val" data-i18n="any-pct-pick2">無論幾 % 均選隊伍二</span></span>
           </td>
         </tr>
         <tr>
           <td><span class="badge-rank rank-ss">SS</span></td>
           <td><span class="badge-rank rank-b">B</span></td>
           <td>26,750 + 200X₂ + 7.5X₁</td>
-          <td class="always-win">隊伍二必勝</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td>31,000 + 240Y₂ + 10Y₁</td>
-          <td class="always-win">隊伍二必勝</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="crit-val">隊伍二必勝</span></span>
-            <span class="decision-item">獎章 <span class="crit-val">隊伍二必勝</span></span>
+            <span class="decision-item">PT <span class="crit-val" data-i18n="team2-win">隊伍二必勝</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="crit-val" data-i18n="team2-win">隊伍二必勝</span></span>
           </td>
         </tr>
         <tr>
           <td><span class="badge-rank rank-ss">SS</span></td>
           <td><span class="badge-rank rank-c">C</span></td>
           <td>27,000 + 200X₂ + 50X₁</td>
-          <td class="always-win">隊伍二必勝</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td>31,900 + 240Y₂ + 59Y₁</td>
-          <td class="always-win">隊伍二必勝</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="crit-val">隊伍二必勝</span></span>
-            <span class="decision-item">獎章 <span class="crit-val">隊伍二必勝</span></span>
+            <span class="decision-item">PT <span class="crit-val" data-i18n="team2-win">隊伍二必勝</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="crit-val" data-i18n="team2-win">隊伍二必勝</span></span>
           </td>
         </tr>
         <tr>
           <td><span class="badge-rank rank-ss">SS</span></td>
           <td><span class="badge-rank rank-d">D</span></td>
           <td>27,500 + 200X₂ + 75X₁</td>
-          <td class="always-win">隊伍二必勝</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td>33,050 + 240Y₂ + 94.5Y₁</td>
-          <td class="always-win">隊伍二必勝</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="crit-val">隊伍二必勝</span></span>
-            <span class="decision-item">獎章 <span class="crit-val">隊伍二必勝</span></span>
+            <span class="decision-item">PT <span class="crit-val" data-i18n="team2-win">隊伍二必勝</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="crit-val" data-i18n="team2-win">隊伍二必勝</span></span>
           </td>
         </tr>
         <tr id="t2-s-a" class="row-adjacent-t2">
           <td><span class="badge-rank rank-s">S</span></td>
           <td><span class="badge-rank rank-a">A</span></td>
           <td>12,000 + 150X₂ − 30X₁</td>
-          <td class="pt-color">X<sub>1</sub> &gt; 400.0% + 5.00X₂</td>
+          <td class="pt-color">X₁ &gt; 400.0% + 5.00X₂</td>
           <td>14,300 + 180Y₂ − 37Y₁</td>
-          <td class="medal-color">Y<sub>1</sub> &gt; 386.5% + 4.86Y₂</td>
+          <td class="medal-color">Y₁ &gt; 386.5% + 4.86Y₂</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="crit-val">無論幾 % 均選隊伍二</span></span>
-            <span class="decision-item">獎章 <span class="crit-val">無論幾 % 均選隊伍二</span></span>
+            <span class="decision-item">PT <span class="crit-val" data-i18n="any-pct-pick2">無論幾 % 均選隊伍二</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="crit-val" data-i18n="any-pct-pick2">無論幾 % 均選隊伍二</span></span>
           </td>
         </tr>
         <tr>
           <td><span class="badge-rank rank-s">S</span></td>
           <td><span class="badge-rank rank-b">B</span></td>
           <td>16,250 + 150X₂ + 12.5X₁</td>
-          <td class="always-win">隊伍二必勝</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td>19,800 + 180Y₂ + 18Y₁</td>
-          <td class="always-win">隊伍二必勝</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="crit-val">隊伍二必勝</span></span>
-            <span class="decision-item">獎章 <span class="crit-val">隊伍二必勝</span></span>
+            <span class="decision-item">PT <span class="crit-val" data-i18n="team2-win">隊伍二必勝</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="crit-val" data-i18n="team2-win">隊伍二必勝</span></span>
           </td>
         </tr>
         <tr>
           <td><span class="badge-rank rank-s">S</span></td>
           <td><span class="badge-rank rank-c">C</span></td>
           <td>18,000 + 150X₂ + 50X₁</td>
-          <td class="always-win">隊伍二必勝</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td>22,600 + 180Y₂ + 60Y₁</td>
-          <td class="always-win">隊伍二必勝</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="crit-val">隊伍二必勝</span></span>
-            <span class="decision-item">獎章 <span class="crit-val">隊伍二必勝</span></span>
+            <span class="decision-item">PT <span class="crit-val" data-i18n="team2-win">隊伍二必勝</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="crit-val" data-i18n="team2-win">隊伍二必勝</span></span>
           </td>
         </tr>
         <tr>
           <td><span class="badge-rank rank-s">S</span></td>
           <td><span class="badge-rank rank-d">D</span></td>
           <td>20,000 + 150X₂ + 70X₁</td>
-          <td class="always-win">隊伍二必勝</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td>25,250 + 180Y₂ + 91.5Y₁</td>
-          <td class="always-win">隊伍二必勝</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="crit-val">隊伍二必勝</span></span>
-            <span class="decision-item">獎章 <span class="crit-val">隊伍二必勝</span></span>
+            <span class="decision-item">PT <span class="crit-val" data-i18n="team2-win">隊伍二必勝</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="crit-val" data-i18n="team2-win">隊伍二必勝</span></span>
           </td>
         </tr>
         <tr id="t2-a-b" class="row-adjacent-t2">
           <td><span class="badge-rank rank-a">A</span></td>
           <td><span class="badge-rank rank-b">B</span></td>
           <td>5,750 + 100X₂ − 42.5X₁</td>
-          <td class="pt-color">X<sub>1</sub> &gt; 135.3% + 2.35X₂</td>
+          <td class="pt-color">X₁ &gt; 135.3% + 2.35X₂</td>
           <td>7,000 + 120Y₂ − 50Y₁</td>
-          <td class="medal-color">Y<sub>1</sub> &gt; 140.0% + 2.40Y₂</td>
+          <td class="medal-color">Y₁ &gt; 140.0% + 2.40Y₂</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="crit-val">X₂ ≥ 101.9%</span> 選隊伍二</span>
-            <span class="decision-item">獎章 <span class="crit-val">Y₂ ≥ 97.9%</span> 選隊伍二</span>
+            <span class="decision-item">PT <span class="crit-val">X₂ ≥ 101.9%</span> <span data-i18n="pick-team2">選隊伍二</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="crit-val">Y₂ ≥ 97.9%</span> <span data-i18n="pick-team2">選隊伍二</span></span>
           </td>
         </tr>
         <tr>
           <td><span class="badge-rank rank-a">A</span></td>
           <td><span class="badge-rank rank-c">C</span></td>
           <td>9,000 + 100X₂ − 10X₁</td>
-          <td class="pt-color">X<sub>1</sub> &gt; 900.0% + 10.0X₂</td>
+          <td class="pt-color">X₁ &gt; 900.0% + 10.0X₂</td>
           <td>11,300 + 120Y₂ − 7Y₁</td>
-          <td class="medal-color">Y<sub>1</sub> &gt; 1614.3% + 17.1Y₂</td>
+          <td class="medal-color">Y₁ &gt; 1614.3% + 17.1Y₂</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="crit-val">無論幾 % 均選隊伍二</span></span>
-            <span class="decision-item">獎章 <span class="crit-val">無論幾 % 均選隊伍二</span></span>
+            <span class="decision-item">PT <span class="crit-val" data-i18n="any-pct-pick2">無論幾 % 均選隊伍二</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="crit-val" data-i18n="any-pct-pick2">無論幾 % 均選隊伍二</span></span>
           </td>
         </tr>
         <tr>
           <td><span class="badge-rank rank-a">A</span></td>
           <td><span class="badge-rank rank-d">D</span></td>
           <td>12,500 + 100X₂ + 15X₁</td>
-          <td class="always-win">隊伍二必勝</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td>15,450 + 120Y₂ + 29.5Y₁</td>
-          <td class="always-win">隊伍二必勝</td>
+          <td class="always-win" data-i18n="team2-win">隊伍二必勝</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="crit-val">隊伍二必勝</span></span>
-            <span class="decision-item">獎章 <span class="crit-val">隊伍二必勝</span></span>
+            <span class="decision-item">PT <span class="crit-val" data-i18n="team2-win">隊伍二必勝</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="crit-val" data-i18n="team2-win">隊伍二必勝</span></span>
           </td>
         </tr>
         <tr id="t2-b-c" class="row-adjacent-t2">
           <td><span class="badge-rank rank-b">B</span></td>
           <td><span class="badge-rank rank-c">C</span></td>
           <td>4,000 + 70X₂ − 30X₁</td>
-          <td class="pt-color">X<sub>1</sub> &gt; 133.3% + 2.33X₂</td>
+          <td class="pt-color">X₁ &gt; 133.3% + 2.33X₂</td>
           <td>5,050 + 84Y₂ − 39.5Y₁</td>
-          <td class="medal-color">Y<sub>1</sub> &gt; 127.8% + 2.13Y₂</td>
+          <td class="medal-color">Y₁ &gt; 127.8% + 2.13Y₂</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="crit-val">X₂ ≥ 103.6%</span> 選隊伍二</span>
-            <span class="decision-item">獎章 <span class="crit-val">Y₂ ≥ 115.9%</span> 選隊伍二</span>
+            <span class="decision-item">PT <span class="crit-val">X₂ ≥ 103.6%</span> <span data-i18n="pick-team2">選隊伍二</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="crit-val">Y₂ ≥ 115.9%</span> <span data-i18n="pick-team2">選隊伍二</span></span>
           </td>
         </tr>
         <tr>
           <td><span class="badge-rank rank-b">B</span></td>
           <td><span class="badge-rank rank-d">D</span></td>
           <td>8,500 + 70X₂ − 10X₁</td>
-          <td class="pt-color">X<sub>1</sub> &gt; 850.0% + 7.00X₂</td>
+          <td class="pt-color">X₁ &gt; 850.0% + 7.00X₂</td>
           <td>10,700 + 84Y₂ − 1.5Y₁</td>
-          <td class="medal-color">Y<sub>1</sub> &gt; 7133.3% + 56.0Y₂</td>
+          <td class="medal-color">Y₁ &gt; 7133.3% + 56.0Y₂</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="crit-val">無論幾 % 均選隊伍二</span></span>
-            <span class="decision-item">獎章 <span class="crit-val">無論幾 % 均選隊伍二</span></span>
+            <span class="decision-item">PT <span class="crit-val" data-i18n="any-pct-pick2">無論幾 % 均選隊伍二</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="crit-val" data-i18n="any-pct-pick2">無論幾 % 均選隊伍二</span></span>
           </td>
         </tr>
         <tr id="t2-c-d" class="row-adjacent-t2">
           <td><span class="badge-rank rank-c">C</span></td>
           <td><span class="badge-rank rank-d">D</span></td>
           <td>3,500 + 50X₂ − 20X₁</td>
-          <td class="pt-color">X<sub>1</sub> &gt; 175.0% + 2.50X₂</td>
+          <td class="pt-color">X₁ &gt; 175.0% + 2.50X₂</td>
           <td>4,150 + 60Y₂ − 24.5Y₁</td>
-          <td class="medal-color">Y<sub>1</sub> &gt; 169.4% + 2.45Y₂</td>
+          <td class="medal-color">Y₁ &gt; 169.4% + 2.45Y₂</td>
           <td class="decision-cell">
-            <span class="decision-item">PT <span class="crit-val">X₂ ≥ 80.0%</span> 選隊伍二</span>
-            <span class="decision-item">獎章 <span class="crit-val">Y₂ ≥ 83.9%</span> 選隊伍二</span>
+            <span class="decision-item">PT <span class="crit-val">X₂ ≥ 80.0%</span> <span data-i18n="pick-team2">選隊伍二</span></span>
+            <span class="decision-item"><span data-i18n="medal-word">獎章</span> <span class="crit-val">Y₂ ≥ 83.9%</span> <span data-i18n="pick-team2">選隊伍二</span></span>
           </td>
         </tr>
       </tbody>
@@ -819,6 +849,296 @@
   </div>
 
 </div>
+
+<script>
+  const i18nData = {
+    zh: {
+      "summary-title": "⚡ 評級抉擇懶人包速查（上限 375% 環境）",
+      "summary-subtitle": `
+        <div class="preset-note">📌 前提假設：預設為挑戰隊伍跟低評分隊伍一樣</div>
+        <div>💡 <strong>代號定義說明</strong>：<strong>X<sub>1</sub></strong> 為低評分隊伍的「隊伍加成 %」、<strong>Y<sub>1</sub></strong> 為低評分隊伍的「快照加成 %」；<strong>X<sub>2</sub></strong> 為高評分隊伍的「隊伍加成 %」、<strong>Y<sub>2</sub></strong> 為高評分隊伍的「快照加成 %」。</div>
+      `,
+      "score": "評分",
+      "btn-t1": "表1",
+      "btn-t2": "表2",
+      "lbl-pt": "活動 PT：",
+      "lbl-medal": "活動獎章：",
+      "s-vs-a-pt": "必選 S",
+      "s-vs-a-medal": "必選 S",
+      "cross-2-title": "跨 2 階以上（如 SS vs A、S vs B）",
+      "cross-2-pt": "必選高評級",
+      "cross-2-medal": "必選高評級",
+      "ss-vs-s-pt": "X₂ < 42.6% 且 X₁ > 233.3% + 3.33X₂ 才選 S",
+      "ss-vs-s-medal": "Y₂ < 62.3% 且 Y₁ > 192.7% + 2.93Y₂ 才選 S",
+      "a-vs-b-pt": "X₂ < 101.9% 且 X₁ > 135.3% + 2.35X₂ 才選 B",
+      "a-vs-b-medal": "Y₂ < 97.9% 且 Y₁ > 140.0% + 2.40Y₂ 才選 B",
+      "b-vs-c-pt": "X₂ < 103.6% 且 X₁ > 133.3% + 2.33X₂ 才選 C",
+      "b-vs-c-medal": "Y₂ < 115.9% 且 Y₁ > 127.8% + 2.13Y₂ 才選 C",
+      "c-vs-d-pt": "X₂ < 80.0% 且 X₁ > 175.0% + 2.50X₂ 才選 D",
+      "c-vs-d-medal": "Y₂ < 83.9% 且 Y₁ > 169.4% + 2.45Y₂ 才選 D",
+
+      "t1-title": "表格一：隊伍二隊伍加成跟快照加成加成固定為 0%",
+      "t1-guide": `
+        <div class="guide-title">📌 基準條件與圖表判讀說明（藍紫色底色為相差 1 個評級之對比）</div>
+        <div class="guide-desc">
+          • <strong>情境設定</strong>：<br>
+          &nbsp;&nbsp;- <strong>低評分隊伍（隊伍一）</strong>：為「高加成、低評級隊伍」，隊伍加成為 <strong>X<sub>1</sub></strong>、快照加成為 <strong>Y<sub>1</sub></strong>，並<strong>先假設隊伍一與挑戰隊伍配置一樣、評級也相同</strong>。<br>
+          &nbsp;&nbsp;- <strong>高評分隊伍（隊伍二）</strong>：為「純高綜合力、無加成隊伍」，隊伍加成 <strong>X<sub>2</sub></strong> 與快照加成 <strong>Y<sub>2</sub></strong> 固定為 0% 0%。<br>
+          • <strong>結算標準</strong>：以 40🔥 週期（倍率 200 倍）自動換算產生的挑戰 PT（200 CP/場）並打滿挑戰 Live 合併總產出，加成上限設定為 375%。<br>
+          • <strong>如何看此表</strong>：對比兩隊評級落差，查看低評分隊伍需要堆到多少隊伍加成 <strong>X<sub>1</sub></strong> 或快照加成 <strong>Y<sub>1</sub></strong> 才能逆轉高評分隊伍多拿 CP 幣打挑戰的優勢。
+        </div>
+      `,
+      "th-team2-0": "隊伍二 (0%)",
+      "th-team1-rank": "隊伍一評級",
+      "th-cp-diff": "40🔥挑戰場次差",
+      "th-pt-formula": "PT 差距公式 (隊伍2 - 隊伍1)",
+      "th-pt-eq": "PT 平衡點 (X₁)",
+      "th-medal-formula": "獎章差距公式 (隊伍2 - 隊伍1)",
+      "th-medal-eq": "獎章平衡點 (Y₁)",
+      "th-decision": "實戰決策 (上限 375%)",
+
+      "plays-1": "1 場 (200 CP)",
+      "plays-2": "2 場 (400 CP)",
+      "plays-3": "3 場 (600 CP)",
+      "plays-4": "4 場 (800 CP)",
+      "plays-5": "5 場 (1000 CP)",
+      "plays-6": "6 場 (1200 CP)",
+      "plays-7": "7 場 (1400 CP)",
+      "pt-bonus": "PT 隊伍加成",
+      "medal-bonus": "獎章 快照加成",
+      "medal-word": "獎章",
+      "pick-team1": "選隊伍一",
+      "pick-team2": "選隊伍二",
+      "cannot-surpass-pick2": "無法超越，選隊伍二",
+      "team2-win": "隊伍二必勝",
+      "s-a-pt-dec": "無法超越（差750分），選隊伍二",
+      "s-a-medal-dec": "無法超越（差425分），選隊伍二",
+
+      "t2-title": "表格二：隊伍二帶有加成時的動態平衡關係",
+      "t2-guide": `
+        <div class="guide-title">📌 基準條件與圖表判讀說明（天藍色底色為相差 1 個評級之對比）</div>
+        <div class="guide-desc">
+          • <strong>情境設定</strong>：<br>
+          &nbsp;&nbsp;- <strong>高評分隊伍（隊伍二）</strong>：為「高評級、中/低加成隊伍」，隊伍加成為 <strong>X<sub>2</sub></strong>、快照加成為 <strong>Y<sub>2</sub></strong>。<br>
+          &nbsp;&nbsp;- <strong>低評分隊伍（隊伍一）</strong>：為「低評級、高加成隊伍」，隊伍加成為 <strong>X<sub>1</sub></strong>、快照加成為 <strong>Y<sub>1</sub></strong>，並假設與挑戰隊伍配置一致且評級相同。<br>
+          • <strong>如何看此表</strong>：<br>
+          &nbsp;&nbsp;1. <strong>反超條件</strong>：低評分隊伍的加成（<strong>X<sub>1</sub></strong> 或 <strong>Y<sub>1</sub></strong>）必須大於門檻算式才能獲勝。<br>
+          &nbsp;&nbsp;2. <strong>封死臨界值</strong>：只要高評分隊伍的加成（<strong>X<sub>2</sub></strong> 或 <strong>Y<sub>2</sub></strong>）達到該數值，低評分隊伍即使堆到版本上限 375% 也無法反超，此時必選高評分隊伍（隊伍二）。
+        </div>
+      `,
+      "th-team2-rank": "隊伍二評級",
+      "th-t2-pt-req": "低評分隊伍反超所需 PT 加成 (X₁)",
+      "th-t2-medal-req": "低評分隊伍反超所需 獎章 加成 (Y₁)",
+      "th-t2-crit": "隊伍二封死臨界值 (X₂ 或 Y₂ 達到即選隊伍二)",
+      "any-pct-pick2": "無論幾 % 均選隊伍二"
+    },
+    en: {
+      "summary-title": "⚡ Quick Strategy Cheat Sheet (Cap: 375%)",
+      "summary-subtitle": `
+        <div class="preset-note">📌 Default Assumption: Challenge Live team is identical to the Lower Rank team</div>
+        <div>💡 <strong>Notation Definitions</strong>: <strong>X<sub>1</sub></strong>: Team 1 (Low Tier) Team Bonus %; <strong>Y<sub>1</sub></strong>: Team 1 Snapshot Bonus %; <strong>X<sub>2</sub></strong>: Team 2 (High Tier) Team Bonus %; <strong>Y<sub>2</sub></strong>: Team 2 Snapshot Bonus %.</div>
+      `,
+      "score": "Ranks:",
+      "btn-t1": "Table 1",
+      "btn-t2": "Table 2",
+      "lbl-pt": "Event PT:",
+      "lbl-medal": "Event Medals:",
+      "s-vs-a-pt": "Always Pick S",
+      "s-vs-a-medal": "Always Pick S",
+      "cross-2-title": "≥ 2 Tier Gap (e.g., SS vs A, S vs B)",
+      "cross-2-pt": "Always Pick Higher Rank",
+      "cross-2-medal": "Always Pick Higher Rank",
+      "ss-vs-s-pt": "Pick S if X₂ < 42.6% & X₁ > 233.3% + 3.33X₂",
+      "ss-vs-s-medal": "Pick S if Y₂ < 62.3% & Y₁ > 192.7% + 2.93Y₂",
+      "a-vs-b-pt": "Pick B if X₂ < 101.9% & X₁ > 135.3% + 2.35X₂",
+      "a-vs-b-medal": "Pick B if Y₂ < 97.9% & Y₁ > 140.0% + 2.40Y₂",
+      "b-vs-c-pt": "Pick C if X₂ < 103.6% & X₁ > 133.3% + 2.33X₂",
+      "b-vs-c-medal": "Pick C if Y₂ < 115.9% & Y₁ > 127.8% + 2.13Y₂",
+      "c-vs-d-pt": "Pick D if X₂ < 80.0% & X₁ > 175.0% + 2.50X₂",
+      "c-vs-d-medal": "Pick D if Y₂ < 83.9% & Y₁ > 169.4% + 2.45Y₂",
+
+      "t1-title": "Table 1: Team 2 Bonuses Fixed at 0% (Extreme Case)",
+      "t1-guide": `
+        <div class="guide-title">📌 Baseline Conditions & Table Guide (Purple highlights denote 1-tier gap)</div>
+        <div class="guide-desc">
+          • <strong>Setup</strong>:<br>
+          &nbsp;&nbsp;- <strong>Team 1 (Lower Rank)</strong>: High bonus team with <strong>X<sub>1</sub></strong> Team Bonus and <strong>Y<sub>1</sub></strong> Snapshot Bonus. Assumes Challenge Live team setup and rank match Normal Live.<br>
+          &nbsp;&nbsp;- <strong>Team 2 (Higher Rank)</strong>: Pure power team with bonuses fixed at 0% / 0% (X₂ = 0, Y₂ = 0).<br>
+          • <strong>Metric</strong>: Evaluated per 40🔥 cycle (200x base multiplier), converting all earned CP into Challenge Lives (200 CP/play). Current bonus cap is 375%.<br>
+          • <strong>How to Read</strong>: Find how much bonus (X₁ / Y₁) Team 1 needs to overcome Team 2's Challenge Live quantity advantage.
+        </div>
+      `,
+      "th-team2-0": "Team 2 (0%)",
+      "th-team1-rank": "Team 1 Rank",
+      "th-cp-diff": "40🔥 Challenge Diff",
+      "th-pt-formula": "PT Gap (Team 2 - Team 1)",
+      "th-pt-eq": "PT Parity (X₁)",
+      "th-medal-formula": "Medal Gap (Team 2 - Team 1)",
+      "th-medal-eq": "Medal Parity (Y₁)",
+      "th-decision": "Decision (375% Cap)",
+
+      "plays-1": "1 play (200 CP)",
+      "plays-2": "2 plays (400 CP)",
+      "plays-3": "3 plays (600 CP)",
+      "plays-4": "4 plays (800 CP)",
+      "plays-5": "5 plays (1000 CP)",
+      "plays-6": "6 plays (1200 CP)",
+      "plays-7": "7 plays (1400 CP)",
+      "pt-bonus": "PT Team Bonus",
+      "medal-bonus": "Medal Snapshot Bonus",
+      "medal-word": "Medal",
+      "pick-team1": "Pick Team 1",
+      "pick-team2": "Pick Team 2",
+      "cannot-surpass-pick2": "Impossible to surpass, Pick Team 2",
+      "team2-win": "Team 2 Always Wins",
+      "s-a-pt-dec": "Impossible to surpass (-750 gap), Pick Team 2",
+      "s-a-medal-dec": "Impossible to surpass (-425 gap), Pick Team 2",
+
+      "t2-title": "Table 2: Dynamic Decision Matrix with Team 2 Bonuses (X₂, Y₂)",
+      "t2-guide": `
+        <div class="guide-title">📌 Baseline Conditions & Table Guide (Cyan highlights denote 1-tier gap)</div>
+        <div class="guide-desc">
+          • <strong>Setup</strong>:<br>
+          &nbsp;&nbsp;- <strong>Team 2 (Higher Rank)</strong>: Power-focused team retaining <strong>X<sub>2</sub></strong> Team Bonus and <strong>Y<sub>2</sub></strong> Snapshot Bonus.<br>
+          &nbsp;&nbsp;- <strong>Team 1 (Lower Rank)</strong>: Event-bonus team with <strong>X<sub>1</sub></strong> Team Bonus and <strong>Y<sub>1</sub></strong> Snapshot Bonus.<br>
+          • <strong>How to Read</strong>:<br>
+          &nbsp;&nbsp;1. <strong>Surpass Condition</strong>: Team 1's bonus (X₁ or Y₁) must exceed the formula threshold to win.<br>
+          &nbsp;&nbsp;2. <strong>Lockout Threshold</strong>: If Team 2's bonus reaches this value, Team 1 can never win even with maximum 375% bonus.
+        </div>
+      `,
+      "th-team2-rank": "Team 2 Rank",
+      "th-t2-pt-req": "Team 1 PT Bonus Needed (X₁)",
+      "th-t2-medal-req": "Team 1 Medal Bonus Needed (Y₁)",
+      "th-t2-crit": "Team 2 Lockout Threshold (Pick Team 2 if Met)",
+      "any-pct-pick2": "Always Pick Team 2 at any %"
+    },
+    ja: {
+      "summary-title": "⚡ ランク選択まとめ速報（上限 375% 環境）",
+      "summary-subtitle": `
+        <div class="preset-note">📌 前提条件：チャレンジライブ編成は低ランク編成と同一と仮定</div>
+        <div>💡 <strong>記号の定義</strong>：<strong>X<sub>1</sub></strong> は低ランク編成の「イベントボーナス %」、<strong>Y<sub>1</sub></strong> は「スナップボーナス %」；<strong>X<sub>2</sub></strong> は高ランク編成の「イベントボーナス %」、<strong>Y<sub>2</sub></strong> は「スナップボーナス %」を表します。</div>
+      `,
+      "score": "ランク：",
+      "btn-t1": "表1",
+      "btn-t2": "表2",
+      "lbl-pt": "イベント PT：",
+      "lbl-medal": "メダル：",
+      "s-vs-a-pt": "Sランク一択",
+      "s-vs-a-medal": "Sランク一択",
+      "cross-2-title": "2ランク以上差（例：SS vs A、S vs B）",
+      "cross-2-pt": "高ランク一択",
+      "cross-2-medal": "高ランク一択",
+      "ss-vs-s-pt": "X₂ < 42.6% かつ X₁ > 233.3% + 3.33X₂ で S 選択",
+      "ss-vs-s-medal": "Y₂ < 62.3% かつ Y₁ > 192.7% + 2.93Y₂ で S 選択",
+      "a-vs-b-pt": "X₂ < 101.9% かつ X₁ > 135.3% + 2.35X₂ で B 選択",
+      "a-vs-b-medal": "Y₂ < 97.9% かつ Y₁ > 140.0% + 2.40Y₂ で B 選択",
+      "b-vs-c-pt": "X₂ < 103.6% かつ X₁ > 133.3% + 2.33X₂ で C 選択",
+      "b-vs-c-medal": "Y₂ < 115.9% かつ Y₁ > 127.8% + 2.13Y₂ で C 選択",
+      "c-vs-d-pt": "X₂ < 80.0% かつ X₁ > 175.0% + 2.50X₂ で D 選択",
+      "c-vs-d-medal": "Y₂ < 83.9% かつ Y₁ > 169.4% + 2.45Y₂ で D 選択",
+
+      "t1-title": "表1：編成2のボーナスを 0% 固定とした極限比較",
+      "t1-guide": `
+        <div class="guide-title">📌 前提条件と読み方（青紫色の行は1ランク差の対比）</div>
+        <div class="guide-desc">
+          • <strong>設定条件</strong>：<br>
+          &nbsp;&nbsp;- <strong>編成1（低ランク）</strong>：高ボーナス編成（イベントボーナス <strong>X<sub>1</sub></strong>、スナップ <strong>Y<sub>1</sub></strong>）。チャレンジライブのランク・編成は通常ライブと同一と仮定。<br>
+          &nbsp;&nbsp;- <strong>編成2（高ランク）</strong>：純粋な総合力編成（ボーナス固定 0% 0%）。<br>
+          • <strong>計算基準</strong>：40🔥 周期（倍率 200倍）で獲得した CP をすべてチャレンジライブ（1回 200 CP）で消費した合算値。ボーナス上限は 375% です。<br>
+          • <strong>見方</strong>：編成1が何％以上のボーナスを積めば、編成2のチャレンジ回数有利を逆転できるかを示しています。
+        </div>
+      `,
+      "th-team2-0": "編成2 (0%)",
+      "th-team1-rank": "編成1 ランク",
+      "th-cp-diff": "40🔥 チャレンジ回数差",
+      "th-pt-formula": "PT 差公式 (編成2 - 編成1)",
+      "th-pt-eq": "PT 均衡値 (X₁)",
+      "th-medal-formula": "メダル差公式 (編成2 - 編成1)",
+      "th-medal-eq": "メダル 均衡値 (Y₁)",
+      "th-decision": "実践判断 (上限 375%)",
+
+      "plays-1": "1回差 (200 CP)",
+      "plays-2": "2回差 (400 CP)",
+      "plays-3": "3回差 (600 CP)",
+      "plays-4": "4回差 (800 CP)",
+      "plays-5": "5回差 (1000 CP)",
+      "plays-6": "6回差 (1200 CP)",
+      "plays-7": "7回差 (1400 CP)",
+      "pt-bonus": "PT イベントボーナス",
+      "medal-bonus": "メダル スナップボーナス",
+      "medal-word": "メダル",
+      "pick-team1": "編成1を選択",
+      "pick-team2": "編成2を選択",
+      "cannot-surpass-pick2": "逆転不可、編成2を選択",
+      "team2-win": "編成2の必勝",
+      "s-a-pt-dec": "逆転不可（750pt差）、編成2を選択",
+      "s-a-medal-dec": "逆転不可（425枚差）、編成2を選択",
+
+      "t2-title": "表2：編成2もボーナス（X₂, Y₂）を持つ動的損益分岐点",
+      "t2-guide": `
+        <div class="guide-title">📌 前提条件と読み方（シアン色の行は1ランク差の対比）</div>
+        <div class="guide-desc">
+          • <strong>設定条件</strong>：<br>
+          &nbsp;&nbsp;- <strong>編成2（高ランク）</strong>：総合力を重視しつつボーナス（<strong>X<sub>2</sub></strong> / <strong>Y<sub>2</sub></strong>）を保持。<br>
+          &nbsp;&nbsp;- <strong>編成1（低ランク）</strong>：特効ボーナス重視編成（<strong>X<sub>1</sub></strong> / <strong>Y<sub>1</sub></strong>）。<br>
+          • <strong>見方</strong>：<br>
+          &nbsp;&nbsp;1. <strong>逆転条件</strong>：編成1のボーナスが計算式の閾値を上回れば編成1の勝ち。<br>
+          &nbsp;&nbsp;2. <strong>封殺閾値</strong>：編成2のボーナスがこの数値に達している場合、編成1が上限の 375% を積んでも逆転不可となり、編成2一択となります。
+        </div>
+      `,
+      "th-team2-rank": "編成2 ランク",
+      "th-t2-pt-req": "編成1の逆転に必要な PT ボーナス (X₁)",
+      "th-t2-medal-req": "編成1の逆転に必要な メダル ボーナス (Y₁)",
+      "th-t2-crit": "編成2封殺閾値（達していれば編成2一択）",
+      "any-pct-pick2": "何％でも編成2を選択"
+    }
+  };
+
+  function setLanguage(lang) {
+    if (!i18nData[lang]) lang = 'zh';
+    localStorage.setItem('ournotes_lang', lang);
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('onclick').includes(lang));
+    });
+
+    const dict = i18nData[lang];
+
+    // 更新懶人包標題與說明
+    const summaryTitle = document.getElementById('summary-title');
+    if (summaryTitle) summaryTitle.innerText = dict["summary-title"];
+
+    const summarySub = document.getElementById('summary-subtitle');
+    if (summarySub) summarySub.innerHTML = dict["summary-subtitle"];
+
+    // 更新導覽與大標
+    const t1Title = document.getElementById('t1-title');
+    if (t1Title) t1Title.innerText = dict["t1-title"];
+
+    const t1Guide = document.getElementById('t1-guide');
+    if (t1Guide) t1Guide.innerHTML = dict["t1-guide"];
+
+    const t2Title = document.getElementById('t2-title');
+    if (t2Title) t2Title.innerText = dict["t2-title"];
+
+    const t2Guide = document.getElementById('t2-guide');
+    if (t2Guide) t2Guide.innerHTML = dict["t2-guide"];
+
+    // 更新帶有 data-i18n 屬性的所有標籤
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key]) {
+        el.innerText = dict[key];
+      }
+    });
+  }
+
+  // 頁面載入時讀取 localStorage 或預設為繁中
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('ournotes_lang') || 'zh';
+    setLanguage(savedLang);
+  });
+</script>
 
 </body>
 </html>
